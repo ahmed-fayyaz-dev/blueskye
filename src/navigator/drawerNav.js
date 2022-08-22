@@ -6,17 +6,17 @@ import { useTheme } from "react-native-paper";
 import { connect } from "react-redux";
 
 import { icons } from "assets/images";
+import { IonIcons } from "src/helpers";
 import { CustomCaption } from "src/components/customText";
 import DrawerContent from "src/components/drawer";
-import { IonIcons } from "src/helpers";
 import { logout } from "src/redux/common/actions/actions";
 
-import Dashboard from "src/screens/dashboard";
+import Feed from "src/screens/feed";
 import { Playground } from "src/screens/playground";
 import { drawerActiveTint, drawerIcon } from "src/styles/navCss";
 
 const levels = {
-    dashboardLevel: 0,
+    feedLevel: 0,
     accountsLevel: 1,
     inventoryLevel: 2,
 };
@@ -30,22 +30,9 @@ const DrawerIcons = ({ size, focused, icon }) => (
     />
 );
 
-const headerRight = ({ style }) => (
-    <View>
-        <CustomCaption style={style.time}>
-            {format(new Date(), "EEEE, MMMM")}
-        </CustomCaption>
-        <CustomCaption style={style.time}>
-            {format(new Date(), "d, yyy")}
-        </CustomCaption>
-    </View>
-);
-
 const DrawerNav = (props) => {
     const { colors } = useTheme();
     const style = styles(colors);
-
-    const dashboardHeaderRight = () => headerRight({ style: style });
 
     return (
         <Drawer.Navigator
@@ -72,13 +59,12 @@ const DrawerNav = (props) => {
             )}
         >
             <Drawer.Screen
-                name="dashboard"
-                component={Dashboard}
+                name="feed"
+                component={Feed}
                 options={{
-                    level: levels.dashboardLevel,
-                    title: "- Dashboard",
+                    level: levels.feedLevel,
+                    title: "- Feed",
                     headerTitleContainerStyle: { height: 0, width: 0 },
-                    // headerRight: dashboardHeaderRight,
                 }}
             />
             <Drawer.Screen name="playground" component={Playground} />
