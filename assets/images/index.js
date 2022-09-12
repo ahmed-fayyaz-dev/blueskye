@@ -4,15 +4,16 @@ export const images = {
 };
 
 export const icons = {
+    auth: {
+        smsPhone: require("./icons/sms-phone.png"),
+        checkmark: require("./icons/check-outline.png"),
+    },
     tab: {},
-    auth: {},
     drawer: {
-        bank: require("./icons/bank.png"),
-        expense: require("./icons/expenses.png"),
-        report: require("./icons/reports.png"),
-        topSale: require("./icons/topSales.png"),
-        regionSale: require("./icons/regionSale.png"),
-        dashboard: require("./icons/dashboardIcon.png"),
+        posts: require("./icons/posts-menu.png"),
+        scanQr: require("./icons/qr-menu.png"),
+        myProfile: require("./icons/profile-menu.png"),
+        fees: require("./icons/fees-menu.png"),
     },
     app: {
         logoSmallB: require("./icons/logoSmall-b.png"),

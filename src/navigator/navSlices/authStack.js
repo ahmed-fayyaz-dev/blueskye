@@ -4,7 +4,7 @@ import { getStorageItem } from "src/helpers";
 import { NOT_FIRST_TIME } from "src/helpers/constants";
 import Login from "src/screens/login";
 
-import WelcomeScreen from "src/screens/welcomeScreen";
+// import WelcomeScreen from "src/screens/welcomeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,14 +24,15 @@ const AuthStack = () => {
     if (!ready) return null;
     return (
         <Stack.Navigator
-            initialRouteName={notFirstTime.current ? "login" : "welcome"}
+            // initialRouteName={notFirstTime.current ? "login" : "welcome"}
+            initialRouteName="login"
             screenOptions={{
                 headerShown: false,
                 headerTintColor: "red",
                 headerMode: "float",
             }}
         >
-            <Stack.Screen name="welcome" component={WelcomeScreen} />
+            {/* <Stack.Screen name="welcome" component={WelcomeScreen} /> */}
             <Stack.Screen name="login" component={Login} />
         </Stack.Navigator>
     );

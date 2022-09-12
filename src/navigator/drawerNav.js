@@ -35,7 +35,7 @@ const DrawerNav = (props) => {
             useLegacyImplementation
             screenOptions={{
                 // swipeEnabled: false,
-                drawerActiveBackgroundColor: colors.primary,
+                drawerActiveBackgroundColor: colors.secondary,
                 drawerActiveTintColor: drawerActiveTint,
                 headerTitleAlign: "center",
                 headerStyle: style.headerStyle,
@@ -57,8 +57,13 @@ const DrawerNav = (props) => {
                 name="feed"
                 component={Feed}
                 options={{
-                    title: "Feed",
-                    // drawerIcon:({focused,size})=>DrawerIcons({focused,size,icon:})
+                    title: "Posts",
+                    drawerIcon: ({ focused, size }) =>
+                        DrawerIcons({
+                            focused,
+                            size,
+                            icon: icons.drawer.posts,
+                        }),
                 }}
             />
             <Drawer.Screen name="playground" component={Playground} />
@@ -82,5 +87,5 @@ const styles = (colors) =>
             width: 0.8 * Dimensions.get("window").width,
         },
 
-        headerStyle: { backgroundColor: colors.notification },
+        headerStyle: { backgroundColor: colors.primary },
     });

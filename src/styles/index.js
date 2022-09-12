@@ -31,8 +31,8 @@ export const buttonHeight = 40;
 
 export const sBh = StatusBar.currentHeight;
 
-export const bRss = 5;
-export const bRs = 10;
+export const bRss = 10;
+export const bRs = 12;
 export const bRms = 18;
 export const bRm = 20;
 

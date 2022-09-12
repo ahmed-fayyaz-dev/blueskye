@@ -107,21 +107,24 @@ function AppNavigator(props) {
                 password: password,
             };
 
-            await callApi({
-                data: data,
-                submitCallApi: submitLoginAccount,
-                successFunc: async () => {
-                    loggedIn.current = true;
-                    setReady(true);
-                },
-                errFunc: () => {
-                    setReady(true);
-                },
-                catchFunc: () => {
-                    setReady(true);
-                },
-                setLoading: () => {},
-            });
+            // await callApi({
+            //     data: data,
+            //     submitCallApi: submitLoginAccount,
+            //     successFunc: async () => {
+            //         loggedIn.current = true;
+            //         setReady(true);
+            //     },
+            //     errFunc: () => {
+            //         setReady(true);
+            //     },
+            //     catchFunc: () => {
+            //         setReady(true);
+            //     },
+            //     setLoading: () => {},
+            // });
+
+            loggedIn.current = true;
+            setReady(true);
         } else {
             setReady(true);
         }

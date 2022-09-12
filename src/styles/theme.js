@@ -4,15 +4,15 @@ import {
 } from "@react-navigation/native";
 import { DarkTheme, DefaultTheme } from "react-native-paper";
 
-const bR = 5;
+const bR = 10;
 
 const lightColorSet = {
-    primary: "#EF4E36",
-    primaryVariant: "#EF4E36",
-    secondary: "#072051",
+    primary: "#183E71",
+    primaryVariant: "#0BA77B",
+    secondary: "#F47621",
     muted: "#808080",
     error: "#CF6679",
-    background: "#F6F6F6",
+    background: "white",
     surface: "white",
     onPrimary: "white",
     onSecondary: "white",
@@ -23,9 +23,9 @@ const lightColorSet = {
 };
 
 const darkColorSet = {
-    primary: "#EF4E36",
-    primaryVariant: "#EF4E36",
-    secondary: "#072051",
+    primary: "#183E71",
+    primaryVariant: "#0BA77B",
+    secondary: "#F47621",
     muted: "#808080",
     error: "#CF6679",
     background: "#121212",
@@ -68,7 +68,8 @@ export const paperLightTheme = {
         disabled: lightColorSet.muted,
         placeholder: lightColorSet.muted,
         backdrop: lightColorSet.shadow,
-        notification: lightColorSet.secondary,
+        notification: lightColorSet.primary,
+        secondary: lightColorSet.secondary,
     },
     // fonts: configureFonts(),
     animation: {
@@ -93,7 +94,8 @@ export const paperDarkTheme = {
         disabled: darkColorSet.muted,
         placeholder: darkColorSet.muted,
         backdrop: darkColorSet.shadow,
-        notification: darkColorSet.secondary,
+        notification: darkColorSet.primary,
+        secondary: darkColorSet.secondary,
     },
     // fonts: configureFonts(),
     animation: {

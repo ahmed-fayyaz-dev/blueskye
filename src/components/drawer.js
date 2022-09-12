@@ -22,6 +22,7 @@ import {
     CustomParagraph,
     CustomSubheading,
     CustomText,
+    CustomTitle,
 } from "./customText";
 import { GapH } from "./gap";
 import { icons } from "assets/images/index";
@@ -108,7 +109,7 @@ function DrawerContent(props) {
             contentContainerStyle={style.drawerContentScroll}
             {...props}
         >
-            <CustomSubheading style={[style.menuText]}>MENU</CustomSubheading>
+            <CustomTitle style={[style.menuText]}>MENU</CustomTitle>
 
             {/* Drawer with Sub Levels */}
             {/* {MenuLabels.map((menuItem, i) => (
@@ -155,7 +156,7 @@ const styles = (colors) =>
         container: { flex: 1 },
 
         menuText: {
-            margin: mgS,
+            // margin: mgS,
             padding: mgS,
             textAlign: "left",
             fontWeight: "bold",
@@ -172,7 +173,7 @@ const styles = (colors) =>
 
         drawerTopView: {
             flexDirection: "row-reverse",
-            backgroundColor: colors.notification,
+            backgroundColor: colors.primary,
         },
 
         drawerContentScroll: { paddingTop: 0 },

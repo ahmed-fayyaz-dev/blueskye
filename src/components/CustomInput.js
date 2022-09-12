@@ -1,5 +1,6 @@
 import React from "react";
-import { TextInput, HelperText } from "react-native-paper";
+import { StyleSheet } from "react-native";
+import { TextInput, HelperText, useTheme } from "react-native-paper";
 
 const CustomInput = ({
     onChange,
@@ -15,6 +16,8 @@ const CustomInput = ({
     controlled,
     ...props
 }) => {
+    const { colors } = useTheme();
+    const style = styles(colors);
     const [localstate, setLocalstate] = React.useState(secure);
     // const [state, setState] = React.useState(value);
     function onChangeText(v) {
@@ -32,7 +35,7 @@ const CustomInput = ({
 
     const Input = () => (
         <TextInput
-            mode="outlined"
+            mode="flat"
             label={label}
             // value={value} // Controlled
             defaultValue={value} // Uncontrolled
@@ -44,13 +47,14 @@ const CustomInput = ({
             multiline={multiline}
             editable={editable}
             right={secure && SecureIcon()}
+            style={style.input}
             {...props}
         />
     );
 
     const ControlledInput = () => (
         <TextInput
-            mode="outlined"
+            mode="flat"
             label={label}
             value={value} // Controlled
             // defaultValue={value} // Uncontrolled
@@ -62,6 +66,7 @@ const CustomInput = ({
             multiline={multiline}
             editable={editable}
             right={secure && SecureIcon()}
+            style={style.input}
             {...props}
         />
     );
@@ -74,6 +79,13 @@ const CustomInput = ({
         </>
     );
 };
+
+const styles = (colors) =>
+    StyleSheet.create({
+        input: {
+            backgroundColor: colors.background,
+        },
+    });
 
 // CustomInput.propTypes = {
 //     keyboardType: PropTypes.oneOf([
