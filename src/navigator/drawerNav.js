@@ -1,13 +1,10 @@
 import React from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { format } from "date-fns";
 import { useTheme } from "react-native-paper";
 import { connect } from "react-redux";
 
 import { icons } from "assets/images";
-import { IonIcons } from "src/helpers";
-import { CustomCaption } from "src/components/customText";
 import DrawerContent from "src/components/drawer";
 import { logout } from "src/redux/common/actions/actions";
 
@@ -16,9 +13,8 @@ import { Playground } from "src/screens/playground";
 import { drawerActiveTint, drawerIcon } from "src/styles/navCss";
 
 const levels = {
-    feedLevel: 0,
-    accountsLevel: 1,
-    inventoryLevel: 2,
+    subLevel1: 0,
+    subLevel2: 1,
 };
 
 const Drawer = createDrawerNavigator();
@@ -45,9 +41,8 @@ const DrawerNav = (props) => {
                 headerStyle: style.headerStyle,
                 headerTintColor: drawerActiveTint,
                 drawerStyle: style.drawer,
-                drawerItemStyle: style.drawerItem,
-                drawerIcon: ({ color, size }) =>
-                    IonIcons({ name: drawerIcon, size: size, color: color }),
+                // drawerIcon: ({ color, size }) =>
+                //     IonIcons({ name: drawerIcon, size: size, color: color }),
             }}
             drawerContent={(dCprops) => (
                 <DrawerContent
@@ -62,9 +57,8 @@ const DrawerNav = (props) => {
                 name="feed"
                 component={Feed}
                 options={{
-                    level: levels.feedLevel,
-                    title: "- Feed",
-                    headerTitleContainerStyle: { height: 0, width: 0 },
+                    title: "Feed",
+                    // drawerIcon:({focused,size})=>DrawerIcons({focused,size,icon:})
                 }}
             />
             <Drawer.Screen name="playground" component={Playground} />
@@ -84,8 +78,6 @@ export default connect(mapStateToProps, {
 
 const styles = (colors) =>
     StyleSheet.create({
-        drawerItem: {},
-
         drawer: {
             width: 0.8 * Dimensions.get("window").width,
         },
