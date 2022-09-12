@@ -10,165 +10,174 @@ import { IonIcons, setStorageItem } from "src/helpers";
 import { submitLoginAccount } from "./actions/actions";
 import { Form } from "./components/form";
 import { CustomCaption, CustomSubheading } from "src/components/customText";
+import { CustomRoundButton } from "src/components/buttons";
 import { GapV } from "src/components/gap";
 import { entering, exiting } from "src/helpers/animation";
 import { callApi } from "src/helpers/apiCall";
 import { ONBOARD, ID, PASSWORD } from "src/helpers/constants";
-import { iconSizeL, mgM, mgMs, mgS, onBackgroundDark } from "src/styles/index";
+import globalStyles, {
+  bRl,
+  bRm,
+  bRs,
+  bRss,
+  iconSizeL,
+  mgM,
+  mgMs,
+  mgS,
+  onBackgroundDark,
+  pdHm,
+  pdVms,
+} from "src/styles/index";
 
 function Login({ navigation, submitLoginAccount }) {
-    const { colors } = useTheme();
-    const style = styles(colors);
+  const { colors } = useTheme();
+  const style = styles(colors);
+  const gStyle = globalStyles();
 
-    // Navigate
-    function navigate() {
-        navigation.reset({
-            index: 0,
-            routes: [{ name: "drawerNav" }],
-        });
+  // Navigate
+  function navigate() {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "drawerNav" }],
+    });
+  }
+
+  // OnLoginPress
+  async function handleSubmitLogin(data) {
+    if (data.remember) {
+      setStorageItem(ID, data.email);
+      setStorageItem(PASSWORD, data.password);
+      setStorageItem(ONBOARD, true);
     }
 
-    // OnLoginPress
-    async function handleSubmitLogin(data) {
-        if (data.remember) {
-            setStorageItem(ID, data.email);
-            setStorageItem(PASSWORD, data.password);
-            setStorageItem(ONBOARD, true);
-        }
+    // await callApi({
+    //     data,
+    //     setLoading: () => {},
+    //     submitCallApi: submitLoginAccount,
+    //     successFunc: navigate,
+    //     errFunc: () => {},
+    //     catchFunc: () => {},
+    // });
 
-        // await callApi({
-        //     data,
-        //     setLoading: () => {},
-        //     submitCallApi: submitLoginAccount,
-        //     successFunc: navigate,
-        //     errFunc: () => {},
-        //     catchFunc: () => {},
-        // });
+    navigate();
+  }
 
-        navigate();
-    }
+  const TopView = () => (
+    <View>
+      <GapV large />
 
-    const TopView = () => (
-        <View>
-            <Image
-                resizeMode="contain"
-                source={icons.app.logoLargeW}
-                style={style.image}
-            />
-            <GapV small />
+      <Image
+        resizeMode="contain"
+        source={icons.app.logoLargeW}
+        style={style.image}
+      />
+      <GapV large />
+    </View>
+  );
 
-            <Divider style={[style.divider]} />
-            <GapV small />
+  const AvatarIcon = () => (
+    <View style={style.avatarContainer}>
+      <IonIcons
+        name={"person-outline"}
+        size={iconSizeL}
+        color={onBackgroundDark}
+        style={style.avatarStyle}
+      />
+    </View>
+  );
 
-            <CustomCaption style={style.subText}>
-                Please Login to your Account
-            </CustomCaption>
+  const LoginCard = () => (
+    <Animated.View entering={entering} exiting={exiting} style={[style.card]}>
+      <AvatarIcon />
 
-            <GapV />
-        </View>
-    );
+      <GapV />
 
-    const LoginView = () => (
-        <Animated.View
-            entering={entering}
-            exiting={exiting}
-            style={style.loginView}
-        >
-            <IonIcons
-                style={style.icon}
-                name="person-outline"
-                size={iconSizeL}
-            />
+      <Form onSubmit={handleSubmitLogin} />
+    </Animated.View>
+  );
 
-            <CustomSubheading style={style.title}>LOGIN</CustomSubheading>
-            <GapV small />
+  const Signout = () => (
+    <CustomRoundButton title="SIGN OUT" mode="TEXT" color={colors.secondary} />
+  );
 
-            <Form onSubmit={handleSubmitLogin} />
-        </Animated.View>
-    );
+  return (
+    <View style={[style.container, gStyle.content]}>
+      <ScrollView contentContainerStyle={[style.content]}>
+        {TopView()}
+        {LoginCard()}
+        <GapV />
 
-    return (
-        <View style={style.container}>
-            <ScrollView contentContainerStyle={[style.content]}>
-                {LoginView()}
-                {TopView()}
-            </ScrollView>
-        </View>
-    );
+        {Signout()}
+      </ScrollView>
+    </View>
+  );
 }
 
 function mapStateToProps() {
-    return {};
+  return {};
 }
 
 function mapDipatchToProps(dispatch) {
-    return bindActionCreators(
-        {
-            submitLoginAccount,
-        },
-        dispatch
-    );
+  return bindActionCreators(
+    {
+      submitLoginAccount,
+    },
+    dispatch
+  );
 }
 
 export default connect(mapStateToProps, mapDipatchToProps)(Login);
 
 const styles = (colors) =>
-    StyleSheet.create({
-        container: {
-            backgroundColor: colors.notification,
-            flex: 1,
-            paddingTop: StatusBar.currentHeight,
-        },
+  StyleSheet.create({
+    container: {
+      flex: 1,
+    },
 
-        content: {
-            flexDirection: "column-reverse",
-            flexGrow: 1,
-        },
+    card: {
+      borderRadius: bRss,
+      paddingTop: mgMs,
+      paddingHorizontal: pdHm,
+      borderWidth: StyleSheet.hairlineWidth,
+    },
 
-        image: {
-            alignSelf: "center",
-            height: 66,
-        },
+    content: {
+      flexGrow: 1,
+    },
 
-        fdr: { flexDirection: "row" },
+    image: {
+      alignSelf: "center",
+      height: 140,
+      width: 144,
+    },
 
-        divider: {
-            alignSelf: "center",
-            backgroundColor: onBackgroundDark,
-            height: 1,
-            width: "80%",
-        },
+    fdr: { flexDirection: "row" },
 
-        subText: {
-            color: onBackgroundDark,
-        },
+    divider: {
+      alignSelf: "center",
+      backgroundColor: onBackgroundDark,
+      height: 1,
+      width: "80%",
+    },
 
-        title: {
-            fontWeight: "bold",
-        },
+    subText: {
+      color: onBackgroundDark,
+    },
 
-        icon: { alignSelf: "center" },
+    title: {
+      fontWeight: "bold",
+    },
 
-        loginView: {
-            backgroundColor: colors.surface,
-            borderTopStartRadius: 40,
-            borderTopEndRadius: 40,
-            paddingHorizontal: mgMs,
-            paddingTop: mgM,
-            marginHorizontal: mgS,
-            shadowColor: "#000",
-            shadowOffset: {
-                width: 0,
-                height: 8,
-            },
-            shadowOpacity: 0.46,
-            shadowRadius: 11.14,
-            elevation: 17,
-            zIndex: 17,
-        },
+    icon: { alignSelf: "center" },
 
-        revBottomContainer: {
-            flexDirection: "column-reverse",
-            flex: 1,
-        },
-    });
+    avatarStyle: {},
+
+    avatarContainer: {
+      borderRadius: bRl,
+      backgroundColor: "blue",
+      alignSelf: "center",
+      padding: mgS,
+      position: "absolute",
+      top: -30,
+    },
+  });
