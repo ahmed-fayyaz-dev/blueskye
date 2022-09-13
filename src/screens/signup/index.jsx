@@ -1,5 +1,12 @@
 import React from "react";
-import { ScrollView, View, StyleSheet, Image, StatusBar } from "react-native";
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  Image,
+  StatusBar,
+  Text,
+} from "react-native";
 import { useTheme, Divider } from "react-native-paper";
 import Animated from "react-native-reanimated";
 import { connect } from "react-redux";
@@ -7,7 +14,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { icons } from "assets/images";
 import { IonIcons, setStorageItem } from "src/helpers";
-import { submitLoginAccount } from "./actions/actions";
+// import { submitLoginAccount } from "./actions/actions";
 import { Form } from "./components/form";
 import { CustomCaption, CustomSubheading } from "src/components/customText";
 import { CustomRoundButton } from "src/components/buttons";
@@ -26,41 +33,14 @@ import globalStyles, {
   mgS,
   onBackgroundDark,
   pdHm,
+  pdHs,
   pdVms,
 } from "src/styles/index";
 
-function Login({ navigation, submitLoginAccount }) {
+function Signup() {
   const { colors } = useTheme();
   const style = styles(colors);
   const gStyle = globalStyles();
-
-  // Navigate
-  function navigate() {
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "drawerNav" }],
-    });
-  }
-
-  // OnLoginPress
-  async function handleSubmitLogin(data) {
-    if (data.remember) {
-      setStorageItem(ID, data.email);
-      setStorageItem(PASSWORD, data.password);
-      setStorageItem(ONBOARD, true);
-    }
-
-    // await callApi({
-    //     data,
-    //     setLoading: () => {},
-    //     submitCallApi: submitLoginAccount,
-    //     successFunc: navigate,
-    //     errFunc: () => {},
-    //     catchFunc: () => {},
-    // });
-
-    navigate();
-  }
 
   const TopView = () => (
     <View>
@@ -71,67 +51,28 @@ function Login({ navigation, submitLoginAccount }) {
         source={icons.app.logoLargeW}
         style={style.image}
       />
-      <GapV large />
-    </View>
-  );
-
-  const AvatarIcon = () => (
-    <View style={style.avatarContainer}>
-      <IonIcons
-        name={"person-outline"}
-        size={iconSizeL}
-        color={onBackgroundDark}
-        style={style.avatarStyle}
-      />
-    </View>
-  );
-
-  const LoginCard = () => (
-    <Animated.View entering={entering} exiting={exiting} style={[style.card]}>
-      <AvatarIcon />
-
       <GapV />
+    </View>
+  );
 
-      <Form onSubmit={handleSubmitLogin} />
+  const SingupCard = () => (
+    <Animated.View entering={entering} exiting={exiting} style={[style.card]}>
+      <Form />
     </Animated.View>
   );
 
-  const Signin = () => (
-    <CustomRoundButton
-      title="SIGN UP"
-      mode="TEXT"
-      color={colors.secondary}
-      onPress={() => navigation.navigate("signup")}
-    />
-  );
-
   return (
-    <View style={[style.container, gStyle.content]}>
+    <View style={[style.container]}>
       <ScrollView contentContainerStyle={[style.content]}>
         {TopView()}
-        {LoginCard()}
+        {SingupCard()}
         <GapV />
-
-        {Signin()}
       </ScrollView>
     </View>
   );
 }
 
-function mapStateToProps() {
-  return {};
-}
-
-function mapDipatchToProps(dispatch) {
-  return bindActionCreators(
-    {
-      submitLoginAccount,
-    },
-    dispatch
-  );
-}
-
-export default connect(mapStateToProps, mapDipatchToProps)(Login);
+export default Signup;
 
 const styles = (colors) =>
   StyleSheet.create({
@@ -148,6 +89,8 @@ const styles = (colors) =>
 
     content: {
       flexGrow: 1,
+      paddingHorizontal: pdHs,
+      paddingTop: mgM,
     },
 
     image: {
