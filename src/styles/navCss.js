@@ -1,12 +1,12 @@
-import { colorDictionary } from "./theme";
+import { colorDictionary } from './theme';
 
-export const drawerIcon = "reorder-three";
+export const drawerIconName = 'reorder-three';
 
-export const backIcon = "arrow-back-outline";
+export const backIcon = 'arrow-back-outline';
 
-export const searchIcon = "ios-search";
+export const searchIcon = 'ios-search';
 
-export const moreIcon = "ellipsis-vertical";
+export const moreIcon = 'ellipsis-vertical';
 
 export const iconSize = 30;
 

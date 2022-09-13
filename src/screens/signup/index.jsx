@@ -3,12 +3,16 @@ import { ScrollView, View, StyleSheet, Image } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { icons } from 'assets/images';
+import { setStorageItem } from 'src/helpers';
+import { signupAction } from './actions';
 import { Form } from './components/form';
 import { GapV } from 'src/components/gap';
 import { entering, exiting } from 'src/helpers/animation';
-
+import { callApi } from 'src/helpers/apiCall';
+import { ONBOARD, ID, PASSWORD } from 'src/helpers/constants';
 import globalStyles, {
     bRl,
     bRss,
@@ -20,10 +24,31 @@ import globalStyles, {
     pdHs,
 } from 'src/styles/index';
 
-function Signup() {
+function Signup({ navigation, signupAction }) {
     const { colors } = useTheme();
     const style = styles(colors);
     const gStyle = globalStyles();
+
+    const navigate = () => {
+        // navigation.navigate()
+    };
+
+    const handleSubmit = async data => {
+        if (data.remember) {
+            setStorageItem(ID, data.email);
+            setStorageItem(PASSWORD, data.password);
+            setStorageItem(ONBOARD, true);
+        }
+
+        await callApi({
+            data,
+            setLoading: () => {},
+            submitCallApi: signupAction,
+            successFunc: navigate,
+            errFunc: () => {},
+            catchFunc: () => {},
+        });
+    };
 
     const TopView = () => (
         <View>
@@ -34,7 +59,6 @@ function Signup() {
                 source={icons.app.logoLargeW}
                 style={style.image}
             />
-            <GapV />
         </View>
     );
 
@@ -43,7 +67,7 @@ function Signup() {
             entering={entering}
             exiting={exiting}
             style={[style.card]}>
-            <Form />
+            <Form onSubmit={handleSubmit} />
         </Animated.View>
     );
 
@@ -58,7 +82,20 @@ function Signup() {
     );
 }
 
-export default Signup;
+function mapStateToProps() {
+    return {};
+}
+
+function mapDipatchToProps(dispatch) {
+    return bindActionCreators(
+        {
+            signupAction,
+        },
+        dispatch,
+    );
+}
+
+export default connect(mapStateToProps, mapDipatchToProps)(Signup);
 
 const styles = colors =>
     StyleSheet.create({

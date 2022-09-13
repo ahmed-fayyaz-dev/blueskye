@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Formik } from 'formik';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useTheme } from 'react-native-paper';
 
 import { signupValidationSchema } from '../helpers';
@@ -8,9 +9,8 @@ import CustomInput from 'src/components/CustomInput';
 import { CustomRoundButton } from 'src/components/buttons';
 import { CustomText } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export const Form = ({ onSubmit, navigation }) => {
+export const Form = ({ onSubmit }) => {
     const { colors } = useTheme();
     const style = styles(colors);
 
@@ -31,7 +31,6 @@ export const Form = ({ onSubmit, navigation }) => {
                 handleChange,
                 handleBlur,
                 handleSubmit,
-                setFieldValue,
                 values,
                 errors,
                 touched,
@@ -112,18 +111,13 @@ export const Form = ({ onSubmit, navigation }) => {
                         <CustomText>
                             {`By Signing up you accept our `}
 
-                            <TouchableOpacity
-                                style={{
-                                    paddingBottom: 0,
-                                }}>
-                                <CustomText
-                                    style={[
-                                        {
-                                            color: colors.secondary,
-                                            textAlignVertical: 'bottom',
-                                        },
-                                    ]}>{`Terms of Services`}</CustomText>
-                            </TouchableOpacity>
+                            <CustomText
+                                style={[
+                                    {
+                                        color: colors.secondary,
+                                        textAlignVertical: 'bottom',
+                                    },
+                                ]}>{`Terms of Services`}</CustomText>
 
                             {` and `}
 

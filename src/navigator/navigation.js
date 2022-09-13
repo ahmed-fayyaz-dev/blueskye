@@ -1,30 +1,30 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Appearance, I18nManager } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { NavigationContainer } from "@react-navigation/native";
-import i18n from "i18n-js";
-import { Provider as PaperProvider } from "react-native-paper";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Appearance, I18nManager } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import i18n from 'i18n-js';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { getStorageItem } from "src/helpers";
-import RootNavigator from "./rootNavigator";
-import { callApi } from "src/helpers/apiCall";
+import { getStorageItem } from 'src/helpers';
+import RootNavigator from './rootNavigator';
+import { callApi } from 'src/helpers/apiCall';
 import {
     ONBOARD,
     ID,
     PASSWORD,
     LANGUAGE,
     RTL_LANGS,
-} from "src/helpers/constants";
-import { setLanguage } from "src/redux/common/actions/actions";
-import { submitLoginAccount } from "src/screens/login/actions/actions";
+} from 'src/helpers/constants';
+import { setLanguage } from 'src/redux/common/actions/actions';
+import { submitLoginAccount } from 'src/screens/login/actions';
 import {
     paperLightTheme,
     paperDarkTheme,
     navDarkTheme,
     navLightTheme,
-} from "src/styles/theme";
+} from 'src/styles/theme';
 
 //App nav
 function AppNavigator(props) {
@@ -38,7 +38,7 @@ function AppNavigator(props) {
 
     useEffect(() => {
         async function effect() {
-            changeTheme(Appearance.getColorScheme() || "light");
+            changeTheme(Appearance.getColorScheme() || 'light');
             setRedux();
 
             board.current = await getStorageItem(ONBOARD);
@@ -60,8 +60,8 @@ function AppNavigator(props) {
         };
     }, [themeListener]);
 
-    const changeTheme = (c) => {
-        if (c == "dark") {
+    const changeTheme = c => {
+        if (c == 'dark') {
             setTheme(paperDarkTheme);
             setNavTheme(navDarkTheme);
         } else {
@@ -71,7 +71,7 @@ function AppNavigator(props) {
     };
 
     const themeListener = useCallback(({ colorScheme }) => {
-        changeTheme(colorScheme || "light");
+        changeTheme(colorScheme || 'light');
     }, []);
 
     const setRedux = async () => {
@@ -135,9 +135,8 @@ function AppNavigator(props) {
             <PaperProvider
                 theme={theme}
                 settings={{
-                    icon: (props) => <Ionicons {...props} />,
-                }}
-            >
+                    icon: props => <Ionicons {...props} />,
+                }}>
                 <NavigationContainer theme={navTheme}>
                     <RootNavigator loggedIn={loggedIn} />
                 </NavigationContainer>
@@ -154,7 +153,7 @@ function mapDispatchToProps(dispatch, getState) {
     return bindActionCreators(
         { setLanguage, submitLoginAccount },
         dispatch,
-        getState
+        getState,
     );
 }
 

@@ -1,16 +1,16 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Image, StatusBar } from 'react-native';
-import { useTheme, Divider } from 'react-native-paper';
+import { ScrollView, View, StyleSheet, Image } from 'react-native';
+import { useTheme } from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 import { icons } from 'assets/images';
 import { IonIcons, setStorageItem } from 'src/helpers';
-import { submitLoginAccount } from './actions/actions';
+import { loginAction } from './actions';
 import { Form } from './components/form';
-import { CustomCaption, CustomSubheading } from 'src/components/customText';
 import { CustomRoundButton } from 'src/components/buttons';
+import { CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 import { entering, exiting } from 'src/helpers/animation';
 import { callApi } from 'src/helpers/apiCall';
@@ -25,7 +25,7 @@ import globalStyles, {
     pdHm,
 } from 'src/styles/index';
 
-function Login({ navigation, submitLoginAccount }) {
+function Login({ navigation, loginAction }) {
     const { colors } = useTheme();
     const style = styles(colors);
     const gStyle = globalStyles();
@@ -38,6 +38,10 @@ function Login({ navigation, submitLoginAccount }) {
         });
     }
 
+    function navToSignup() {
+        navigation.navigate('signup');
+    }
+
     // OnLoginPress
     async function handleSubmitLogin(data) {
         if (data.remember) {
@@ -46,16 +50,16 @@ function Login({ navigation, submitLoginAccount }) {
             setStorageItem(ONBOARD, true);
         }
 
-        // await callApi({
-        //     data,
-        //     setLoading: () => {},
-        //     submitCallApi: submitLoginAccount,
-        //     successFunc: navigate,
-        //     errFunc: () => {},
-        //     catchFunc: () => {},
-        // });
+        await callApi({
+            data,
+            setLoading: () => {},
+            submitCallApi: loginAction,
+            successFunc: navigate,
+            errFunc: () => {},
+            catchFunc: () => {},
+        });
 
-        navigate();
+        // navigate();
     }
 
     const TopView = () => (
@@ -91,16 +95,19 @@ function Login({ navigation, submitLoginAccount }) {
 
             <GapV />
 
+            <CustomTitle>{`Please Login to your Account`}</CustomTitle>
+
             <Form onSubmit={handleSubmitLogin} />
         </Animated.View>
     );
 
-    const Signin = () => (
+    const Signup = () => (
         <CustomRoundButton
             title="SIGN UP"
             mode="TEXT"
             color={colors.secondary}
-            onPress={() => navigation.navigate('otpSend')}
+            style={style.signupButton}
+            onPress={navToSignup}
         />
     );
 
@@ -111,7 +118,7 @@ function Login({ navigation, submitLoginAccount }) {
                 {LoginCard()}
                 <GapV />
 
-                {Signin()}
+                {Signup()}
             </ScrollView>
         </View>
     );
@@ -124,7 +131,7 @@ function mapStateToProps() {
 function mapDipatchToProps(dispatch) {
     return bindActionCreators(
         {
-            submitLoginAccount,
+            loginAction,
         },
         dispatch,
     );
@@ -184,4 +191,6 @@ const styles = colors =>
             position: 'absolute',
             top: -30,
         },
+
+        signupButton: { alignSelf: 'center' },
     });
