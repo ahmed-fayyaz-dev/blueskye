@@ -1,24 +1,23 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import * as Updates from "expo-updates";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { CustomRoundButton } from "src/components/buttons";
+import { IonIcons } from 'src/helpers';
+import { pdH, mgM, pdVm, primaryColor } from 'src/styles';
+import { CustomRoundButton } from 'src/components/buttons';
 import {
     CustomText,
     CustomTitle,
     CustomCaption,
     CustomSubheading,
-} from "src/components/customText";
-import { IonIcons, removeStorageItem } from "src/helpers";
-import { ID, PASSWORD, ONBOARD } from "src/helpers/constants";
-import { pdH, mgM, pdVm, primaryColor } from "src/styles";
+} from 'src/components/customText';
+import { handleBackToSignIn } from 'src/helpers/utils';
 
 export class ErrorBoundary extends React.Component {
     state = {
         error: false,
-        errorMsg: "",
+        errorMsg: '',
     };
 
     static getDerivedStateFromError(error) {
@@ -33,19 +32,6 @@ export class ErrorBoundary extends React.Component {
         });
     }
 
-    destroyAuth = async () => {
-        await removeStorageItem(ID);
-        await removeStorageItem(PASSWORD);
-        await removeStorageItem(ONBOARD);
-    };
-
-    handleBackToSignIn = async () => {
-        // remove user settings
-        await this.destroyAuth();
-        // restart app
-        await Updates.reloadAsync();
-    };
-
     render() {
         // const { colors } = this.props.theme;
 
@@ -56,7 +42,7 @@ export class ErrorBoundary extends React.Component {
                         <View style={styles.content}>
                             <CustomText style={styles.iconView}>
                                 <IonIcons
-                                    name={"warning"}
+                                    name={'warning'}
                                     size={60}
                                     color={primaryColor}
                                 />
@@ -75,8 +61,8 @@ export class ErrorBoundary extends React.Component {
                             </CustomCaption>
 
                             <CustomRoundButton
-                                title={"Back to Sign In Screen"}
-                                onPress={this.handleBackToSignIn}
+                                title={'Back to Sign In Screen'}
+                                onPress={handleBackToSignIn}
                                 color={primaryColor}
                                 // theme={{ colors: { primary: primaryColor } }}
                             />
@@ -109,6 +95,6 @@ const styles = StyleSheet.create({
     },
 
     iconView: {
-        width: "100%",
+        width: '100%',
     },
 });
