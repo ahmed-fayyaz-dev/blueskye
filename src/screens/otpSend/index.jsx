@@ -1,14 +1,17 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, Image } from 'react-native';
-import { useTheme } from 'react-native-paper';
+import { useTheme, Divider } from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 import { connect } from 'react-redux';
 
+import { bindActionCreators } from 'redux';
 import { icons } from 'assets/images';
 import { Form } from './components/form';
+import { CustomSubheading, CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 import { entering, exiting } from 'src/helpers/animation';
-
+import { callApi } from 'src/helpers/apiCall';
+import { ONBOARD, ID, PASSWORD } from 'src/helpers/constants';
 import globalStyles, {
     bRl,
     bRss,
@@ -16,33 +19,49 @@ import globalStyles, {
     mgMs,
     mgS,
     onBackgroundDark,
-    pdHm,
     pdHs,
+    pdH,
 } from 'src/styles/index';
 
-function Signup() {
+const OTPSend = () => {
     const { colors } = useTheme();
     const style = styles(colors);
-    const gStyle = globalStyles();
 
     const TopView = () => (
         <View>
-            <GapV large />
+            <GapV xL />
 
             <Image
                 resizeMode="contain"
-                source={icons.app.logoLargeW}
-                style={style.image}
+                source={icons.auth.smsPhone}
+                style={[style.image]}
             />
-            <GapV />
         </View>
     );
 
-    const SingupCard = () => (
+    const Content = () => (
+        <View>
+            <GapV large />
+
+            <CustomTitle style={[style.title]}>
+                {`Enter your mobile number to create account.`}
+            </CustomTitle>
+
+            <GapV />
+
+            <CustomSubheading style={[style.subText]}>
+                {`We will send you one time password (OTP)`}
+            </CustomSubheading>
+        </View>
+    );
+
+    const PhoneNumber = () => (
         <Animated.View
             entering={entering}
             exiting={exiting}
             style={[style.card]}>
+            <GapV />
+
             <Form />
         </Animated.View>
     );
@@ -51,14 +70,15 @@ function Signup() {
         <View style={[style.container]}>
             <ScrollView contentContainerStyle={[style.content]}>
                 {TopView()}
-                {SingupCard()}
+                {Content()}
+                {PhoneNumber()}
                 <GapV />
             </ScrollView>
         </View>
     );
-}
+};
 
-export default Signup;
+export default OTPSend;
 
 const styles = colors =>
     StyleSheet.create({
@@ -69,8 +89,8 @@ const styles = colors =>
         card: {
             borderRadius: bRss,
             paddingTop: mgMs,
-            paddingHorizontal: pdHm,
-            borderWidth: StyleSheet.hairlineWidth,
+            paddingHorizontal: pdH,
+            // borderWidth: StyleSheet.hairlineWidth,
         },
 
         content: {
@@ -81,8 +101,8 @@ const styles = colors =>
 
         image: {
             alignSelf: 'center',
-            height: 140,
-            width: 144,
+            height: 100,
+            width: 100,
         },
 
         fdr: { flexDirection: 'row' },
@@ -95,11 +115,13 @@ const styles = colors =>
         },
 
         subText: {
-            color: onBackgroundDark,
+            color: '#999999',
+            fontSize: 22,
         },
 
         title: {
             fontWeight: 'bold',
+            fontSize: 24,
         },
 
         icon: { alignSelf: 'center' },
