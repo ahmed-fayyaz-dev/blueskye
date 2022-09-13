@@ -1,4 +1,4 @@
-import * as types from "src/screens/login/constants/constants";
+import * as types from 'src/screens/login/constants';
 
 let initial = {
     loading: false,

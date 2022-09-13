@@ -1,131 +1,154 @@
-import React from "react";
-import {
-  ScrollView,
-  View,
-  StyleSheet,
-  Image,
-  StatusBar,
-  Text,
-} from "react-native";
-import { useTheme, Divider } from "react-native-paper";
-import Animated from "react-native-reanimated";
-import { connect } from "react-redux";
+import React from 'react';
+import { ScrollView, View, StyleSheet, Image } from 'react-native';
+import { useTheme } from 'react-native-paper';
+import Animated from 'react-native-reanimated';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { bindActionCreators } from "redux";
-import { icons } from "assets/images";
-import { IonIcons, setStorageItem } from "src/helpers";
-// import { submitLoginAccount } from "./actions/actions";
-import { Form } from "./components/form";
-import { CustomCaption, CustomSubheading } from "src/components/customText";
-import { CustomRoundButton } from "src/components/buttons";
-import { GapV } from "src/components/gap";
-import { entering, exiting } from "src/helpers/animation";
-import { callApi } from "src/helpers/apiCall";
-import { ONBOARD, ID, PASSWORD } from "src/helpers/constants";
+import { icons } from 'assets/images';
+import { setStorageItem } from 'src/helpers';
+import { signupAction } from './actions';
+import { Form } from './components/form';
+import { GapV } from 'src/components/gap';
+import { entering, exiting } from 'src/helpers/animation';
+import { callApi } from 'src/helpers/apiCall';
+import { ONBOARD, ID, PASSWORD } from 'src/helpers/constants';
 import globalStyles, {
-  bRl,
-  bRm,
-  bRs,
-  bRss,
-  iconSizeL,
-  mgM,
-  mgMs,
-  mgS,
-  onBackgroundDark,
-  pdHm,
-  pdHs,
-  pdVms,
-} from "src/styles/index";
+    bRl,
+    bRss,
+    mgM,
+    mgMs,
+    mgS,
+    onBackgroundDark,
+    pdHm,
+    pdHs,
+} from 'src/styles/index';
 
-function Signup() {
-  const { colors } = useTheme();
-  const style = styles(colors);
-  const gStyle = globalStyles();
+function Signup({ navigation, signupAction }) {
+    const { colors } = useTheme();
+    const style = styles(colors);
+    const gStyle = globalStyles();
 
-  const TopView = () => (
-    <View>
-      <GapV large />
+    const navigate = () => {
+        // navigation.navigate()
+    };
 
-      <Image
-        resizeMode="contain"
-        source={icons.app.logoLargeW}
-        style={style.image}
-      />
-      <GapV />
-    </View>
-  );
+    const handleSubmit = async data => {
+        if (data.remember) {
+            setStorageItem(ID, data.email);
+            setStorageItem(PASSWORD, data.password);
+            setStorageItem(ONBOARD, true);
+        }
 
-  const SingupCard = () => (
-    <Animated.View entering={entering} exiting={exiting} style={[style.card]}>
-      <Form />
-    </Animated.View>
-  );
+        await callApi({
+            data,
+            setLoading: () => {},
+            submitCallApi: signupAction,
+            successFunc: navigate,
+            errFunc: () => {},
+            catchFunc: () => {},
+        });
+    };
 
-  return (
-    <View style={[style.container]}>
-      <ScrollView contentContainerStyle={[style.content]}>
-        {TopView()}
-        {SingupCard()}
-        <GapV />
-      </ScrollView>
-    </View>
-  );
+    const TopView = () => (
+        <View>
+            <GapV large />
+
+            <Image
+                resizeMode="contain"
+                source={icons.app.logoLargeW}
+                style={style.image}
+            />
+        </View>
+    );
+
+    const SingupCard = () => (
+        <Animated.View
+            entering={entering}
+            exiting={exiting}
+            style={[style.card]}>
+            <Form onSubmit={handleSubmit} />
+        </Animated.View>
+    );
+
+    return (
+        <View style={[style.container]}>
+            <ScrollView contentContainerStyle={[style.content]}>
+                {TopView()}
+                {SingupCard()}
+                <GapV />
+            </ScrollView>
+        </View>
+    );
 }
 
-export default Signup;
+function mapStateToProps() {
+    return {};
+}
 
-const styles = (colors) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-    },
+function mapDipatchToProps(dispatch) {
+    return bindActionCreators(
+        {
+            signupAction,
+        },
+        dispatch,
+    );
+}
 
-    card: {
-      borderRadius: bRss,
-      paddingTop: mgMs,
-      paddingHorizontal: pdHm,
-      borderWidth: StyleSheet.hairlineWidth,
-    },
+export default connect(mapStateToProps, mapDipatchToProps)(Signup);
 
-    content: {
-      flexGrow: 1,
-      paddingHorizontal: pdHs,
-      paddingTop: mgM,
-    },
+const styles = colors =>
+    StyleSheet.create({
+        container: {
+            flex: 1,
+        },
 
-    image: {
-      alignSelf: "center",
-      height: 140,
-      width: 144,
-    },
+        card: {
+            borderRadius: bRss,
+            paddingTop: mgMs,
+            paddingHorizontal: pdHm,
+            borderWidth: StyleSheet.hairlineWidth,
+        },
 
-    fdr: { flexDirection: "row" },
+        content: {
+            flexGrow: 1,
+            paddingHorizontal: pdHs,
+            paddingTop: mgM,
+        },
 
-    divider: {
-      alignSelf: "center",
-      backgroundColor: onBackgroundDark,
-      height: 1,
-      width: "80%",
-    },
+        image: {
+            alignSelf: 'center',
+            height: 140,
+            width: 144,
+        },
 
-    subText: {
-      color: onBackgroundDark,
-    },
+        fdr: { flexDirection: 'row' },
 
-    title: {
-      fontWeight: "bold",
-    },
+        divider: {
+            alignSelf: 'center',
+            backgroundColor: onBackgroundDark,
+            height: 1,
+            width: '80%',
+        },
 
-    icon: { alignSelf: "center" },
+        subText: {
+            color: onBackgroundDark,
+        },
 
-    avatarStyle: {},
+        title: {
+            fontWeight: 'bold',
+        },
 
-    avatarContainer: {
-      borderRadius: bRl,
-      backgroundColor: "blue",
-      alignSelf: "center",
-      padding: mgS,
-      position: "absolute",
-      top: -30,
-    },
-  });
+        icon: { alignSelf: 'center' },
+
+        avatarStyle: {},
+
+        avatarContainer: {
+            borderRadius: bRl,
+            backgroundColor: 'blue',
+            alignSelf: 'center',
+            padding: mgS,
+            position: 'absolute',
+            top: -30,
+        },
+    });
