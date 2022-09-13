@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 import { icons } from 'assets/images';
-import { Form } from './components/form';
+// import { Form } from './components/form';
 import { CustomSubheading, CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 import { entering, exiting } from 'src/helpers/animation';
@@ -22,10 +22,15 @@ import globalStyles, {
     pdHs,
     pdH,
 } from 'src/styles/index';
+import CustomInput from 'src/components/CustomInput';
+import { CustomRoundButton } from 'src/components/buttons';
 
-const OTPSend = () => {
+const OTPSend = ({ navigation, route }) => {
     const { colors } = useTheme();
     const style = styles(colors);
+    const phone = route.params.phone;
+
+    const handleSend = () => {};
 
     const TopView = () => (
         <View>
@@ -56,14 +61,13 @@ const OTPSend = () => {
     );
 
     const PhoneNumber = () => (
-        <Animated.View
-            entering={entering}
-            exiting={exiting}
-            style={[style.card]}>
+        <View style={[style.card]}>
+            <CustomInput label="Phone number" value={phone} disabled />
+
             <GapV />
 
-            <Form />
-        </Animated.View>
+            <CustomRoundButton title={'SEND'} onPress={handleSend} />
+        </View>
     );
 
     return (

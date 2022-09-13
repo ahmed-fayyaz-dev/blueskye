@@ -29,8 +29,12 @@ function Signup({ navigation, signupAction }) {
     const style = styles(colors);
     const gStyle = globalStyles();
 
-    const navigate = () => {
-        // navigation.navigate()
+    const navigate = apiReturn => {
+        const phoneNumber = apiReturn?.crmStudentUser?.phone;
+
+        navigation.navigate('otpSend', {
+            phone: phoneNumber,
+        });
     };
 
     const handleSubmit = async data => {
