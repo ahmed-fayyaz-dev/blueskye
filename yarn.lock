@@ -10406,11 +10406,6 @@ react-native-codegen@^0.69.2:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
-react-native-confirmation-code-field@^7.3.0:
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-confirmation-code-field/-/react-native-confirmation-code-field-7.3.0.tgz#828527001be9f30fd63e12ac4be66845f5036b5e"
-  integrity sha512-o/ByEXh0+9aEehboH/MJorlwELDWpsViedf6Putogsxx2493dzFsZ9P/R9m3qZJ6s2AnWWL9Ja4qjzO9WE5zVg==
-
 react-native-dropdown-picker@^5.3.0:
   version "5.4.2"
   resolved "https://registry.yarnpkg.com/react-native-dropdown-picker/-/react-native-dropdown-picker-5.4.2.tgz#3d17de3d8a84cb8e74a2ffda6be417d287245b81"

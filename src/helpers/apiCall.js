@@ -15,7 +15,7 @@ export async function callApi({
             setLoading(true);
 
             setTimeout(async () => {
-                submitCallApi(data)
+                await submitCallApi(data)
                     .then(res => {
                         // console.log(res);
                         if (res?.status === SUCCESS) {
