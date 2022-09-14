@@ -10,7 +10,7 @@ import { CustomRoundButton } from 'src/components/buttons';
 import { CustomText } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 
-export const Form = ({ onSubmit }) => {
+export const Form = ({ onSubmit, navigation }) => {
     const { colors } = useTheme();
     const style = styles(colors);
 
@@ -75,7 +75,10 @@ export const Form = ({ onSubmit }) => {
                                 <CustomText>{`Remember Me`}</CustomText>
                             </View>
 
-                            <TouchableRipple onPress={() => {}}>
+                            <TouchableRipple
+                                onPress={() => {
+                                    navigation.navigate('forgotPassword');
+                                }}>
                                 <CustomText style={style.forgotPassText}>
                                     {`Forget Text`}
                                 </CustomText>

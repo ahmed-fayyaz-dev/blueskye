@@ -97,7 +97,7 @@ function Login({ navigation, loginAction }) {
 
             <CustomTitle>{`Please Login to your Account`}</CustomTitle>
 
-            <Form onSubmit={handleSubmitLogin} />
+            <Form onSubmit={handleSubmitLogin} navigation={navigation} />
         </Animated.View>
     );
 

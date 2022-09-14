@@ -1,12 +1,17 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Image } from 'react-native';
+import {
+    ScrollView,
+    View,
+    StyleSheet,
+    Image,
+    TouchableOpacity,
+} from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
-import { icons } from 'assets/images';
-// import { Form } from './components/form';
 import { CustomSubheading, CustomTitle } from 'src/components/customText';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { GapV } from 'src/components/gap';
 import globalStyles, {
     bRl,
@@ -21,24 +26,29 @@ import globalStyles, {
 import CustomInput from 'src/components/CustomInput';
 import { CustomRoundButton } from 'src/components/buttons';
 
-const OTPSend = ({ navigation, route }) => {
+const ForgotPassword = ({ navigation }) => {
     const { colors } = useTheme();
     const style = styles(colors);
-    const phone = route.params.phone;
 
-    const handleSend = () => {
-        navigation.navigate('otpVerify', {
-            phone: phone,
-        });
+    const handleSend = () => {};
+
+    const goBack = () => {
+        navigation.goBack();
     };
 
     const TopView = () => (
         <View>
             <GapV xL />
 
-            <Image
+            <TouchableOpacity style={[style.backArrow]} onPress={goBack}>
+                <Ionicons name="arrow-back" size={40} color="black" />
+            </TouchableOpacity>
+
+            <MaterialCommunityIcons
+                name="account-lock"
+                size={100}
+                color={colors.secondary}
                 resizeMode="contain"
-                source={icons.auth.smsPhone}
                 style={[style.image]}
             />
         </View>
@@ -49,20 +59,20 @@ const OTPSend = ({ navigation, route }) => {
             <GapV large />
 
             <CustomTitle style={[style.title]}>
-                {`Enter your mobile number to create account.`}
+                {`Enter your email to recieve a recovery link.`}
             </CustomTitle>
 
             <GapV />
 
             <CustomSubheading style={[style.subText]}>
-                {`We will send you one time password (OTP)`}
+                {`We will send you a one time link.`}
             </CustomSubheading>
         </View>
     );
 
     const PhoneNumber = () => (
         <View style={[style.card]}>
-            <CustomInput label="Phone number" value={phone} disabled />
+            <CustomInput label="Email" />
 
             <GapV />
 
@@ -82,7 +92,7 @@ const OTPSend = ({ navigation, route }) => {
     );
 };
 
-export default OTPSend;
+export default ForgotPassword;
 
 const styles = colors =>
     StyleSheet.create({
@@ -94,7 +104,6 @@ const styles = colors =>
             borderRadius: bRss,
             paddingTop: mgMs,
             paddingHorizontal: pdH,
-            // borderWidth: StyleSheet.hairlineWidth,
         },
 
         content: {
@@ -105,8 +114,6 @@ const styles = colors =>
 
         image: {
             alignSelf: 'center',
-            height: 100,
-            width: 100,
         },
 
         fdr: { flexDirection: 'row' },
@@ -139,5 +146,9 @@ const styles = colors =>
             padding: mgS,
             position: 'absolute',
             top: -30,
+        },
+        backArrow: {
+            position: 'absolute',
+            paddingTop: 30,
         },
     });
