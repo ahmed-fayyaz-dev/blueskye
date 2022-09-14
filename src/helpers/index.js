@@ -1,30 +1,31 @@
-import React from "react";
-import { View, Dimensions, Platform } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useDrawerStatus } from "@react-navigation/drawer";
-import * as Device from "expo-device";
-import { ID, PASSWORD, ONBOARD } from "./constants";
+import React from 'react';
+import { View, Dimensions, Platform } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDrawerStatus } from '@react-navigation/drawer';
+import { format } from 'date-fns';
+import * as Device from 'expo-device';
+import { ID, PASSWORD, ONBOARD } from './constants';
 
-export const windowWidth = Dimensions.get("window").width;
+export const windowWidth = Dimensions.get('window').width;
 
-export const windowHeigth = Dimensions.get("window").height;
+export const windowHeigth = Dimensions.get('window').height;
 
-export const isAndroid = Platform.OS === "android";
+export const isAndroid = Platform.OS === 'android';
 
-export const isIos = Platform.OS === "ios";
+export const isIos = Platform.OS === 'ios';
 
-export const success = "success";
+export const success = 'success';
 
-export const standardDateFormat = "dd/MM/yyyy";
+export const standardDateFormat = 'dd/MM/yyyy';
 
-export const apiDateFormat = "yyyy-MM-dd";
+export const apiDateFormat = 'yyyy-MM-dd';
 
-export const apiDateFormat2 = "MM/dd/yyyy";
+export const apiDateFormat2 = 'MM/dd/yyyy';
 
-export const versionCode = "0.0.1";
+export const versionCode = '0.0.1';
 
-export const startingIp = "192.168.1.1";
+export const startingIp = '192.168.1.1';
 
 export const deviceInfo = {
     brand: Device.brand,
@@ -46,7 +47,7 @@ export const deviceInfo = {
 // export const isDrawerOpen =(navigation)=> getDrawerStatusFromState(navigation.getState()) === 'open';
 export function isDrawerOpen() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    return useDrawerStatus() === "open";
+    return useDrawerStatus() === 'open';
 }
 
 export const setStorageItem = async (key, value) => {
@@ -58,7 +59,7 @@ export const setStorageItem = async (key, value) => {
     }
 };
 
-export const getStorageItem = async (key) => {
+export const getStorageItem = async key => {
     try {
         const jsonValue = await AsyncStorage.getItem(key);
         return jsonValue != null ? JSON.parse(jsonValue) : null;
@@ -68,7 +69,7 @@ export const getStorageItem = async (key) => {
     }
 };
 
-export const removeStorageItem = async (key) => {
+export const removeStorageItem = async key => {
     try {
         return await AsyncStorage.removeItem(key);
     } catch (e) {
@@ -86,7 +87,7 @@ export const IonIcons = ({ name, size, color, style }) => (
     <Ionicons name={name} size={size} color={color} style={style} />
 );
 
-export const validateEmail = (email) => {
+export const validateEmail = email => {
     var re =
         /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)/;
     return re.test(email);
@@ -105,6 +106,8 @@ export const signOutFunc = ({ logout, navigation }) => {
     logout();
     navigation.reset({
         index: 0,
-        routes: [{ name: "authStack" }],
+        routes: [{ name: 'authStack' }],
     });
 };
+
+export const converDate = date => format(date, standardDateFormat);

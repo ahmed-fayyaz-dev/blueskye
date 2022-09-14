@@ -18,7 +18,7 @@ import {
     RTL_LANGS,
 } from 'src/helpers/constants';
 import { setLanguage } from 'src/redux/common/actions/actions';
-import { submitLoginAccount } from 'src/screens/login/actions';
+import { loginAction } from 'src/screens/login/actions';
 import {
     paperLightTheme,
     paperDarkTheme,
@@ -28,7 +28,7 @@ import {
 
 //App nav
 function AppNavigator(props) {
-    const { submitLoginAccount, setLanguage } = props;
+    const { loginAction, setLanguage } = props;
 
     const [ready, setReady] = useState(false);
     const [theme, setTheme] = useState(paperLightTheme);
@@ -106,25 +106,21 @@ function AppNavigator(props) {
                 email: id.toLocaleLowerCase(),
                 password: password,
             };
-
-            // await callApi({
-            //     data: data,
-            //     submitCallApi: submitLoginAccount,
-            //     successFunc: async () => {
-            //         loggedIn.current = true;
-            //         setReady(true);
-            //     },
-            //     errFunc: () => {
-            //         setReady(true);
-            //     },
-            //     catchFunc: () => {
-            //         setReady(true);
-            //     },
-            //     setLoading: () => {},
-            // });
-
-            loggedIn.current = true;
-            setReady(true);
+            await callApi({
+                data,
+                submitCallApi: loginAction,
+                successFunc: r => {
+                    loggedIn.current = true;
+                    setReady(true);
+                },
+                errFunc: () => {
+                    setReady(true);
+                },
+                catchFunc: () => {
+                    setReady(true);
+                },
+                setLoading: () => {},
+            });
         } else {
             setReady(true);
         }
@@ -150,11 +146,7 @@ function mapStateToProps({ loginUserReducer }) {
 }
 
 function mapDispatchToProps(dispatch, getState) {
-    return bindActionCreators(
-        { setLanguage, submitLoginAccount },
-        dispatch,
-        getState,
-    );
+    return bindActionCreators({ setLanguage, loginAction }, dispatch, getState);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppNavigator);

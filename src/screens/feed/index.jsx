@@ -1,90 +1,73 @@
-import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
-import { useTheme } from "react-native-paper";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { useTheme } from 'react-native-paper';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { submitGetFeedData } from "./actions/actions";
-import { CustomSnackbar } from "src/components/customSnackbar";
-import { GapV } from "src/components/gap";
-import VirtualizedView from "src/components/virtualizedBackedContainer";
-import { callApi } from "src/helpers/apiCall";
-import gloabalStyle, { mgMs, mgVm, zIndexM } from "src/styles/index";
+import { GetFeedDataAction } from './actions/actions';
+import FeedList from './components/feedList';
+import { GapV } from 'src/components/gap';
+import { callApi } from 'src/helpers/apiCall';
+import gloabalStyle, { mgMs, mgVm } from 'src/styles/index';
 
 function Feed({
     // loginUserReducer,
-    submitGetFeedData,
+    GetFeedDataAction,
     //
-    feedDataReducer,
 }) {
     const { colors } = useTheme();
     const gStyle = gloabalStyle();
     const style = styles(colors);
 
-    const [visibleSnack, setVisibleSnack] = useState(false);
-    const [snackMsg] = useState("");
-    const [refreshing] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    function onDismissSnackBar() {
-        setVisibleSnack(false);
-    }
+    useEffect(() => {
+        handleGetFeedData();
+    }, []);
 
-    function handleSubmitGetDashboardData() {
+    function handleGetFeedData() {
         callApi({
             data: {},
             setLoading: setLoading,
-            callApiReducer: feedDataReducer,
-            submitCallApi: submitGetFeedData,
+            submitCallApi: GetFeedDataAction,
             successFunc: () => {},
             errFunc: () => {},
             catchFunc: () => {},
         });
     }
 
+    const LoadingView = () => <></>;
+
+    const refreshHandler = async () => {
+        try {
+            handleGetFeedData();
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
     return (
         <View style={[gStyle.container]}>
-            <VirtualizedView
-                refresh={true}
-                refreshing={refreshing}
-                onRefresh={async () => {
-                    try {
-                        handleSubmitGetDashboardData();
-                    } catch (e) {
-                        console.error(e);
-                    }
-                }}
-            >
-                {loading ? null : (
-                    <View style={[style.content]}>{/* CONTENT */}</View>
-                )}
-                <GapV />
-            </VirtualizedView>
+            {/* {loading ? <LoadingView /> : null} */}
 
-            <CustomSnackbar
-                visible={visibleSnack}
-                onDismiss={onDismissSnackBar}
-                style={gStyle.snackBar}
-                textStyle={gStyle.snackText}
-                msg={`${snackMsg}`}
-            />
+            <FeedList onRefresh={refreshHandler} />
         </View>
     );
 }
 
-function mapStateToProps({ loginUserReducer, feedDataReducer }) {
-    return {
-        loginUserReducer,
-        feedDataReducer,
-    };
+function mapStateToProps() {
+    return {};
+}
+function mapDipatchToProps(dispatch, getState) {
+    return bindActionCreators(
+        {
+            GetFeedDataAction,
+        },
+        dispatch,
+        getState,
+    );
 }
 
-export default connect(mapStateToProps, { submitGetFeedData })(Feed);
+export default connect(mapStateToProps, mapDipatchToProps)(Feed);
 
-const styles = (colors) =>
-    StyleSheet.create({
-        content: {
-            flex: 1,
-            marginTop: mgVm,
-            paddingHorizontal: mgMs,
-        },
-    });
+const styles = colors => StyleSheet.create({});
