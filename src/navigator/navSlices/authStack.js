@@ -5,7 +5,7 @@ import { NOT_FIRST_TIME } from 'src/helpers/constants';
 import Login from 'src/screens/login';
 import Signup from 'src/screens/signup';
 import OTPSend from 'src/screens/otpSend';
-
+import OTPVerify from 'src/screens/otpVerify';
 // import WelcomeScreen from "src/screens/welcomeScreen";
 
 const Stack = createNativeStackNavigator();
@@ -37,6 +37,7 @@ const AuthStack = () => {
             <Stack.Screen name="login" component={Login} />
             <Stack.Screen name="signup" component={Signup} />
             <Stack.Screen name="otpSend" component={OTPSend} />
+            <Stack.Screen name="otpVerify" component={OTPVerify} />
         </Stack.Navigator>
     );
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, Image } from 'react-native';
-import { useTheme, Divider } from 'react-native-paper';
-import Animated from 'react-native-reanimated';
+import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
@@ -9,9 +8,6 @@ import { icons } from 'assets/images';
 // import { Form } from './components/form';
 import { CustomSubheading, CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
-import { entering, exiting } from 'src/helpers/animation';
-import { callApi } from 'src/helpers/apiCall';
-import { ONBOARD, ID, PASSWORD } from 'src/helpers/constants';
 import globalStyles, {
     bRl,
     bRss,
@@ -30,7 +26,11 @@ const OTPSend = ({ navigation, route }) => {
     const style = styles(colors);
     const phone = route.params.phone;
 
-    const handleSend = () => {};
+    const handleSend = () => {
+        navigation.navigate('otpVerify', {
+            phone: phone,
+        });
+    };
 
     const TopView = () => (
         <View>
