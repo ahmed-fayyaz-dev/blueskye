@@ -9,10 +9,10 @@ import {
 import { useTheme } from 'react-native-paper';
 import Toast from 'react-native-root-toast';
 
+import { pdVm, title } from 'src/styles';
 import { CustomRoundButton } from 'src/components/buttons';
 import { CustomText } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
-import { pdVm, title } from 'src/styles';
 
 const CELL_COUNT = 4;
 
@@ -56,12 +56,10 @@ const OtpCodeField = ({ onSuccess }) => {
         } else {
             showSnack('Success');
 
-            setTimeout(success, 1000);
+            setTimeout(() => {
+                onSuccess();
+            }, 1000);
         }
-    }
-
-    function success(values) {
-        onSuccess();
     }
 
     const startResendOtpTimer = () => {

@@ -7,7 +7,7 @@ import { mgM, mgMs, pdHs, pdVs } from 'src/styles';
 import { BackgroundImage } from './itemImage';
 import { CustomText } from 'src/components/customText';
 
-const BLURVIEW_INTENSITY = 200;
+const BLURVIEW_INTENSITY = 150;
 
 const FeedItem = ({ item }) => {
     const { postImage, creationTime } = item;

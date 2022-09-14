@@ -87,10 +87,7 @@ function Login({ navigation, loginAction }) {
     );
 
     const LoginCard = () => (
-        <Animated.View
-            entering={entering}
-            exiting={exiting}
-            style={[style.card]}>
+        <View style={[style.card]}>
             <AvatarIcon />
 
             <GapV />
@@ -98,7 +95,7 @@ function Login({ navigation, loginAction }) {
             <CustomTitle>{`Please Login to your Account`}</CustomTitle>
 
             <Form onSubmit={handleSubmitLogin} navigation={navigation} />
-        </Animated.View>
+        </View>
     );
 
     const Signup = () => (

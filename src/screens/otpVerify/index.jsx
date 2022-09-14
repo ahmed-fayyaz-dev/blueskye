@@ -1,23 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // import i18n from "i18n-js";
 import { ScrollView, View, StyleSheet, Image } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { icons } from 'assets/images';
+import OtpCodeField from './Components/OtpCodeField';
+import { CustomSubheading, CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 // import { CustomSnackbar } from 'src/components/customSnackbar';
-import OtpCodeField from './Components/OtpCodeField';
 import gloabalStyle, { mgM, pdHs } from 'src/styles/index';
-import { CustomSubheading, CustomTitle } from 'src/components/customText';
-
-function OtpVerify({ route }) {
+function OtpVerify({ route, navigation }) {
     const phone = route.params.phone;
     const { colors } = useTheme();
     const gStyle = gloabalStyle();
     const style = styles(colors);
 
-    const [visibleSnack, setVisibleSnack] = useState(false);
+    const navigate = () => {
+        navigation.reset({
+            index: 0,
+            routes: [{ name: 'drawerNav' }],
+        });
+    };
 
     const TopView = () => (
         <View>
@@ -36,7 +40,7 @@ function OtpVerify({ route }) {
             <GapV large />
 
             <CustomTitle style={[style.title]}>
-                {`Mobile Verification Has Been Succesfully Done.`}
+                {`Mobile Verification in needed.`}
             </CustomTitle>
 
             <GapV />
@@ -52,13 +56,13 @@ function OtpVerify({ route }) {
             <ScrollView style={style.content}>
                 {TopView()}
                 {Content()}
-                <OtpCodeField />
+                <OtpCodeField onSuccess={navigate} />
             </ScrollView>
         </View>
     );
 }
 
-function mapStateToProps({}) {
+function mapStateToProps() {
     return {};
 }
 
