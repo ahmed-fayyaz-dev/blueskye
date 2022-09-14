@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    ScrollView,
-    View,
-    StyleSheet,
-    Image,
-    TouchableOpacity,
-} from 'react-native';
+import { ScrollView, View, StyleSheet, Image } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 import { connect } from 'react-redux';
@@ -19,7 +13,6 @@ import { GapV } from 'src/components/gap';
 import { entering, exiting } from 'src/helpers/animation';
 import { callApi } from 'src/helpers/apiCall';
 import { ONBOARD, ID, PASSWORD } from 'src/helpers/constants';
-import { Ionicons } from '@expo/vector-icons';
 import globalStyles, {
     bRl,
     bRss,
@@ -36,15 +29,8 @@ function Signup({ navigation, signupAction }) {
     const style = styles(colors);
     const gStyle = globalStyles();
 
-    const goBack = () => {
-        navigation.goBack();
-    };
-    const navigate = apiReturn => {
-        const phoneNumber = apiReturn?.crmStudentUser?.phone;
-
-        navigation.navigate('otpSend', {
-            phone: phoneNumber,
-        });
+    const navigate = () => {
+        // navigation.navigate()
     };
 
     const handleSubmit = async data => {
@@ -73,10 +59,6 @@ function Signup({ navigation, signupAction }) {
                 source={icons.app.logoLargeW}
                 style={style.image}
             />
-
-            <TouchableOpacity style={[style.backArrow]} onPress={goBack}>
-                <Ionicons name="arrow-back" size={40} color="black" />
-            </TouchableOpacity>
         </View>
     );
 
@@ -132,11 +114,6 @@ const styles = colors =>
             flexGrow: 1,
             paddingHorizontal: pdHs,
             paddingTop: mgM,
-        },
-
-        backArrow: {
-            position: 'absolute',
-            paddingTop: 30,
         },
 
         image: {

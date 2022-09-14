@@ -111,19 +111,21 @@ export const Form = ({ onSubmit }) => {
                         <CustomText>
                             {`By Signing up you accept our `}
 
-                            <TouchableOpacity>
-                                <CustomText style={[style.content]}>
-                                    {`Terms of Services`}{' '}
-                                </CustomText>
-                            </TouchableOpacity>
+                            <CustomText
+                                style={[
+                                    {
+                                        color: colors.secondary,
+                                        textAlignVertical: 'bottom',
+                                    },
+                                ]}>{`Terms of Services`}</CustomText>
 
                             {` and `}
 
                             <TouchableOpacity>
                                 <CustomText
-                                    style={
-                                        style.content
-                                    }>{`Privacy Policy.`}</CustomText>
+                                    style={{
+                                        color: colors.secondary,
+                                    }}>{`Privacy Policy.`}</CustomText>
                             </TouchableOpacity>
                         </CustomText>
 
@@ -149,9 +151,5 @@ const styles = colors =>
 
         forgotPassText: {
             textDecorationLine: 'underline',
-        },
-
-        content: {
-            color: colors.secondary,
         },
     });
