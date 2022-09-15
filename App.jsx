@@ -9,12 +9,11 @@ import {
     initialWindowMetrics,
 } from 'react-native-safe-area-context';
 import { Provider as StoreProvider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 
 import { settings } from 'src/settings';
 import ErrorBoundary from 'src/components/errorBoundary';
 import AppNavigator from 'src/navigator/navigation';
-import { store, persistor } from 'src/redux/store';
+import { store } from 'src/redux/store';
 
 settings;
 
@@ -25,9 +24,7 @@ export default function App() {
                 <RootSiblingParent>
                     <ErrorBoundary>
                         <StoreProvider store={store}>
-                            <PersistGate loading={null} persistor={persistor}>
-                                <AppNavigator />
-                            </PersistGate>
+                            <AppNavigator />
                         </StoreProvider>
                     </ErrorBoundary>
                 </RootSiblingParent>
