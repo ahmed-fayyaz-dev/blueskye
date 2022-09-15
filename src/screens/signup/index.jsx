@@ -6,6 +6,7 @@ import {
     Image,
     TouchableOpacity,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 import { connect } from 'react-redux';
@@ -19,7 +20,6 @@ import { GapV } from 'src/components/gap';
 import { entering, exiting } from 'src/helpers/animation';
 import { callApi } from 'src/helpers/apiCall';
 import { ONBOARD, ID, PASSWORD } from 'src/helpers/constants';
-import { Ionicons } from '@expo/vector-icons';
 import globalStyles, {
     bRl,
     bRss,
@@ -81,12 +81,9 @@ function Signup({ navigation, signupAction }) {
     );
 
     const SingupCard = () => (
-        <Animated.View
-            entering={entering}
-            exiting={exiting}
-            style={[style.card]}>
+        <View style={[style.card]}>
             <Form onSubmit={handleSubmit} />
-        </Animated.View>
+        </View>
     );
 
     return (

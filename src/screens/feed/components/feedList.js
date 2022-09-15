@@ -5,13 +5,13 @@ import { mgM, pdHs } from 'src/styles';
 import FeedItem from './feedItem';
 
 const keyExtractorList = item => {
-    return item.postId;
+    return item.vid;
 };
 
 const List = ({ onRefresh, feedDataReducer }) => {
     const [refreshing] = useState(false);
     const { data } = feedDataReducer;
-    let feedData = data?.feedArr || [];
+    let feedData = data?.crmStudentFeed || [];
 
     return (
         <FlatList
@@ -25,9 +25,8 @@ const List = ({ onRefresh, feedDataReducer }) => {
     );
 };
 
-function mapStateToProps({ loginUserReducer, feedDataReducer }) {
+function mapStateToProps({ feedDataReducer }) {
     return {
-        loginUserReducer,
         feedDataReducer,
     };
 }

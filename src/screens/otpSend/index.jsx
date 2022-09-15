@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { icons } from 'assets/images';
 // import { Form } from './components/form';
+import CustomInput from 'src/components/CustomInput';
+import { CustomRoundButton } from 'src/components/buttons';
 import { CustomSubheading, CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 import globalStyles, {
@@ -18,8 +20,6 @@ import globalStyles, {
     pdHs,
     pdH,
 } from 'src/styles/index';
-import CustomInput from 'src/components/CustomInput';
-import { CustomRoundButton } from 'src/components/buttons';
 
 const OTPSend = ({ navigation, route }) => {
     const { colors } = useTheme();
@@ -49,7 +49,7 @@ const OTPSend = ({ navigation, route }) => {
             <GapV large />
 
             <CustomTitle style={[style.title]}>
-                {`Enter your mobile number to create account.`}
+                {`Verifying your mobile number to create account.`}
             </CustomTitle>
 
             <GapV />

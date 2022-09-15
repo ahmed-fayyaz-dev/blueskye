@@ -3,7 +3,7 @@ import { View, Dimensions, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDrawerStatus } from '@react-navigation/drawer';
-import { format } from 'date-fns';
+import { format, formatISO, parseISO } from 'date-fns';
 import * as Device from 'expo-device';
 import { ID, PASSWORD, ONBOARD } from './constants';
 
@@ -111,3 +111,5 @@ export const signOutFunc = ({ logout, navigation }) => {
 };
 
 export const converDate = date => format(date, standardDateFormat);
+
+export const parseDate = date => parseISO(date);

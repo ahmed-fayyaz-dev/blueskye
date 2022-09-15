@@ -103,7 +103,7 @@ function AppNavigator(props) {
 
         if (id && password) {
             let data = {
-                email: id.toLocaleLowerCase(),
+                email: id,
                 password: password,
             };
             await callApi({

@@ -6,9 +6,9 @@ import appAppearanceReducer from './setAppApearanceReducer';
 
 const reducers = {
     appAppearanceReducer,
-    addressReducer,
-    locationReducer,
+    // addressReducer,
+    // locationReducer,
     languageReducer,
-    gDateReducer,
+    // gDateReducer,
 };
 export default reducers;
