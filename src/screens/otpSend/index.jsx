@@ -49,7 +49,7 @@ const OTPSend = ({ navigation, route }) => {
             <GapV large />
 
             <CustomTitle style={[style.title]}>
-                {`Enter your mobile number to create account.`}
+                {`Verifying your mobile number to create account.`}
             </CustomTitle>
 
             <GapV />
