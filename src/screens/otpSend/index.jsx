@@ -24,11 +24,13 @@ import globalStyles, {
 const OTPSend = ({ navigation, route }) => {
     const { colors } = useTheme();
     const style = styles(colors);
-    const phone = route.params.phone;
+    // const phone = route.params.phone;
+    const email = route.params.email;
 
     const handleSend = () => {
         navigation.navigate('otpVerify', {
-            phone: phone,
+            // phone: phone,
+            email,
         });
     };
 
@@ -49,24 +51,24 @@ const OTPSend = ({ navigation, route }) => {
             <GapV large />
 
             <CustomTitle style={[style.title]}>
-                {`Verifying your mobile number to create account.`}
+                {`Verifying your email to create account.`}
             </CustomTitle>
 
             <GapV />
 
             <CustomSubheading style={[style.subText]}>
-                {`We will send you one time password (OTP)`}
+                {`We have sent you one time password (OTP) on following mail`}
             </CustomSubheading>
         </View>
     );
 
     const PhoneNumber = () => (
         <View style={[style.card]}>
-            <CustomInput label="Phone number" value={phone} disabled />
+            <CustomInput label="Email address" value={email} disabled />
 
             <GapV />
 
-            <CustomRoundButton title={'SEND'} onPress={handleSend} />
+            <CustomRoundButton title={'NEXT'} onPress={handleSend} />
         </View>
     );
 

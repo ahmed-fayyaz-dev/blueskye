@@ -4,22 +4,62 @@ import { ScrollView, View, StyleSheet, Image } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import { icons } from 'assets/images';
 import OtpCodeField from './Components/OtpCodeField';
+import { verifyOtpAction, resendOtpAction } from './actions';
 import { CustomSubheading, CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 // import { CustomSnackbar } from 'src/components/customSnackbar';
+import { callApi } from 'src/helpers/apiCall';
+import { showSnack } from 'src/helpers/utils';
 import gloabalStyle, { mgM, pdHs } from 'src/styles/index';
-function OtpVerify({ route, navigation }) {
-    const phone = route.params.phone;
+
+const OtpVerify = ({ route, navigation, verifyOtpAction, resendOtpAction }) => {
+    // const phone = route.params.phone;
+    const email = route.params.email;
     const { colors } = useTheme();
     const gStyle = gloabalStyle();
     const style = styles(colors);
 
-    const navigate = () => {
-        navigation.reset({
-            index: 0,
-            routes: [{ name: 'drawerNav' }],
+    const onSuccess = r => {
+        showSnack(r?.message);
+
+        setTimeout(() => {
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'drawerNav' }],
+            });
+        }, 1000);
+    };
+
+    const verifyHandle = async value => {
+        const data = {
+            otp: value,
+        };
+
+        await callApi({
+            data,
+            setLoading: () => {},
+            submitCallApi: verifyOtpAction,
+            successFunc: onSuccess,
+            errFunc: () => {},
+            catchFunc: () => {},
+        });
+    };
+
+    const onResendSuccess = r => {
+        showSnack(r?.message);
+    };
+
+    const resendHandle = async () => {
+        await callApi({
+            data: {},
+            setLoading: () => {},
+            submitCallApi: resendOtpAction,
+            successFunc: onResendSuccess,
+            errFunc: () => {},
+            catchFunc: () => {},
         });
     };
 
@@ -40,13 +80,14 @@ function OtpVerify({ route, navigation }) {
             <GapV large />
 
             <CustomTitle style={[style.title]}>
-                {`Mobile Verification in needed.`}
+                {`Email Verification needed.`}
             </CustomTitle>
 
             <GapV />
 
             <CustomSubheading style={[style.subText]}>
-                {`We have send the OTP on ${phone} it will be applied automatically to the fields.`}
+                {/* {`We have send the OTP on ${phone} it will be applied automatically to the fields.`} */}
+                {`We have send the OTP on ${email}. Enter the OTP below.`}
             </CustomSubheading>
         </View>
     );
@@ -56,18 +97,28 @@ function OtpVerify({ route, navigation }) {
             <ScrollView style={style.content}>
                 {TopView()}
                 {Content()}
-                <OtpCodeField onSuccess={navigate} />
+                <OtpCodeField
+                    verifyHandle={verifyHandle}
+                    resendHandle={resendHandle}
+                />
             </ScrollView>
         </View>
     );
-}
+};
 
 function mapStateToProps() {
     return {};
 }
 
 function mapDipatchToProps(dispatch, getState) {
-    return bindActionCreators({}, dispatch, getState);
+    return bindActionCreators(
+        {
+            verifyOtpAction,
+            resendOtpAction,
+        },
+        dispatch,
+        getState,
+    );
 }
 
 export default connect(mapStateToProps, mapDipatchToProps)(OtpVerify);
@@ -92,7 +143,7 @@ const styles = colors =>
         },
 
         subText: {
-            color: '#999999',
+            color: colors.muted,
             fontSize: 20,
         },
     });
