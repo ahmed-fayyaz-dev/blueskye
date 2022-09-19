@@ -1,6 +1,6 @@
-import loginUserReducer from "./loginUserReducer";
+import loginUserReducer from './loginUserReducer';
 
 const reducers = {
-    loginUserReducer: loginUserReducer,
+    loginUserReducer,
 };
 export default reducers;

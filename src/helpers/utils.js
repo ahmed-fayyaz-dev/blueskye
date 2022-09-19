@@ -1,5 +1,6 @@
 import * as Application from 'expo-application';
 import * as Updates from 'expo-updates';
+import Toast from 'react-native-root-toast';
 import { ID, PASSWORD, ONBOARD } from './constants';
 import { removeStorageItem, isAndroid, isIos } from './index';
 
@@ -23,3 +24,7 @@ export const getUniqueDeviceId = async () => {
         return await Application.getIosIdForVendorAsync();
     } else return "couldn't Identify Device";
 };
+
+export function showSnack(msg) {
+    Toast.show(msg, Toast.durations.SHORT);
+}

@@ -7,24 +7,23 @@ import {
     useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 import { useTheme } from 'react-native-paper';
-import Toast from 'react-native-root-toast';
 
 import { pdVm, title } from 'src/styles';
 import { CustomRoundButton } from 'src/components/buttons';
 import { CustomText } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
+import { showSnack } from 'src/helpers/utils';
 
 const CELL_COUNT = 4;
 
 const RESEND_OTP_TIME_LIMIT = 90;
 
-const OtpCodeField = ({ onSuccess }) => {
+const OtpCodeField = ({ verifyHandle, resendHandle }) => {
     const { colors } = useTheme();
     const style = styles(colors);
     let resendOtpTimerInterval;
 
     const [value, setValue] = useState('');
-    const [otpNumber, setOtpNumber] = useState();
     const [resendButtonDisabledTime, setResendButtonDisabledTime] = useState(
         RESEND_OTP_TIME_LIMIT,
     );
@@ -35,7 +34,6 @@ const OtpCodeField = ({ onSuccess }) => {
     });
 
     useEffect(() => {
-        setOtpNumber('0000');
         startResendOtpTimer();
 
         return () => {
@@ -46,18 +44,12 @@ const OtpCodeField = ({ onSuccess }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resendButtonDisabledTime]);
 
-    function showSnack(msg) {
-        Toast.show(msg, Toast.durations.SHORT);
-    }
-
     function handleSubmit() {
-        if (value !== otpNumber) {
-            showSnack('Enter correct OTP');
+        if (value !== value) {
+            showSnack('Enter OTP value');
         } else {
-            showSnack('Success');
-
             setTimeout(() => {
-                onSuccess();
+                verifyHandle(value);
             }, 1000);
         }
     }
@@ -85,8 +77,7 @@ const OtpCodeField = ({ onSuccess }) => {
 
         // resend OTP Api call
         // todo
-        setOtpNumber('0000');
-        console.log('todo: Resend OTP');
+        resendHandle();
     };
 
     return (

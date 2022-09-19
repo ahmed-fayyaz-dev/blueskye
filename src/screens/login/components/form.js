@@ -81,7 +81,7 @@ export const Form = ({ onSubmit, navigation }) => {
 
                             <TouchableOpacity onPress={navigateToForgetPass}>
                                 <CustomText style={style.forgotPassText}>
-                                    {`Forget Text`}
+                                    {`Forget Password`}
                                 </CustomText>
                             </TouchableOpacity>
                         </View>

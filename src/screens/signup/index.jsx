@@ -40,10 +40,12 @@ function Signup({ navigation, signupAction }) {
         navigation.goBack();
     };
     const navigate = apiReturn => {
-        const phoneNumber = apiReturn?.crmStudentUser?.phone;
+        // const phoneNumber = apiReturn?.crmStudentUser?.phone;
+        const email = apiReturn?.crmStudentUser?.email;
 
         navigation.navigate('otpSend', {
-            phone: phoneNumber,
+            // phone: phoneNumber,
+            email,
         });
     };
 
