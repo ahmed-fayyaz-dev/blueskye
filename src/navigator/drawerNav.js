@@ -9,6 +9,8 @@ import DrawerContent from 'src/components/drawer';
 import { logout } from 'src/redux/common/actions/actions';
 
 import Feed from 'src/screens/feed';
+import ScanQR from 'src/screens/scanQr';
+import MyProfile from 'src/screens/myProfile';
 import { Playground } from 'src/screens/playground';
 import { drawerActiveTint, drawerIconName } from 'src/styles/navCss';
 
@@ -62,6 +64,32 @@ const DrawerNav = props => {
                             focused,
                             size,
                             icon: icons.drawer.posts,
+                        }),
+                }}
+            />
+            <Drawer.Screen
+                name="scanQr"
+                component={ScanQR}
+                options={{
+                    title: 'Scan QR',
+                    drawerIcon: ({ focused, size }) =>
+                        DrawerIcons({
+                            focused,
+                            size,
+                            icon: icons.drawer.scanQr,
+                        }),
+                }}
+            />
+            <Drawer.Screen
+                name="myProfile"
+                component={MyProfile}
+                options={{
+                    title: 'My Profile',
+                    drawerIcon: ({ focused, size }) =>
+                        DrawerIcons({
+                            focused,
+                            size,
+                            icon: icons.drawer.myProfile,
                         }),
                 }}
             />
