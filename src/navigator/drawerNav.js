@@ -10,6 +10,7 @@ import { logout } from 'src/redux/common/actions/actions';
 
 import Feed from 'src/screens/feed';
 import ScanQR from 'src/screens/scanQr';
+import FeesHistory from 'src/screens/feesHistory';
 import MyProfileStack from './navSlices/myProfileStack';
 import { Playground } from 'src/screens/playground';
 import { drawerActiveTint, drawerIconName } from 'src/styles/navCss';
@@ -97,6 +98,19 @@ const DrawerNav = props => {
                             focused,
                             size,
                             icon: icons.drawer.myProfile,
+                        }),
+                }}
+            />
+            <Drawer.Screen
+                name="feesHistory"
+                component={FeesHistory}
+                options={{
+                    title: 'Fees History',
+                    drawerIcon: ({ focused, size }) =>
+                        DrawerIcons({
+                            focused,
+                            size,
+                            icon: icons.drawer.fees,
                         }),
                 }}
             />

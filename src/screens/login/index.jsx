@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, Image } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import Animated from 'react-native-reanimated';
+
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
@@ -12,7 +12,6 @@ import { Form } from './components/form';
 import { CustomRoundButton } from 'src/components/buttons';
 import { CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
-import { entering, exiting } from 'src/helpers/animation';
 import { callApi } from 'src/helpers/apiCall';
 import { ONBOARD, ID, PASSWORD } from 'src/helpers/constants';
 import globalStyles, {
@@ -59,7 +58,7 @@ function Login({ navigation, loginAction }) {
             catchFunc: () => {},
         });
 
-        // navigate();
+        navigate();
     }
 
     const TopView = () => (
@@ -94,7 +93,7 @@ function Login({ navigation, loginAction }) {
 
             <CustomTitle>{`Please Login to your Account`}</CustomTitle>
 
-            <Form onSubmit={handleSubmitLogin} navigation={navigation} />
+            <Form onSubmit={handleSubmitLogin} navigation={navigate} />
         </View>
     );
 

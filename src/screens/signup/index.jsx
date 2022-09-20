@@ -50,7 +50,7 @@ function Signup({ navigation, signupAction }) {
     };
 
     const handleSubmit = async data => {
-        if (data.remember) {
+        if (data) {
             setStorageItem(ID, data.email);
             setStorageItem(PASSWORD, data.password);
             setStorageItem(ONBOARD, true);
