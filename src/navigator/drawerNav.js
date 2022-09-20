@@ -10,9 +10,10 @@ import { logout } from 'src/redux/common/actions/actions';
 
 import Feed from 'src/screens/feed';
 import ScanQR from 'src/screens/scanQr';
-import MyProfile from 'src/screens/myProfile';
+import MyProfileStack from './navSlices/myProfileStack';
 import { Playground } from 'src/screens/playground';
 import { drawerActiveTint, drawerIconName } from 'src/styles/navCss';
+import AppBar from 'src/components/appbar';
 
 const levels = {
     subLevel1: 0,
@@ -41,6 +42,12 @@ const DrawerNav = props => {
                 drawerActiveTintColor: drawerActiveTint,
                 headerTitleAlign: 'center',
                 headerStyle: style.headerStyle,
+                headerShown: false,
+                header: ({ navigation, route, options }) => {
+                    const { title } = options;
+
+                    return <AppBar navigation={navigation} title={title} />;
+                },
                 headerTintColor: drawerActiveTint,
                 drawerStyle: style.drawer,
                 // drawerIcon: ({ color, size }) =>
@@ -81,8 +88,8 @@ const DrawerNav = props => {
                 }}
             />
             <Drawer.Screen
-                name="myProfile"
-                component={MyProfile}
+                name="myProfileStack"
+                component={MyProfileStack}
                 options={{
                     title: 'My Profile',
                     drawerIcon: ({ focused, size }) =>

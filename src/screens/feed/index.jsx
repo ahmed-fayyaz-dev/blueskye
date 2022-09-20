@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import AppBar from 'src/components/appbar';
 import { GetFeedDataAction } from './actions/actions';
 import FeedList from './components/feedList';
 import { GapV } from 'src/components/gap';
@@ -11,10 +11,12 @@ import { callApi } from 'src/helpers/apiCall';
 import gloabalStyle, { mgMs, mgVm } from 'src/styles/index';
 
 function Feed({
-    // loginUserReducer,
+    navigation,
     GetFeedDataAction,
+    ...rest
     //
 }) {
+    const title = 'Posts';
     const { colors } = useTheme();
     const gStyle = gloabalStyle();
     const style = styles(colors);
@@ -48,6 +50,7 @@ function Feed({
 
     return (
         <View style={[gStyle.container]}>
+            <AppBar navigation={navigation} title={title} />
             {/* {loading ? <LoadingView /> : null} */}
 
             <FeedList onRefresh={refreshHandler} />
