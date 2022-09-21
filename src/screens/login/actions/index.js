@@ -22,6 +22,8 @@ export function loginAction(data) {
             },
         };
 
+        console.log(config);
+
         return await axios(config)
             .then(response => {
                 dispatch({

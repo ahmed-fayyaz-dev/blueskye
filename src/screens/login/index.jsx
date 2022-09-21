@@ -58,7 +58,7 @@ function Login({ navigation, loginAction }) {
             catchFunc: () => {},
         });
 
-        navigate();
+        // navigate();
     }
 
     const TopView = () => (
