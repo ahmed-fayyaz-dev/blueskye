@@ -29,9 +29,9 @@ export const otpResendConfig = (data, getState) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        data: {
-            deviceInfo: deviceInfo,
-            versionCode: versionCode,
-        },
+        // data: {
+        //     deviceInfo: deviceInfo,
+        //     versionCode: versionCode,
+        // },
     };
 };

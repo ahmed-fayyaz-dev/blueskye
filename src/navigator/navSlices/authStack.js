@@ -2,11 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { getStorageItem } from 'src/helpers';
 import { NOT_FIRST_TIME } from 'src/helpers/constants';
+import ForgotPassword from 'src/screens/forgotPassword';
 import Login from 'src/screens/login';
-import Signup from 'src/screens/signup';
 import OTPSend from 'src/screens/otpSend';
 import OTPVerify from 'src/screens/otpVerify';
-import ForgotPassword from 'src/screens/forgotPassword';
+import Signup from 'src/screens/signup';
 // import WelcomeScreen from "src/screens/welcomeScreen";
 
 const Stack = createNativeStackNavigator();

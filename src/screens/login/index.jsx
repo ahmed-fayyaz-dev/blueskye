@@ -57,8 +57,6 @@ function Login({ navigation, loginAction }) {
             errFunc: () => {},
             catchFunc: () => {},
         });
-
-        navigate();
     }
 
     const TopView = () => (

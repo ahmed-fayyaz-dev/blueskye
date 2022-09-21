@@ -20,6 +20,7 @@ import { GapV } from 'src/components/gap';
 import { entering, exiting } from 'src/helpers/animation';
 import { callApi } from 'src/helpers/apiCall';
 import { ONBOARD, ID, PASSWORD } from 'src/helpers/constants';
+import { showSnack } from 'src/helpers/utils';
 import globalStyles, {
     bRl,
     bRss,
@@ -42,6 +43,8 @@ function Signup({ navigation, signupAction }) {
     const navigate = apiReturn => {
         // const phoneNumber = apiReturn?.crmStudentUser?.phone;
         const email = apiReturn?.crmStudentUser?.email;
+        const message = apiReturn?.message;
+        showSnack(message);
 
         navigation.navigate('otpSend', {
             // phone: phoneNumber,
