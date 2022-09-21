@@ -28,7 +28,7 @@ export function loginAction(data) {
                     type: types.LOGIN_ACCOUNT_SUCCESS,
                     payload: response.data,
                 });
-                // console.log(response.data);
+                console.log(response.data);
                 return response.data;
             })
             .catch(error => {

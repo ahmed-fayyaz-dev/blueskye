@@ -12,6 +12,6 @@ export const RTL_LANGS = ['ud'];
 
 export const RESTART_ERROR_ID = 10;
 
-export const SUCCESS = 'Success';
+export const SUCCESS = 'success';
 
-export const ERROR = 'Error';
+export const ERROR = 'error';

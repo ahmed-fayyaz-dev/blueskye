@@ -1,28 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, StyleSheet, Image, Text } from 'react-native';
 import { useTheme } from 'react-native-paper';
-
+import AppBar from 'src/components/appbar';
 import { icons } from 'assets/images';
 import { CustomRoundButton } from 'src/components/buttons';
-import { CustomSubheading, CustomTitle } from 'src/components/customText';
+import { CustomSubheading } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
-import globalStyles, {
-    bRl,
-    bRss,
-    mgM,
-    mgMs,
-    mgS,
-    onBackgroundDark,
-    pdHs,
-    pdH,
-} from 'src/styles/index';
+import globalStyles, { bRss, mgM, mgMs, pdH } from 'src/styles/index';
+import QrScanner from './components/BarcodeScanner';
 
-const ScanQR = () => {
+const ScanQR = ({ navigation }) => {
+    const [onPress, setOnPress] = useState(false);
     const { colors } = useTheme();
     const style = styles(colors);
+    const title = 'Scan QR';
 
+    const openCamera = () => {
+        setOnPress(!onPress);
+    };
     const TopView = () => (
-        <View style={style.camera}>
+        <>
             <GapV large />
 
             <Image
@@ -31,42 +28,50 @@ const ScanQR = () => {
                 style={[style.image]}
             />
             <GapV small />
+
             <CustomSubheading
-                style={style.subText}
-                numberOfLines={
-                    2
+                style={
+                    style.subText
                 }>{`Please move your code to QR CODE`}</CustomSubheading>
-        </View>
+        </>
     );
 
     const QR = () => (
-        <View>
+        <>
             <GapV large />
-            <Image
-                resizeMode="contain"
-                source={icons.tab.qr}
-                style={[style.qr]}
-            />
-        </View>
+            {onPress ? (
+                <Image
+                    resizeMode="contain"
+                    source={icons.tab.qr}
+                    style={[style.qr]}
+                />
+            ) : (
+                <QrScanner setShowQR={setOnPress} />
+            )}
+        </>
     );
 
     const BottomView = () => (
-        <View style={style.card}>
+        <View style={style.bottomView}>
             <GapV large />
             <CustomRoundButton
                 icon={icons.drawer.scanQr}
                 title={`Scan QR Code`}
                 style={style.button}
+                onPress={openCamera}
             />
         </View>
     );
 
     return (
         <View style={[style.container]}>
-            <ScrollView style={style.content}>
+            <AppBar navigation={navigation} title={title} />
+            <ScrollView contentContainerStyle={style.content}>
                 {TopView()}
                 {QR()}
                 {BottomView()}
+
+                <GapV />
             </ScrollView>
         </View>
     );
@@ -84,12 +89,11 @@ const styles = colors =>
             borderRadius: bRss,
             paddingTop: mgMs,
             paddingHorizontal: pdH,
-            // borderWidth: StyleSheet.hairlineWidth,
         },
 
         content: {
             flexGrow: 1,
-            paddingHorizontal: pdHs,
+            paddingHorizontal: pdH,
             paddingTop: mgM,
         },
 
@@ -110,38 +114,15 @@ const styles = colors =>
 
         fdr: { flexDirection: 'row' },
 
-        divider: {
-            alignSelf: 'center',
-            backgroundColor: onBackgroundDark,
-            height: 1,
-            width: '80%',
-        },
-
         subText: {
-            color: '#999999',
+            color: colors.light,
             fontSize: 20,
         },
 
-        title: {
-            fontWeight: 'bold',
-            fontSize: 24,
-        },
-
-        icon: { alignSelf: 'center' },
-
-        avatarStyle: {},
-
-        avatarContainer: {
-            borderRadius: bRl,
-            backgroundColor: 'blue',
-            alignSelf: 'center',
-            padding: mgS,
-            position: 'absolute',
-            top: -30,
-        },
-
         button: {
-            width: '60%',
+            backgroundColor: colors.primary,
             alignSelf: 'center',
         },
+
+        bottomView: { justifyContent: 'center' },
     });

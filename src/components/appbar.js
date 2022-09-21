@@ -1,7 +1,12 @@
-import React from "react";
-import { useTheme } from "@react-navigation/native";
-import { Appbar } from "react-native-paper";
-import { backIcon, drawerIcon, searchIcon, moreIcon } from "src/styles/navCss";
+import React from 'react';
+import { Appbar, useTheme } from 'react-native-paper';
+import {
+    backIcon,
+    searchIcon,
+    moreIcon,
+    drawerIconName,
+    iconSize,
+} from 'src/styles/navCss';
 
 const AppHeader = ({
     navigation,
@@ -26,7 +31,8 @@ const AppHeader = ({
     return (
         <Appbar.Header theme={theme}>
             <Appbar.Action
-                icon={back ? backIcon : drawerIcon}
+                icon={back ? backIcon : drawerIconName}
+                size={iconSize}
                 onPress={back ? _goBack : openDrawer}
             />
 
