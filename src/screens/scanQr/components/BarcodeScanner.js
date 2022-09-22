@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
-import { icons } from 'assets/images';
-import { useTheme } from 'react-native-paper';
+import { Text, View, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { BarCodeScanner } from 'expo-barcode-scanner';
+import { useTheme } from 'react-native-paper';
 
 export default function QrScanner() {
     const { colors } = useTheme();
@@ -55,7 +54,7 @@ export default function QrScanner() {
     );
 }
 
-const styles = colors =>
+const styles = () =>
     StyleSheet.create({
         container: {
             flex: 1,

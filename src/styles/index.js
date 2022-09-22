@@ -1,10 +1,4 @@
-import React, { useCallback } from 'react';
-import {
-    StyleSheet,
-    StatusBar,
-    useColorScheme,
-    Appearance,
-} from 'react-native';
+import { StyleSheet, StatusBar, useColorScheme } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { colorDictionary } from './theme';

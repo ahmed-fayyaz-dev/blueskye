@@ -12,14 +12,14 @@ import { logout } from 'src/redux/common/actions/actions';
 
 import Feed from 'src/screens/feed';
 import FeesHistory from 'src/screens/feesHistory';
-import { Playground } from 'src/screens/playground';
+// import { Playground } from 'src/screens/playground';
 import ScanQR from 'src/screens/scanQr';
-import { drawerActiveTint, drawerIconName } from 'src/styles/navCss';
+import { drawerActiveTint } from 'src/styles/navCss';
 
-const levels = {
-    subLevel1: 0,
-    subLevel2: 1,
-};
+// const levels = {
+//     subLevel1: 0,
+//     subLevel2: 1,
+// };
 
 const Drawer = createDrawerNavigator();
 
@@ -30,7 +30,7 @@ const DrawerIcons = ({ size, focused, icon }) => (
     />
 );
 
-const AppBarHeader = ({ navigation, route, options }) => {
+const AppBarHeader = ({ navigation, options }) => {
     const { title } = options;
 
     return <AppBar navigation={navigation} title={title} />;

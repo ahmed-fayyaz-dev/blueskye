@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import i18n from "i18n-js";
 import { View } from 'react-native';
 // import { useTheme } from "react-native-paper";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import { CustomSnackbar } from 'src/components/customSnackbar';
-import VirtualizedView from 'src/components/virtualizedBackedContainer';
 
 import gloabalStyle from 'src/styles/index';
 

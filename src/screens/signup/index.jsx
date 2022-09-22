@@ -53,11 +53,11 @@ function Signup({ navigation, signupAction }) {
     };
 
     const handleSubmit = async data => {
-        if (data) {
-            setStorageItem(ID, data.email);
-            setStorageItem(PASSWORD, data.password);
-            setStorageItem(ONBOARD, true);
-        }
+        // if (data) {
+        //     setStorageItem(ID, data.email);
+        //     setStorageItem(PASSWORD, data.password);
+        //     setStorageItem(ONBOARD, true);
+        // }
 
         await callApi({
             data,

@@ -4,9 +4,9 @@ import { Surface, useTheme } from "react-native-paper";
 import Animated, { RollOutRight, RollInLeft } from "react-native-reanimated";
 
 import { bRms, mgHs, mgVs } from "src/styles";
-import globalStyles from "src/styles/index";
 import { CustomCaption, CustomTitle } from "./customText";
 import { GapH } from "./gap";
+import globalStyles from "src/styles/index";
 
 const absoluteTop = 20;
 

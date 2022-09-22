@@ -1,33 +1,33 @@
-import React from "react";
-import { Image, View, StyleSheet } from "react-native";
-import { DrawerItem, DrawerContentScrollView } from "@react-navigation/drawer";
-import { useTheme } from "@react-navigation/native";
-import { nativeApplicationVersion } from "expo-application";
-import { useTheme as paperTheme } from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React from 'react';
+import { Image, View, StyleSheet } from 'react-native';
+import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
+import { useTheme } from '@react-navigation/native';
+import { nativeApplicationVersion } from 'expo-application';
+import { useTheme as paperTheme } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { IonIcons, signOutFunc } from "src/helpers";
+import { IonIcons, signOutFunc } from 'src/helpers';
 import {
     bRss,
     mgM,
     mgS,
     onBackgroundDark,
     pdHm,
-    iconSize as iconSizeContent,
+    // iconSize as iconSizeContent,
     pdHs,
     pdVss,
-} from "src/styles";
+} from 'src/styles';
 import {
     CustomCaption,
-    CustomParagraph,
-    CustomSubheading,
-    CustomText,
+    // CustomParagraph,
+    // CustomSubheading,
+    // CustomText,
     CustomTitle,
-} from "./customText";
-import { GapH } from "./gap";
-import { icons } from "assets/images/index";
-import { CustomIconButton } from "src/components/buttons";
-import { iconSize } from "src/styles/navCss";
+} from './customText';
+// import { GapH } from "./gap";
+import { icons } from 'assets/images/index';
+import { CustomIconButton } from 'src/components/buttons';
+import { iconSize } from 'src/styles/navCss';
 
 // const MenuLabels = [];
 
@@ -40,7 +40,7 @@ const BackIcon = ({ navigation }) => (
     <CustomIconButton
         size={iconSize}
         color={onBackgroundDark}
-        name={"close-circle-outline"}
+        name={'close-circle-outline'}
         onPress={() => navigation.toggleDrawer()}
     />
 );
@@ -51,7 +51,7 @@ const CustomDrawerList = ({
     navigation,
     // levelToShow
 }) => {
-    return state.routes.map((route) => {
+    return state.routes.map(route => {
         const {
             // level,
             title,
@@ -72,7 +72,7 @@ const CustomDrawerList = ({
                 activeBackgroundColor={drawerActiveBackgroundColor}
                 onPress={() => navigateTo({ navigation, name: route.name })}
                 focused={
-                    state.routes.findIndex((e) => e.name === route.name) ===
+                    state.routes.findIndex(e => e.name === route.name) ===
                     state.index
                 }
             />
@@ -81,7 +81,7 @@ const CustomDrawerList = ({
 };
 
 function DrawerContent(props) {
-    const { colors } = useTheme();
+    // const { colors } = useTheme();
     const { colors: paperColors } = paperTheme();
     const style = styles(paperColors);
     const { state, descriptors, navigation } = props;
@@ -107,8 +107,7 @@ function DrawerContent(props) {
     const DrawerScroll = () => (
         <DrawerContentScrollView
             contentContainerStyle={style.drawerContentScroll}
-            {...props}
-        >
+            {...props}>
             <CustomTitle style={[style.menuText]}>MENU</CustomTitle>
 
             {/* Drawer with Sub Levels */}
@@ -132,7 +131,7 @@ function DrawerContent(props) {
             <DrawerItem
                 onPress={() => signOutFunc({ logout, navigation })}
                 icon={({ size, color }) =>
-                    IonIcons({ size, name: "exit-outline", color })
+                    IonIcons({ size, name: 'exit-outline', color })
                 }
                 label="Sign Out"
                 style={drawerItemStyle}
@@ -151,28 +150,28 @@ function DrawerContent(props) {
 
 export default DrawerContent;
 
-const styles = (colors) =>
+const styles = colors =>
     StyleSheet.create({
         container: { flex: 1 },
 
         menuText: {
             // margin: mgS,
             padding: mgS,
-            textAlign: "left",
-            fontWeight: "bold",
+            textAlign: 'left',
+            fontWeight: 'bold',
         },
 
-        textLeft: { textAlign: "left" },
+        textLeft: { textAlign: 'left' },
 
         drawerBottomView: {
             marginBottom: mgS,
             paddingHorizontal: pdHm,
-            flexDirection: "row-reverse",
-            justifyContent: "space-between",
+            flexDirection: 'row-reverse',
+            justifyContent: 'space-between',
         },
 
         drawerTopView: {
-            flexDirection: "row-reverse",
+            flexDirection: 'row-reverse',
             backgroundColor: colors.primary,
         },
 
@@ -181,24 +180,24 @@ const styles = (colors) =>
         roundImage: {
             width: 65,
             height: 65,
-            overflow: "hidden",
+            overflow: 'hidden',
             borderRadius: 65 / 2,
         },
 
         accountInfo: {
             flex: 1,
-            flexDirection: "row",
-            alignItems: "center",
+            flexDirection: 'row',
+            alignItems: 'center',
             marginTop: mgS,
             marginHorizontal: mgS,
         },
 
         menuItem: {
-            flexDirection: "row",
-            justifyContent: "space-between",
+            flexDirection: 'row',
+            justifyContent: 'space-between',
             marginHorizontal: pdHm,
             paddingHorizontal: pdHs,
-            alignItems: "center",
+            alignItems: 'center',
             // borderWidth: StyleSheet.hairlineWidth,
             borderRadius: bRss,
             borderColor: colors.primary,
@@ -206,7 +205,7 @@ const styles = (colors) =>
         },
 
         menuItemIcon: {
-            alignSelf: "flex-end",
+            alignSelf: 'flex-end',
         },
 
         menuItemList: {

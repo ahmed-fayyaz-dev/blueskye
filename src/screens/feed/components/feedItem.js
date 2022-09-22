@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { BlurView } from 'expo-blur';
 
 import { converDate, parseDate } from 'src/helpers';

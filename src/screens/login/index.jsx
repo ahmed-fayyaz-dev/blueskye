@@ -41,6 +41,10 @@ function Login({ navigation, loginAction }) {
         navigation.navigate('signup');
     }
 
+    function navToForgetPass() {
+        navigation.navigate('forgotPassword');
+    }
+
     // OnLoginPress
     async function handleSubmitLogin(data) {
         if (data.remember) {
@@ -91,7 +95,10 @@ function Login({ navigation, loginAction }) {
 
             <CustomTitle>{`Please Login to your Account`}</CustomTitle>
 
-            <Form onSubmit={handleSubmitLogin} navigation={navigate} />
+            <Form
+                onSubmit={handleSubmitLogin}
+                navToForgetPass={navToForgetPass}
+            />
         </View>
     );
 
