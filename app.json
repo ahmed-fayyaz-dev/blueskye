@@ -1,35 +1,44 @@
 {
-    "expo": {
-        "name": "Bluesky",
-        "slug": "bluesky-app",
-        "version": "1.0.0",
-        "orientation": "default",
-        "userInterfaceStyle": "light",
-        "icon": "./assets/icon.png",
-        "splash": {
-            "image": "./assets/splash.png",
-            "resizeMode": "cover",
-            "backgroundColor": "#100D25"
-        },
-        "updates": {
-            "fallbackToCacheTimeout": 0
-        },
-        "assetBundlePatterns": ["**/*"],
-        "ios": {
-            "bundleIdentifier": "com.zetasolutionsonline.bluesky",
-            "supportsTablet": true,
-            "infoPlist": {
-                "CFBundleAllowMixedLocalizations": true
-            }
-        },
-        "android": {
-            "softwareKeyboardLayoutMode": "resize",
-            "package": "com.zetasolutionsonline.bluesky",
-            "jsEngine": "hermes"
-        },
-        "web": {
-            "favicon": "./assets/icon.png"
-        },
-        "plugins": ["sentry-expo"]
+  "expo": {
+    "name": "Bluesky",
+    "slug": "bluesky-app",
+    "version": "1.0.0",
+    "orientation": "default",
+    "userInterfaceStyle": "light",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#100D25"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.zetasolutionsonline.bluesky",
+      "supportsTablet": true,
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true
+      }
+    },
+    "android": {
+      "softwareKeyboardLayoutMode": "resize",
+      "package": "com.zetasolutionsonline.bluesky",
+      "jsEngine": "hermes"
+    },
+    "web": {
+      "favicon": "./assets/icon.png"
+    },
+    "plugins": [
+      "sentry-expo"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "4fc2b0f8-9d51-460f-8b48-aa58e5bfeb56"
+      }
     }
+  }
 }

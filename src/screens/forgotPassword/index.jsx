@@ -102,7 +102,7 @@ const styles = colors =>
 
         subText: {
             fontSize: 22,
-            color: '#999999',
+            color: colors.muted,
         },
 
         title: {

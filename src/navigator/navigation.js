@@ -109,7 +109,7 @@ function AppNavigator(props) {
             await callApi({
                 data,
                 submitCallApi: loginAction,
-                successFunc: r => {
+                successFunc: () => {
                     loggedIn.current = true;
                     setReady(true);
                 },

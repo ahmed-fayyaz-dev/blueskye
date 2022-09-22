@@ -1,11 +1,4 @@
-import React, { useCallback } from 'react';
-import {
-    StyleSheet,
-    StatusBar,
-    useColorScheme,
-    Appearance,
-} from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { StyleSheet, StatusBar, useColorScheme } from 'react-native';
 
 import { colorDictionary } from './theme';
 
@@ -26,7 +19,7 @@ export const mgS = 10;
 export const mgSs = 5;
 
 export const searchBarHeight = 53;
-export const iconSize = RFValue(18);
+export const iconSize = 18;
 export const iconSizeL = 42;
 export const buttonHeight = 40;
 
@@ -40,10 +33,10 @@ export const bRl = 50;
 export const bRxL = 100;
 
 // Fonst Sizes
-export const title = RFValue(16);
-export const text = RFValue(11);
-export const caption = RFValue(9);
-export const buttonText = RFValue(14);
+export const title = 16;
+export const text = 11;
+export const caption = 9;
+export const buttonText = 14;
 
 export const zIndexS = 4;
 export const zIndexM = 9;

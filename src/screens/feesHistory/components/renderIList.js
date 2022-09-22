@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { mgS, pdHs, bRss, mgMs, pdHm } from 'src/styles';
-import { CustomSubheading, CustomText } from 'src/components/customText';
+import { View, StyleSheet } from 'react-native';
 import { Surface } from 'react-native-paper';
+import { bRss, mgMs, pdHm } from 'src/styles';
+import { CustomText } from 'src/components/customText';
 
 const RenderList = ({ item }) => {
     const price = 'Rs 30,522';

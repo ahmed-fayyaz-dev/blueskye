@@ -2,7 +2,7 @@ import { Alert } from 'react-native';
 import axios from 'axios';
 import { SERVER_URL } from 'src/appConstants';
 import { deviceInfo, versionCode } from 'src/helpers';
-import { handleBackToSignIn } from 'src/helpers/utils';
+import { destroyAuth } from 'src/helpers/utils';
 import * as types from 'src/screens/login/constants';
 
 export function loginAction(data) {
@@ -23,8 +23,6 @@ export function loginAction(data) {
             },
         };
 
-        console.log(config);
-
         return await axios(config)
             .then(response => {
                 dispatch({
@@ -37,9 +35,10 @@ export function loginAction(data) {
             .catch(error => {
                 console.error('error///', error); // Console Log
                 Alert.alert(
-                    'Error! Logging in was unsucessfull! removing cache ...',
+                    'Error! Logging in was unsucessfull! removing user ...',
                     `${error}`,
                 );
+                destroyAuth();
                 dispatch({ type: types.LOGIN_ACCOUNT_FAIL, payload: error });
                 throw new Error(error);
             });
