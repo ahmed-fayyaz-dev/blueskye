@@ -32,12 +32,4 @@ export const settings =
         } catch (e) {
             console.error(e);
         }
-
-        // eslint-disable-next-line no-undef
-        // if (__DEV__) {
-        //     connectToDevTools({
-        //         host: "localhost",
-        //         port: 8097,
-        //     });
-        // }
     });

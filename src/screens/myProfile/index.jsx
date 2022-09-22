@@ -7,13 +7,7 @@ import AppBar from 'src/components/appbar';
 import { CustomRoundButton } from 'src/components/buttons';
 import { CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
-import globalStyles, {
-    mgL,
-    onBackgroundDark,
-    iconSizeL,
-    bRxL,
-    mgxL,
-} from 'src/styles/index';
+import { mgL, onBackgroundDark, iconSizeL, bRxL, mgxL } from 'src/styles/index';
 
 const MyProfile = ({ navigation }) => {
     const title = 'My Profile';

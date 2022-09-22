@@ -1,12 +1,11 @@
-import React from "react";
-import { View, Image, StyleSheet } from "react-native";
-import { Surface, useTheme } from "react-native-paper";
-import Animated, { RollOutRight, RollInLeft } from "react-native-reanimated";
+import React from 'react';
+import { View, Image, StyleSheet } from 'react-native';
+import { Surface, useTheme } from 'react-native-paper';
 
-import { bRms, mgHs, mgVs } from "src/styles";
-import { CustomCaption, CustomTitle } from "./customText";
-import { GapH } from "./gap";
-import globalStyles from "src/styles/index";
+import { bRms, mgHs, mgVs } from 'src/styles';
+import { CustomCaption, CustomTitle } from './customText';
+import { GapH } from './gap';
+import globalStyles from 'src/styles/index';
 
 const absoluteTop = 20;
 
@@ -21,19 +20,16 @@ export const StickyHeader = ({
     const style = styles(colors);
     const gStyle = globalStyles(colors);
 
-    const onLayout = (event) => {
+    const onLayout = event => {
         var { height } = event.nativeEvent.layout;
         setMarginToAvoid(height - absoluteTop);
     };
 
     return (
-        <Animated.View
+        <View
             style={style.container}
-            entering={RollInLeft}
-            exiting={RollOutRight}
             // layout={Layout.springify()}
-            onLayout={onLayout}
-        >
+            onLayout={onLayout}>
             <Surface style={[style.accountInfoCard, gStyle.elevationM]}>
                 <Image
                     resizeMode="cover"
@@ -50,40 +46,40 @@ export const StickyHeader = ({
                     <CustomCaption numberOfLines={2}>{subtitle2}</CustomCaption>
                 </View>
             </Surface>
-        </Animated.View>
+        </View>
     );
 };
 
-const styles = (colors) =>
+const styles = colors =>
     StyleSheet.create({
         container: {
-            width: "100%",
+            width: '100%',
             top: absoluteTop,
-            alignSelf: "center",
-            position: "absolute",
+            alignSelf: 'center',
+            position: 'absolute',
         },
 
         accountInfoCard: {
-            flexDirection: "row",
+            flexDirection: 'row',
             paddingVertical: mgVs,
             paddingHorizontal: mgHs,
             borderRadius: bRms,
             minHeight: 90,
-            alignItems: "center",
+            alignItems: 'center',
             backgroundColor: colors.surface,
-            justifyContent: "space-between",
+            justifyContent: 'space-between',
         },
 
         roundImage: {
             width: 65,
             height: 65,
             borderRadius: 65 / 2,
-            overflow: "hidden",
+            overflow: 'hidden',
         },
 
         textView: {
             flex: 1,
         },
 
-    // subtitle: { overflow: "hidden", maxHeight: 40 },
+        // subtitle: { overflow: "hidden", maxHeight: 40 },
     });

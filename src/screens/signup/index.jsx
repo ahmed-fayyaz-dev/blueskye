@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
-import Animated from 'react-native-reanimated';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 

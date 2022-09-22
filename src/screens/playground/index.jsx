@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { Button } from "react-native";
-import Animated from "react-native-reanimated";
-import { entering, exiting, layoutSpring } from "src/helpers/animation";
+import React, { useState } from 'react';
+import { Button, View } from 'react-native';
 
 export const Playground = () => {
     // eslint-disable-next-line no-unused-vars
@@ -16,18 +14,14 @@ export const Playground = () => {
     };
 
     // eslint-disable-next-line no-unused-vars
-    const handleConfirm = (date) => {
-        console.warn("A date has been picked: ", date);
+    const handleConfirm = date => {
+        console.warn('A date has been picked: ', date);
         hideDatePicker();
     };
 
     return (
-        <Animated.View
-            entering={entering}
-            exiting={exiting}
-            layout={layoutSpring}
-        >
+        <View>
             <Button title="PRESS ME" onPress={showDatePicker} />
-        </Animated.View>
+        </View>
     );
 };

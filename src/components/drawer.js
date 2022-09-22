@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
-import { useTheme } from '@react-navigation/native';
 import { nativeApplicationVersion } from 'expo-application';
 import { useTheme as paperTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,7 +8,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { IonIcons, signOutFunc } from 'src/helpers';
 import {
     bRss,
-    mgM,
     mgS,
     onBackgroundDark,
     pdHm,
