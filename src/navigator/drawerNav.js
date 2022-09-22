@@ -5,16 +5,16 @@ import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 
 import { icons } from 'assets/images';
+import MyProfileStack from './navSlices/myProfileStack';
+import AppBar from 'src/components/appbar';
 import DrawerContent from 'src/components/drawer';
 import { logout } from 'src/redux/common/actions/actions';
 
 import Feed from 'src/screens/feed';
-import ScanQR from 'src/screens/scanQr';
 import FeesHistory from 'src/screens/feesHistory';
-import MyProfileStack from './navSlices/myProfileStack';
 import { Playground } from 'src/screens/playground';
+import ScanQR from 'src/screens/scanQr';
 import { drawerActiveTint, drawerIconName } from 'src/styles/navCss';
-import AppBar from 'src/components/appbar';
 
 const levels = {
     subLevel1: 0,
@@ -30,6 +30,12 @@ const DrawerIcons = ({ size, focused, icon }) => (
     />
 );
 
+const AppBarHeader = ({ navigation, route, options }) => {
+    const { title } = options;
+
+    return <AppBar navigation={navigation} title={title} />;
+};
+
 const DrawerNav = props => {
     const { colors } = useTheme();
     const style = styles(colors);
@@ -44,11 +50,7 @@ const DrawerNav = props => {
                 headerTitleAlign: 'center',
                 headerStyle: style.headerStyle,
                 headerShown: false,
-                header: ({ navigation, route, options }) => {
-                    const { title } = options;
-
-                    return <AppBar navigation={navigation} title={title} />;
-                },
+                header: AppBarHeader,
                 headerTintColor: drawerActiveTint,
                 drawerStyle: style.drawer,
                 // drawerIcon: ({ color, size }) =>
@@ -114,7 +116,7 @@ const DrawerNav = props => {
                         }),
                 }}
             />
-            <Drawer.Screen name="playground" component={Playground} />
+            {/* <Drawer.Screen name="playground" component={Playground} /> */}
         </Drawer.Navigator>
     );
 };

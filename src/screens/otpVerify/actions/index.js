@@ -6,7 +6,7 @@ export function verifyOtpAction(data) {
     return async (dispatch, getState) => {
         return await axios(otpVerifyConfig(data, getState))
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 return response.data;
             })
             .catch(error => {
@@ -21,7 +21,7 @@ export function resendOtpAction(data) {
     return async (dispatch, getState) => {
         return await axios(otpResendConfig(data, getState))
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 return response.data;
             })
             .catch(error => {
