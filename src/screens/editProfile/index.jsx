@@ -1,18 +1,8 @@
 import React from 'react';
-import {
-    ScrollView,
-    View,
-    StyleSheet,
-    Image,
-    TouchableOpacity,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from 'react-native-paper';
+import { ScrollView, View, StyleSheet, Image, Dimensions } from 'react-native';
+import { useTheme, Surface } from 'react-native-paper';
 import AppBar from 'src/components/appbar';
-// import Animated from 'react-native-reanimated';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-
+import { windowHeigth } from 'src/helpers';
 import { icons } from 'assets/images';
 // import { setStorageItem } from 'src/helpers';
 // import { signupAction } from './actions';
@@ -26,8 +16,6 @@ import globalStyles, {
     bRss,
     mgM,
     mgMs,
-    mgS,
-    onBackgroundDark,
     pdHm,
     pdHs,
 } from 'src/styles/index';
@@ -40,29 +28,28 @@ const EditProfile = ({ navigation }) => {
         navigation.goBack();
     };
 
-    const TopView = () => (
-        <>
-            <GapV large />
-
-            <Image
-                resizeMode="contain"
-                source={icons.app.logoLargeW}
-                style={style.image}
-            />
-        </>
+    const EditProfileCard = () => (
+        <Surface style={[style.card]}>
+            <Form />
+        </Surface>
     );
 
-    const EditProfileCard = () => (
-        <View style={[style.card]}>
-            <Form />
-        </View>
+    const Ellipses = () => (
+        <>
+            <View style={style.yellowCircle} />
+
+            <View style={style.blueCircle} />
+        </>
     );
 
     return (
         <View style={[style.container]}>
             <AppBar navigation={navigation} title={title} back />
+            {Ellipses()}
             <ScrollView contentContainerStyle={[style.content]}>
-                {TopView()}
+                <GapV large />
+
+                <GapV large />
                 {EditProfileCard()}
                 <GapV />
             </ScrollView>
@@ -79,21 +66,42 @@ const styles = colors =>
         },
 
         card: {
-            borderRadius: bRss,
+            elevation: 4,
             paddingTop: mgMs,
+            borderRadius: bRss,
+            marginHorizontal: mgM,
             paddingHorizontal: pdHm,
-            borderWidth: StyleSheet.hairlineWidth,
         },
 
         content: {
             flexGrow: 1,
-            paddingHorizontal: pdHs,
             paddingTop: mgM,
+            paddingHorizontal: pdHs,
         },
 
         image: {
-            alignSelf: 'center',
-            height: 140,
             width: 144,
+            height: 140,
+            alignSelf: 'center',
+        },
+
+        yellowCircle: {
+            width: 200,
+            height: 200,
+            right: -100,
+            position: 'absolute',
+            borderRadius: 200 / 2,
+            backgroundColor: colors.secondary,
+            top: Dimensions.get('screen').height * 0.16,
+        },
+
+        blueCircle: {
+            left: -75,
+            width: 150,
+            height: 150,
+            position: 'absolute',
+            borderRadius: 150 / 2,
+            top: windowHeigth * 0.75,
+            backgroundColor: colors.primary,
         },
     });

@@ -1,12 +1,12 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Image } from 'react-native';
-import { useTheme } from 'react-native-paper';
+import { ScrollView, View, StyleSheet, Image, Dimensions } from 'react-native';
+import { Surface, useTheme } from 'react-native-paper';
 
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 import { icons } from 'assets/images';
-import { IonIcons, setStorageItem } from 'src/helpers';
+import { IonIcons, setStorageItem, windowHeigth } from 'src/helpers';
 import { loginAction } from './actions';
 import { Form } from './components/form';
 import { CustomRoundButton } from 'src/components/buttons';
@@ -22,6 +22,7 @@ import globalStyles, {
     mgS,
     onBackgroundDark,
     pdHm,
+    mgM,
 } from 'src/styles/index';
 
 function Login({ navigation, loginAction }) {
@@ -84,15 +85,17 @@ function Login({ navigation, loginAction }) {
     );
 
     const LoginCard = () => (
-        <View style={[style.card]}>
-            <AvatarIcon />
+        <>
+            <Surface style={[style.card]}>
+                <AvatarIcon />
 
-            <GapV />
+                <GapV />
 
-            <CustomTitle>{`Please Login to your Account`}</CustomTitle>
+                <CustomTitle>{`Please Login to your Account`}</CustomTitle>
 
-            <Form onSubmit={handleSubmitLogin} navigation={navigate} />
-        </View>
+                <Form onSubmit={handleSubmitLogin} navigation={navigate} />
+            </Surface>
+        </>
     );
 
     const Signup = () => (
@@ -105,8 +108,17 @@ function Login({ navigation, loginAction }) {
         />
     );
 
+    const Ellipses = () => (
+        <>
+            <View style={style.yellowCircle} />
+
+            <View style={style.blueCircle} />
+        </>
+    );
+
     return (
         <View style={[style.container, gStyle.content]}>
+            {Ellipses()}
             <ScrollView contentContainerStyle={[style.content]}>
                 {TopView()}
                 {LoginCard()}
@@ -140,10 +152,11 @@ const styles = colors =>
         },
 
         card: {
-            borderRadius: bRss,
+            elevation: 4,
             paddingTop: mgMs,
+            borderRadius: bRss,
+            marginHorizontal: mgM,
             paddingHorizontal: pdHm,
-            borderWidth: StyleSheet.hairlineWidth,
         },
 
         content: {
@@ -151,18 +164,9 @@ const styles = colors =>
         },
 
         image: {
-            alignSelf: 'center',
-            height: 140,
             width: 144,
-        },
-
-        fdr: { flexDirection: 'row' },
-
-        divider: {
+            height: 140,
             alignSelf: 'center',
-            backgroundColor: onBackgroundDark,
-            height: 1,
-            width: '80%',
         },
 
         subText: {
@@ -177,13 +181,33 @@ const styles = colors =>
 
         avatarStyle: {},
 
-        avatarContainer: {
-            borderRadius: bRl,
-            backgroundColor: 'blue',
-            alignSelf: 'center',
-            padding: mgS,
+        yellowCircle: {
+            width: 200,
+            height: 200,
+            right: -100,
             position: 'absolute',
+            borderRadius: 200 / 2,
+            backgroundColor: colors.secondary,
+            top: Dimensions.get('screen').height * 0.22,
+        },
+
+        blueCircle: {
+            left: -75,
+            width: 150,
+            height: 150,
+            position: 'absolute',
+            borderRadius: 150 / 2,
+            top: windowHeigth * 0.73,
+            backgroundColor: colors.primary,
+        },
+
+        avatarContainer: {
             top: -30,
+            padding: mgS,
+            borderRadius: bRl,
+            alignSelf: 'center',
+            position: 'absolute',
+            backgroundColor: 'blue',
         },
 
         signupButton: { alignSelf: 'center' },

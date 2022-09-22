@@ -93,41 +93,41 @@ const styles = colors =>
         },
 
         card: {
-            borderRadius: bRss,
             paddingTop: mgMs,
+            borderRadius: bRss,
             paddingHorizontal: pdH,
             // borderWidth: StyleSheet.hairlineWidth,
         },
 
         content: {
             flexGrow: 1,
-            paddingHorizontal: pdHs,
             paddingTop: mgM,
+            paddingHorizontal: pdHs,
         },
 
         image: {
-            alignSelf: 'center',
-            height: 100,
             width: 100,
+            height: 100,
+            alignSelf: 'center',
         },
 
         fdr: { flexDirection: 'row' },
 
         divider: {
-            alignSelf: 'center',
-            backgroundColor: onBackgroundDark,
             height: 1,
             width: '80%',
+            alignSelf: 'center',
+            backgroundColor: onBackgroundDark,
         },
 
         subText: {
-            color: '#999999',
             fontSize: 22,
+            color: '#999999',
         },
 
         title: {
-            fontWeight: 'bold',
             fontSize: 24,
+            fontWeight: 'bold',
         },
 
         icon: { alignSelf: 'center' },
@@ -135,11 +135,11 @@ const styles = colors =>
         avatarStyle: {},
 
         avatarContainer: {
-            borderRadius: bRl,
-            backgroundColor: 'blue',
-            alignSelf: 'center',
-            padding: mgS,
-            position: 'absolute',
             top: -30,
+            padding: mgS,
+            borderRadius: bRl,
+            alignSelf: 'center',
+            position: 'absolute',
+            backgroundColor: 'blue',
         },
     });

@@ -75,23 +75,23 @@ const styles = colors =>
         },
 
         subText: {
-            color: colors.primary,
             fontSize: 20,
+            color: colors.primary,
         },
 
         title: {
-            fontWeight: 'bold',
             fontSize: 24,
+            fontWeight: 'bold',
         },
 
         avatarStyle: {},
 
         avatarContainer: {
-            borderRadius: bRxL,
-            backgroundColor: 'black',
-            alignSelf: 'center',
             padding: mgL,
             marginTop: mgxL,
+            borderRadius: bRxL,
+            alignSelf: 'center',
+            backgroundColor: 'black',
         },
 
         button: {

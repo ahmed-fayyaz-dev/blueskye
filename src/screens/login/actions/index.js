@@ -40,7 +40,6 @@ export function loginAction(data) {
                     'Error! Logging in was unsucessfull! removing cache ...',
                     `${error}`,
                 );
-                handleBackToSignIn();
                 dispatch({ type: types.LOGIN_ACCOUNT_FAIL, payload: error });
                 throw new Error(error);
             });

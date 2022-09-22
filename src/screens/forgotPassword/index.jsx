@@ -1,28 +1,12 @@
 import React from 'react';
-import {
-    ScrollView,
-    View,
-    StyleSheet,
-    Image,
-    TouchableOpacity,
-} from 'react-native';
+import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 import { CustomSubheading, CustomTitle } from 'src/components/customText';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { GapV } from 'src/components/gap';
-import globalStyles, {
-    bRl,
-    bRss,
-    mgM,
-    mgMs,
-    mgS,
-    onBackgroundDark,
-    pdHs,
-    pdH,
-} from 'src/styles/index';
+import globalStyles, { bRss, mgM, mgMs, pdHs, pdH } from 'src/styles/index';
 import CustomInput from 'src/components/CustomInput';
 import { CustomRoundButton } from 'src/components/buttons';
 
@@ -101,54 +85,35 @@ const styles = colors =>
         },
 
         card: {
-            borderRadius: bRss,
             paddingTop: mgMs,
+            borderRadius: bRss,
             paddingHorizontal: pdH,
         },
 
         content: {
             flexGrow: 1,
-            paddingHorizontal: pdHs,
             paddingTop: mgM,
+            paddingHorizontal: pdHs,
         },
 
         image: {
             alignSelf: 'center',
         },
 
-        fdr: { flexDirection: 'row' },
-
-        divider: {
-            alignSelf: 'center',
-            backgroundColor: onBackgroundDark,
-            height: 1,
-            width: '80%',
-        },
-
         subText: {
-            color: '#999999',
             fontSize: 22,
+            color: '#999999',
         },
 
         title: {
-            fontWeight: 'bold',
             fontSize: 24,
+            fontWeight: 'bold',
         },
 
         icon: { alignSelf: 'center' },
 
-        avatarStyle: {},
-
-        avatarContainer: {
-            borderRadius: bRl,
-            backgroundColor: 'blue',
-            alignSelf: 'center',
-            padding: mgS,
-            position: 'absolute',
-            top: -30,
-        },
         backArrow: {
-            position: 'absolute',
             paddingTop: 30,
+            position: 'absolute',
         },
     });
