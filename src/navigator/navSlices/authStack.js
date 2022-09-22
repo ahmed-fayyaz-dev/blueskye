@@ -7,6 +7,7 @@ import Login from 'src/screens/login';
 import OTPSend from 'src/screens/otpSend';
 import OTPVerify from 'src/screens/otpVerify';
 import Signup from 'src/screens/signup';
+import RecoverPassword from 'src/screens/recoverPassword';
 // import WelcomeScreen from "src/screens/welcomeScreen";
 
 const Stack = createNativeStackNavigator();
@@ -37,6 +38,7 @@ const AuthStack = () => {
             {/* <Stack.Screen name="welcome" component={WelcomeScreen} /> */}
             <Stack.Screen name="login" component={Login} />
             <Stack.Screen name="forgotPassword" component={ForgotPassword} />
+            <Stack.Screen name="recoverPassword" component={RecoverPassword} />
             <Stack.Screen name="signup" component={Signup} />
             <Stack.Screen name="otpSend" component={OTPSend} />
             <Stack.Screen name="otpVerify" component={OTPVerify} />

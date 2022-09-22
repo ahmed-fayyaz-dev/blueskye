@@ -6,18 +6,15 @@ import { bindActionCreators } from 'redux';
 import { CustomSubheading, CustomTitle } from 'src/components/customText';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { GapV } from 'src/components/gap';
-import globalStyles, { bRss, mgM, mgMs, pdHs, pdH } from 'src/styles/index';
+import { bRss, mgM, mgMs, pdHs, pdH } from 'src/styles/index';
 import CustomInput from 'src/components/CustomInput';
 import { CustomRoundButton } from 'src/components/buttons';
 
-const ForgotPassword = ({ navigation }) => {
+const RecoverPassword = ({ navigation }) => {
     const { colors } = useTheme();
     const style = styles(colors);
 
-    const navToRecoverPass = () => {
-        // console.log('Send button has been pressed');
-        navigation.navgate('recoverPassword');
-    };
+    // const navToRecoverPass = () => {};
 
     const goBack = () => {
         navigation.goBack();
@@ -59,11 +56,12 @@ const ForgotPassword = ({ navigation }) => {
 
     const PhoneNumber = () => (
         <View style={[style.card]}>
+            {/* form */}
             <CustomInput label="Email" />
 
             <GapV />
 
-            <CustomRoundButton title={'SEND'} onPress={navToRecoverPass} />
+            <CustomRoundButton title={'SEND'} />
         </View>
     );
 
@@ -79,7 +77,7 @@ const ForgotPassword = ({ navigation }) => {
     );
 };
 
-export default ForgotPassword;
+export default RecoverPassword;
 
 const styles = colors =>
     StyleSheet.create({
