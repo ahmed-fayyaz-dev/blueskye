@@ -1,28 +1,68 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { useTheme } from 'react-native-paper';
-
+import { useTheme, Surface } from 'react-native-paper';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import { CustomSubheading, CustomTitle } from 'src/components/customText';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { GapV } from 'src/components/gap';
-import { bRss, mgM, mgMs, pdHs, pdH } from 'src/styles/index';
-import CustomInput from 'src/components/CustomInput';
-import { CustomRoundButton } from 'src/components/buttons';
+import { bRss, mgM, mgMs, pdHs, pdHm } from 'src/styles/index';
+import { Form } from './components/form';
+import { showSnack } from 'src/helpers/utils';
+import { recoverPasswordAction } from './actions';
+import { callApi } from 'src/helpers/apiCall';
 
-const RecoverPassword = ({ navigation }) => {
+const RecoverPassword = ({ navigation, route, recoverPasswordAction }) => {
     const { colors } = useTheme();
     const style = styles(colors);
-
+    const { params } = route;
+    const userData = params?.userData;
     // const navToRecoverPass = () => {};
 
     const goBack = () => {
         navigation.goBack();
     };
 
+    const navigate = res => {
+        showSnack('Success');
+
+        setTimeout(() => {
+            navigation.navigate('login');
+        }, 1000);
+    };
+
+    const handleSubmit = async values => {
+        try {
+            const { accessCode, password, confirmPassword } = values;
+            const { email, phone, vid, vName } = userData;
+            const data = {
+                accessCode: accessCode,
+                confirmPassword: confirmPassword,
+                email: email,
+                password: password,
+                phone: phone,
+                vName: vName,
+                vid: vid,
+            };
+
+            await callApi({
+                data: data,
+                setLoading: () => {},
+                submitCallApi: recoverPasswordAction,
+                successFunc: navigate,
+                errFunc: () => {},
+                catchFunc: () => {},
+            });
+        } catch (e) {
+            console.error(e);
+            return showSnack('Api Response Error try again!');
+        }
+    };
+
     const TopView = () => (
         <View>
-            <GapV xL />
+            <GapV large />
 
             <TouchableOpacity style={[style.backArrow]} onPress={goBack}>
                 <Ionicons name="arrow-back" size={40} color="black" />
@@ -39,30 +79,25 @@ const RecoverPassword = ({ navigation }) => {
     );
 
     const Content = () => (
-        <View>
+        <>
             <GapV large />
 
             <CustomTitle style={[style.title]}>
-                {`Enter your email to recieve a recovery link.`}
+                {`Enter your recovery access code.`}
             </CustomTitle>
 
             <GapV />
 
             <CustomSubheading style={[style.subText]}>
-                {`We will send you a one time link.`}
+                {`We've sent you access code on email.`}
             </CustomSubheading>
-        </View>
-    );
-
-    const PhoneNumber = () => (
-        <View style={[style.card]}>
-            {/* form */}
-            <CustomInput label="Email" />
 
             <GapV />
 
-            <CustomRoundButton title={'SEND'} />
-        </View>
+            <Surface style={style.card}>
+                <Form onSubmit={handleSubmit} />
+            </Surface>
+        </>
     );
 
     return (
@@ -70,14 +105,27 @@ const RecoverPassword = ({ navigation }) => {
             <ScrollView contentContainerStyle={[style.content]}>
                 {TopView()}
                 {Content()}
-                {PhoneNumber()}
                 <GapV />
             </ScrollView>
         </View>
     );
 };
 
-export default RecoverPassword;
+function mapStateToProps() {
+    return {};
+}
+
+function mapDipatchToProps(dispatch, getState) {
+    return bindActionCreators(
+        {
+            recoverPasswordAction,
+        },
+        dispatch,
+        getState,
+    );
+}
+
+export default connect(mapStateToProps, mapDipatchToProps)(RecoverPassword);
 
 const styles = colors =>
     StyleSheet.create({
@@ -86,9 +134,11 @@ const styles = colors =>
         },
 
         card: {
+            elevation: 4,
             paddingTop: mgMs,
             borderRadius: bRss,
-            paddingHorizontal: pdH,
+            marginHorizontal: mgM,
+            paddingHorizontal: pdHm,
         },
 
         content: {

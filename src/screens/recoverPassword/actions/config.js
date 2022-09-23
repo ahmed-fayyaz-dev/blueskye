@@ -1,7 +1,7 @@
 import { SERVER_URL } from 'src/appConstants';
 import { deviceInfo, versionCode } from 'src/helpers';
 
-export const signupConfig = data => {
+export const recoverPasswordConfig = data => {
     return {
         method: 'post',
         url: `${SERVER_URL}Home/SaveContactUser`,
@@ -11,20 +11,20 @@ export const signupConfig = data => {
         data: {
             email: data.email,
             password: data.password,
-            vName: data.name,
+            vName: data.vName,
             phone: data.phone,
             confirmPassword: data.confirmPassword,
+            vid: data.vid,
 
+            accessCode: data.accessCode,
             deviceInfo: deviceInfo,
             versionCode: versionCode,
             //dummy
-            vid: 0,
             insertedBy: 0,
             insertedIp: 'string',
             updatedBy: 0,
             updatedIp: 'string',
             message: 'string',
-            accessCode: '',
         },
     };
 };
