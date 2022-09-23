@@ -15,3 +15,5 @@ export const RESTART_ERROR_ID = 10;
 export const SUCCESS = 'success';
 
 export const ERROR = 'error';
+
+export const APPLICATION_TYPE = 'student';

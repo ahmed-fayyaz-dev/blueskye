@@ -116,7 +116,19 @@ const DrawerNav = props => {
                         }),
                 }}
             />
-
+            <Drawer.Screen
+                name="feesHistory"
+                component={FeesHistory}
+                options={{
+                    title: 'Transaction History',
+                    drawerIcon: ({ focused, size }) =>
+                        DrawerIcons({
+                            focused,
+                            size,
+                            icon: icons.drawer.fees,
+                        }),
+                }}
+            />
             {/* <Drawer.Screen name="playground" component={Playground} /> */}
         </Drawer.Navigator>
     );
