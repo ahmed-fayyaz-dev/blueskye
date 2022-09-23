@@ -10,7 +10,7 @@ import globalStyles, { bRss, mgM, mgMs, pdH } from 'src/styles/index';
 import QrScanner from './components/BarcodeScanner';
 
 const ScanQR = ({ navigation }) => {
-    const [onPress, setOnPress] = useState(false);
+    const [onPress, setOnPress] = useState(true);
     const { colors } = useTheme();
     const style = styles(colors);
     const title = 'Scan QR';

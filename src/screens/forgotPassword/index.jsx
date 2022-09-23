@@ -17,7 +17,6 @@ import { showSnack } from 'src/helpers/utils';
 const ForgotPassword = ({ navigation, forgetPasswordAction }) => {
     const { colors } = useTheme();
     const style = styles(colors);
-    const [email, setEmail] = useState('');
 
     const navigate = response => {
         const userData = response?.crmStudentUser;
