@@ -1,27 +1,47 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { useTheme } from 'react-native-paper';
-
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import { forgetPasswordAction } from './actions';
 import { CustomSubheading, CustomTitle } from 'src/components/customText';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { GapV } from 'src/components/gap';
-import globalStyles, { bRss, mgM, mgMs, pdHs, pdH } from 'src/styles/index';
-import CustomInput from 'src/components/CustomInput';
-import { CustomRoundButton } from 'src/components/buttons';
+import { bRss, mgM, mgMs, pdHs, pdH } from 'src/styles/index';
+import { useState } from 'react';
+import { Form } from './components/form';
+import { callApi } from 'src/helpers/apiCall';
+import { showSnack } from 'src/helpers/utils';
 
-const ForgotPassword = ({ navigation }) => {
+const ForgotPassword = ({ navigation, forgetPasswordAction }) => {
     const { colors } = useTheme();
     const style = styles(colors);
+    const [email, setEmail] = useState('');
 
-    const navToRecoverPass = () => {
-        // console.log('Send button has been pressed');
-        navigation.navgate('recoverPassword');
+    const navigate = response => {
+        const userData = response?.crmStudentUser;
+        if (userData) {
+            navigation.navigate('recoverPassword', { userData });
+        } else {
+            showSnack('User Data fetch uncorrectly');
+        }
     };
 
     const goBack = () => {
         navigation.goBack();
     };
+
+    async function handleSubmit(values) {
+        await callApi({
+            data: values,
+            setLoading: () => {},
+            submitCallApi: forgetPasswordAction,
+            successFunc: navigate,
+            errFunc: () => {},
+            catchFunc: () => {},
+        });
+    }
 
     const TopView = () => (
         <View>
@@ -46,24 +66,20 @@ const ForgotPassword = ({ navigation }) => {
             <GapV large />
 
             <CustomTitle style={[style.title]}>
-                {`Enter your email to recieve a recovery link.`}
+                {`Enter your email to recieve a recovery code.`}
             </CustomTitle>
 
             <GapV />
 
             <CustomSubheading style={[style.subText]}>
-                {`We will send you a one time link.`}
+                {`We will send you an access code for changing password.`}
             </CustomSubheading>
         </View>
     );
 
-    const PhoneNumber = () => (
+    const BottomView = () => (
         <View style={[style.card]}>
-            <CustomInput label="Email" />
-
-            <GapV />
-
-            <CustomRoundButton title={'SEND'} onPress={navToRecoverPass} />
+            <Form onSubmit={handleSubmit} />
         </View>
     );
 
@@ -72,14 +88,28 @@ const ForgotPassword = ({ navigation }) => {
             <ScrollView contentContainerStyle={[style.content]}>
                 {TopView()}
                 {Content()}
-                {PhoneNumber()}
+                {BottomView()}
                 <GapV />
             </ScrollView>
         </View>
     );
 };
 
-export default ForgotPassword;
+function mapStateToProps() {
+    return {};
+}
+
+function mapDipatchToProps(dispatch, getState) {
+    return bindActionCreators(
+        {
+            forgetPasswordAction,
+        },
+        dispatch,
+        getState,
+    );
+}
+
+export default connect(mapStateToProps, mapDipatchToProps)(ForgotPassword);
 
 const styles = colors =>
     StyleSheet.create({
