@@ -4,5 +4,5 @@ export const forgetPasswordSchema = yup.object().shape({
     email: yup
         .string()
         .email('Enter Correct email address')
-        .required('Access Code is Required'),
+        .required('Email is Required'),
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Surface } from 'react-native-paper';
-import { bRss, mgMs, pdHm } from 'src/styles';
+import { bRss, greenColor, mgMs, pdHm } from 'src/styles';
 import { CustomText } from 'src/components/customText';
 
 const RenderList = ({ item }) => {
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
 
     price: {
-        color: '#0BA77B',
+        color: greenColor,
         textAlignVertical: 'bottom',
     },
 });

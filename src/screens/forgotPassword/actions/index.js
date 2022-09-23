@@ -6,7 +6,7 @@ export function forgetPasswordAction(data) {
     return async () => {
         return await axios(forgetPasswordConfig(data))
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 return response.data;
             })
             .catch(error => {

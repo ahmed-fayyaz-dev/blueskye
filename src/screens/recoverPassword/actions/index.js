@@ -4,11 +4,9 @@ import { recoverPasswordConfig } from './config';
 
 export function recoverPasswordAction(data) {
     return async () => {
-        console.log(recoverPasswordConfig(data));
-
         return await axios(recoverPasswordConfig(data))
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 return response.data;
             })
             .catch(error => {

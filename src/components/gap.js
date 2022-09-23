@@ -1,6 +1,6 @@
-import React from "react";
-import { View } from "react-native";
-import { mgS, mgM, mgL } from "src/styles";
+import React from 'react';
+import { View } from 'react-native';
+import { mgS, mgM, mgL } from 'src/styles';
 
 export function GapV({ small, md, large, xL }) {
     return (
@@ -31,8 +31,8 @@ export function GapH({ small, md, large, xL }) {
                     : xL
                     ? { marginLeft: mgL * 2 }
                     : md
-                    ? { marginTop: mgM }
-                    : { marginTop: mgM }
+                    ? { marginLeft: mgM }
+                    : { marginLeft: mgM }
             }
         />
     );

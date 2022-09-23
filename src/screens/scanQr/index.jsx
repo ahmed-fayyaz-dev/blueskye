@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
-import { ScrollView, View, StyleSheet, Image, Text } from 'react-native';
+import { ScrollView, View, StyleSheet, Image } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import AppBar from 'src/components/appbar';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import { icons } from 'assets/images';
+import { scanQrAction } from './actions';
+import QrScanner from './components/BarcodeScanner';
+import AppBar from 'src/components/appbar';
 import { CustomRoundButton } from 'src/components/buttons';
 import { CustomSubheading } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
-import globalStyles, { bRss, mgM, mgMs, pdH } from 'src/styles/index';
-import QrScanner from './components/BarcodeScanner';
+import { callApi } from 'src/helpers/apiCall';
+import { showSnack } from 'src/helpers/utils';
+import { bRss, mgM, mgMs, pdH } from 'src/styles/index';
 
-const ScanQR = ({ navigation }) => {
+const ScanQR = ({ navigation, scanQrAction }) => {
     const [onPress, setOnPress] = useState(false);
+    const [success, setSuccess] = useState(false);
     const { colors } = useTheme();
     const style = styles(colors);
     const title = 'Scan QR';
@@ -18,6 +25,34 @@ const ScanQR = ({ navigation }) => {
     const openCamera = () => {
         setOnPress(!onPress);
     };
+
+    const handleSuccess = res => {
+        try {
+            const { message } = res;
+            showSnack(message + `✅ `);
+            setSuccess(true);
+        } catch (e) {
+            setSuccess(false);
+            showSnack('Try Again');
+        }
+    };
+
+    const handleSubmit = async data => {
+        try {
+            await callApi({
+                data,
+                setLoading: () => {},
+                submitCallApi: scanQrAction,
+                successFunc: handleSuccess,
+                errFunc: () => {},
+                catchFunc: () => {},
+            });
+        } catch (e) {
+            console.error(e);
+            return showSnack('Api Response Error try again!');
+        }
+    };
+
     const TopView = () => (
         <>
             <GapV large />
@@ -39,14 +74,8 @@ const ScanQR = ({ navigation }) => {
     const QR = () => (
         <>
             <GapV large />
-            {onPress ? (
-                <Image
-                    resizeMode="contain"
-                    source={icons.tab.qr}
-                    style={[style.qr]}
-                />
-            ) : (
-                <QrScanner setShowQR={setOnPress} />
+            {onPress ? null : (
+                <QrScanner setShowQR={setOnPress} handleScan={handleSubmit} />
             )}
         </>
     );
@@ -77,7 +106,21 @@ const ScanQR = ({ navigation }) => {
     );
 };
 
-export default ScanQR;
+function mapStateToProps() {
+    return {};
+}
+
+function mapDipatchToProps(dispatch, getState) {
+    return bindActionCreators(
+        {
+            scanQrAction,
+        },
+        dispatch,
+        getState,
+    );
+}
+
+export default connect(mapStateToProps, mapDipatchToProps)(ScanQR);
 
 const styles = colors =>
     StyleSheet.create({

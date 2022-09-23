@@ -3,8 +3,9 @@ import { Text, View, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useTheme } from 'react-native-paper';
+import { CustomText } from 'src/components/customText';
 
-export default function QrScanner() {
+export default function QrScanner({ handleScan }) {
     const { colors } = useTheme();
     const style = styles(colors);
     const [hasPermission, setHasPermission] = useState(null);
@@ -21,14 +22,14 @@ export default function QrScanner() {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        handleScan({ type, data });
     };
 
     if (hasPermission === null) {
-        return <Text>Requesting for camera permission</Text>;
+        return <CustomText>Requesting for camera permission</CustomText>;
     }
     if (hasPermission === false) {
-        return <Text>No access to camera</Text>;
+        return <CustomText>No access to camera</CustomText>;
     }
     return (
         <View style={style.container}>
@@ -36,20 +37,6 @@ export default function QrScanner() {
                 onBarCodeScanned={scanned ? false : handleBarCodeScanned}
                 style={StyleSheet.absoluteFillObject}
             />
-            {scanned && (
-                // <Image
-                //     resizeMode="contain"
-                //     source={icons.auth.checkmark}
-                //     style={style.image}
-                // />
-                <View style={style.image}>
-                    <AntDesign
-                        name="exclamationcircleo"
-                        size={100}
-                        color={colors.primary}
-                    />
-                </View>
-            )}
         </View>
     );
 }
