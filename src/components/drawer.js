@@ -4,10 +4,13 @@ import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
 import { nativeApplicationVersion } from 'expo-application';
 import { useTheme as paperTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { IonIcons, signOutFunc } from 'src/helpers';
 import {
     bRss,
+    greenColor,
     mgS,
     onBackgroundDark,
     pdHm,
@@ -19,10 +22,10 @@ import {
     CustomCaption,
     // CustomParagraph,
     // CustomSubheading,
-    // CustomText,
+    CustomText,
     CustomTitle,
 } from './customText';
-// import { GapH } from "./gap";
+import { GapH, GapV } from './gap';
 import { icons } from 'assets/images/index';
 import { CustomIconButton } from 'src/components/buttons';
 import { iconSize } from 'src/styles/navCss';
@@ -42,6 +45,26 @@ const BackIcon = ({ navigation }) => (
         onPress={() => navigation.toggleDrawer()}
     />
 );
+
+const DrawerAccountInfo = ({ colors, loginUserReducer }) => {
+    const { data } = loginUserReducer;
+    const style = styles(colors);
+    const employeeName = data?.crmStudentUser?.vName;
+    const email = data?.crmStudentUser?.email;
+
+    return (
+        <View style={[style.accountInfo]}>
+            <IonIcons name="person-circle" size={iconSize} color={greenColor} />
+
+            <GapH small />
+
+            <View>
+                <CustomText style={style.textLeft}>{employeeName}</CustomText>
+                <CustomCaption style={style.textLeft}>{email}</CustomCaption>
+            </View>
+        </View>
+    );
+};
 
 const CustomDrawerList = ({
     state,
@@ -83,10 +106,18 @@ function DrawerContent(props) {
     const { colors: paperColors } = paperTheme();
     const style = styles(paperColors);
     const { state, descriptors, navigation } = props;
-    const { logout, drawerItemStyle } = props;
+    const { logout, drawerItemStyle, loginUserReducer } = props;
 
     const Header = () => (
-        <View style={[style.drawerTopView]}>{BackIcon({ navigation })}</View>
+        <>
+            <View style={[style.drawerTopView]}>
+                {BackIcon({ navigation })}
+            </View>
+            <DrawerAccountInfo
+                colors={paperColors}
+                loginUserReducer={loginUserReducer}
+            />
+        </>
     );
 
     const Footer = () => (
@@ -125,12 +156,17 @@ function DrawerContent(props) {
                 descriptors={descriptors}
                 navigation={navigation}
             />
+
             {/* Drawer Signout item */}
             <DrawerItem
                 onPress={() => signOutFunc({ logout, navigation })}
-                icon={({ size, color }) =>
-                    IonIcons({ size, name: 'exit-outline', color })
-                }
+                icon={({ size }) => (
+                    <IonIcons
+                        name="exit-outline"
+                        size={size}
+                        color={greenColor}
+                    />
+                )}
                 label="Sign Out"
                 style={drawerItemStyle}
             />
@@ -146,7 +182,15 @@ function DrawerContent(props) {
     );
 }
 
-export default DrawerContent;
+function mapStateToProps({ loginUserReducer }) {
+    return { loginUserReducer };
+}
+
+function mapDipatchToProps(dispatch, getState) {
+    return bindActionCreators({}, dispatch, getState);
+}
+
+export default connect(mapStateToProps, mapDipatchToProps)(DrawerContent);
 
 const styles = colors =>
     StyleSheet.create({
@@ -160,6 +204,8 @@ const styles = colors =>
         },
 
         textLeft: { textAlign: 'left' },
+
+        textRight: { textAlign: 'right' },
 
         drawerBottomView: {
             marginBottom: mgS,
@@ -183,7 +229,7 @@ const styles = colors =>
         },
 
         accountInfo: {
-            flex: 1,
+            // flex: 1,
             flexDirection: 'row',
             alignItems: 'center',
             marginTop: mgS,
@@ -222,34 +268,6 @@ const styles = colors =>
 //         style={[{ height: iconSizeContent, width: iconSizeContent }]}
 //     />
 // );
-
-// const DrawerAccountInfo = ({ colors, loginUserReducer }) => {
-//     const { user_pp, users } = loginUserReducer;
-
-//     const style = styles(colors);
-//     return (
-//         <View style={[style.accountInfo]}>
-//             <Image
-//                 source={{
-//                     // uri: user_pp,
-//                     uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwKS__3aeYLOiN8j1Le-GtHt2zI33vYTNQysiewAEC_w&s",
-//                 }}
-//                 resizeMode="cover"
-//                 style={[style.roundImage]}
-//             />
-//             <GapH small={true} />
-
-//             <View>
-//                 <CustomText style={style.textLeft}>
-//                     {users?.employeeName}
-//                 </CustomText>
-//                 <CustomCaption style={style.textLeft}>
-//                     {users?.empCode}
-//                 </CustomCaption>
-//             </View>
-//         </View>
-//     );
-// };
 
 // const MenuItem = ({ menuItem, state, descriptors, navigation }) => {
 //     const { label, level, icon } = menuItem;

@@ -1,30 +1,29 @@
 import React from 'react';
+import { useState } from 'react';
 import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { forgetPasswordAction } from './actions';
-import { CustomSubheading, CustomTitle } from 'src/components/customText';
-import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-import { GapV } from 'src/components/gap';
-import { bRss, mgM, mgMs, pdHs, pdH } from 'src/styles/index';
-import { useState } from 'react';
 import { Form } from './components/form';
+import { CustomSubheading, CustomTitle } from 'src/components/customText';
+import { GapV } from 'src/components/gap';
 import { callApi } from 'src/helpers/apiCall';
 import { showSnack } from 'src/helpers/utils';
+import { bRss, mgM, mgMs, pdHs, pdH } from 'src/styles/index';
 
 const ForgotPassword = ({ navigation, forgetPasswordAction }) => {
     const { colors } = useTheme();
     const style = styles(colors);
-    const [email, setEmail] = useState('');
 
     const navigate = response => {
         const userData = response?.crmStudentUser;
         if (userData) {
             navigation.navigate('recoverPassword', { userData });
         } else {
-            showSnack('User Data fetch uncorrectly');
+            showSnack('User Data didnt fetched correctly');
         }
     };
 

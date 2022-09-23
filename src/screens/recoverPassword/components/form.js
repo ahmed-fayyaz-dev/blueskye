@@ -1,7 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
-import { useTheme } from 'react-native-paper';
 
 import { recoverPasswordSchema } from '../helpers';
 import CustomInput from 'src/components/CustomInput';
@@ -9,9 +7,6 @@ import { CustomRoundButton } from 'src/components/buttons';
 import { GapV } from 'src/components/gap';
 
 export const Form = ({ onSubmit }) => {
-    const { colors } = useTheme();
-    const style = styles(colors);
-
     return (
         <Formik
             initialValues={{
@@ -83,20 +78,3 @@ export const Form = ({ onSubmit }) => {
         </Formik>
     );
 };
-
-// eslint-disable-next-line no-unused-vars
-const styles = colors =>
-    StyleSheet.create({
-        fdr: { flexDirection: 'row' },
-
-        bottomRow: { flexDirection: 'row', justifyContent: 'space-between' },
-
-        revBottomContainer: {
-            flexDirection: 'column-reverse',
-            flex: 1,
-        },
-
-        forgotPassText: {
-            textDecorationLine: 'underline',
-        },
-    });

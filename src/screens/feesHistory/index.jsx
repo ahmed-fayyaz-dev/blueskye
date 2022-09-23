@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import AppBar from 'src/components/appbar';
-import { GapV } from 'src/components/gap';
-import globalStyles, { mgM, pdHs } from 'src/styles/index';
 import ListItem from './components/renderIList';
 import { arr } from './dummyData';
+import AppBar from 'src/components/appbar';
+import { GapV } from 'src/components/gap';
+import { mgM, pdHs } from 'src/styles/index';
 
 const FeesHistory = ({ navigation }) => {
     const { colors } = useTheme();
@@ -20,7 +20,9 @@ const FeesHistory = ({ navigation }) => {
 
             <FlatList
                 data={arr}
-                keyExtractor={item => item.date}
+                keyExtractor={(item, index) => {
+                    return index;
+                }}
                 ItemSeparatorComponent={ItemSeparator}
                 renderItem={ListItem}
                 contentContainerStyle={style.content}

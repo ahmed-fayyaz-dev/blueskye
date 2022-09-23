@@ -141,8 +141,8 @@ function AppNavigator(props) {
     } else return null;
 }
 
-function mapStateToProps({ loginUserReducer }) {
-    return { loginUserReducer };
+function mapStateToProps() {
+    return {};
 }
 
 function mapDispatchToProps(dispatch, getState) {

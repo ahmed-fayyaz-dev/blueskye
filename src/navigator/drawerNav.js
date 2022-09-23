@@ -107,7 +107,7 @@ const DrawerNav = props => {
                 name="feesHistory"
                 component={FeesHistory}
                 options={{
-                    title: 'Fees History',
+                    title: 'Transaction History',
                     drawerIcon: ({ focused, size }) =>
                         DrawerIcons({
                             focused,

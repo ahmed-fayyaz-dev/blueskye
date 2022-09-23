@@ -8,10 +8,7 @@ import AuthStack from './navSlices/authStack';
 
 const Stack = createNativeStackNavigator();
 
-const RootNavigator = ({
-    loggedIn,
-    // ...props
-}) => {
+const RootNavigator = ({ loggedIn }) => {
     return (
         <Stack.Navigator
             initialRouteName={loggedIn.current ? 'drawerNav' : 'authStack'}
@@ -23,7 +20,7 @@ const RootNavigator = ({
     );
 };
 
-function mapStateToProps({ loginUserReducer }) {
-    return { loginUserReducer };
+function mapStateToProps() {
+    return {};
 }
 export default connect(mapStateToProps, {})(RootNavigator);
