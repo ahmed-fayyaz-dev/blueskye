@@ -1,17 +1,17 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { useTheme, Surface } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { CustomSubheading, CustomTitle } from 'src/components/customText';
-import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-import { GapV } from 'src/components/gap';
-import { bRss, mgM, mgMs, pdHs, pdHm } from 'src/styles/index';
-import { Form } from './components/form';
-import { showSnack } from 'src/helpers/utils';
 import { recoverPasswordAction } from './actions';
+import { Form } from './components/form';
+import { CustomSubheading, CustomTitle } from 'src/components/customText';
+import { GapV } from 'src/components/gap';
 import { callApi } from 'src/helpers/apiCall';
+import { showSnack } from 'src/helpers/utils';
+import { bRss, mgM, mgMs, pdHs, pdHm } from 'src/styles/index';
 
 const RecoverPassword = ({ navigation, route, recoverPasswordAction }) => {
     const { colors } = useTheme();
@@ -83,7 +83,7 @@ const RecoverPassword = ({ navigation, route, recoverPasswordAction }) => {
             <GapV large />
 
             <CustomTitle style={[style.title]}>
-                {`Enter your recovery access code.`}
+                {`Enter your recovery access code and New Password.`}
             </CustomTitle>
 
             <GapV />

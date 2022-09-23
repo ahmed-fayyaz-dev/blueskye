@@ -3,9 +3,7 @@ import { useKeepAwake } from 'expo-keep-awake';
 import i18n from 'i18n-js';
 // import { connectToDevTools } from "react-devtools-core";
 import { enableFreeze } from 'react-native-screens';
-import * as Sentry from 'sentry-expo';
 
-import { SENTRY_DSN } from 'src/appConstants';
 import { languageDictionary } from 'assets/locale/index';
 import { CombinedLightTheme } from 'src/styles/theme';
 

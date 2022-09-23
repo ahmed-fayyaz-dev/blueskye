@@ -6,8 +6,8 @@ import ForgotPassword from 'src/screens/forgotPassword';
 import Login from 'src/screens/login';
 import OTPSend from 'src/screens/otpSend';
 import OTPVerify from 'src/screens/otpVerify';
-import Signup from 'src/screens/signup';
 import RecoverPassword from 'src/screens/recoverPassword';
+import Signup from 'src/screens/signup';
 // import WelcomeScreen from "src/screens/welcomeScreen";
 
 const Stack = createNativeStackNavigator();
