@@ -1,46 +1,38 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Image } from 'react-native';
+import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
-import { icons } from 'assets/images';
-// import { Form } from './components/form';
+import { CustomSubheading, CustomTitle } from 'src/components/customText';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import { GapV } from 'src/components/gap';
+import { bRss, mgM, mgMs, pdHs, pdH } from 'src/styles/index';
 import CustomInput from 'src/components/CustomInput';
 import { CustomRoundButton } from 'src/components/buttons';
-import { CustomSubheading, CustomTitle } from 'src/components/customText';
-import { GapV } from 'src/components/gap';
-import globalStyles, {
-    bRl,
-    bRss,
-    mgM,
-    mgMs,
-    mgS,
-    onBackgroundDark,
-    pdHs,
-    pdH,
-} from 'src/styles/index';
 
-const OTPSend = ({ navigation, route }) => {
+const RecoverPassword = ({ navigation }) => {
     const { colors } = useTheme();
     const style = styles(colors);
-    // const phone = route.params.phone;
-    const email = route.params.email;
 
-    const handleSend = () => {
-        navigation.navigate('otpVerify', {
-            // phone: phone,
-            email,
-        });
+    // const navToRecoverPass = () => {};
+
+    const goBack = () => {
+        navigation.goBack();
     };
 
     const TopView = () => (
         <View>
             <GapV xL />
 
-            <Image
+            <TouchableOpacity style={[style.backArrow]} onPress={goBack}>
+                <Ionicons name="arrow-back" size={40} color="black" />
+            </TouchableOpacity>
+
+            <MaterialCommunityIcons
+                name="account-lock"
+                size={100}
+                color={colors.secondary}
                 resizeMode="contain"
-                source={icons.auth.smsPhone}
                 style={[style.image]}
             />
         </View>
@@ -51,24 +43,25 @@ const OTPSend = ({ navigation, route }) => {
             <GapV large />
 
             <CustomTitle style={[style.title]}>
-                {`Verifying your email to create account.`}
+                {`Enter your email to recieve a recovery link.`}
             </CustomTitle>
 
             <GapV />
 
             <CustomSubheading style={[style.subText]}>
-                {`We have sent you one time password (OTP) on following mail`}
+                {`We will send you a one time link.`}
             </CustomSubheading>
         </View>
     );
 
     const PhoneNumber = () => (
         <View style={[style.card]}>
-            <CustomInput label="Email address" value={email} disabled />
+            {/* form */}
+            <CustomInput label="Email" />
 
             <GapV />
 
-            <CustomRoundButton title={'NEXT'} onPress={handleSend} />
+            <CustomRoundButton title={'SEND'} />
         </View>
     );
 
@@ -84,7 +77,7 @@ const OTPSend = ({ navigation, route }) => {
     );
 };
 
-export default OTPSend;
+export default RecoverPassword;
 
 const styles = colors =>
     StyleSheet.create({
@@ -96,7 +89,6 @@ const styles = colors =>
             paddingTop: mgMs,
             borderRadius: bRss,
             paddingHorizontal: pdH,
-            // borderWidth: StyleSheet.hairlineWidth,
         },
 
         content: {
@@ -106,23 +98,12 @@ const styles = colors =>
         },
 
         image: {
-            width: 100,
-            height: 100,
             alignSelf: 'center',
-        },
-
-        fdr: { flexDirection: 'row' },
-
-        divider: {
-            height: 1,
-            width: '80%',
-            alignSelf: 'center',
-            backgroundColor: onBackgroundDark,
         },
 
         subText: {
             fontSize: 22,
-            color: '#999999',
+            color: colors.placeholder,
         },
 
         title: {
@@ -132,14 +113,8 @@ const styles = colors =>
 
         icon: { alignSelf: 'center' },
 
-        avatarStyle: {},
-
-        avatarContainer: {
-            top: -30,
-            padding: mgS,
-            borderRadius: bRl,
-            alignSelf: 'center',
+        backArrow: {
+            paddingTop: 30,
             position: 'absolute',
-            backgroundColor: 'blue',
         },
     });

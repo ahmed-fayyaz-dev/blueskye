@@ -3,17 +3,11 @@ import { View, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
 import { IonIcons } from 'src/helpers';
+import AppBar from 'src/components/appbar';
 import { CustomRoundButton } from 'src/components/buttons';
 import { CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
-import AppBar from 'src/components/appbar';
-import globalStyles, {
-    mgL,
-    onBackgroundDark,
-    iconSizeL,
-    bRxL,
-    mgxL,
-} from 'src/styles/index';
+import { mgL, onBackgroundDark, iconSizeL, bRxL, mgxL } from 'src/styles/index';
 
 const MyProfile = ({ navigation }) => {
     const title = 'My Profile';
@@ -75,23 +69,23 @@ const styles = colors =>
         },
 
         subText: {
-            color: colors.primary,
             fontSize: 20,
+            color: colors.primary,
         },
 
         title: {
-            fontWeight: 'bold',
             fontSize: 24,
+            fontWeight: 'bold',
         },
 
         avatarStyle: {},
 
         avatarContainer: {
-            borderRadius: bRxL,
-            backgroundColor: 'black',
-            alignSelf: 'center',
             padding: mgL,
             marginTop: mgxL,
+            borderRadius: bRxL,
+            alignSelf: 'center',
+            backgroundColor: 'black',
         },
 
         button: {

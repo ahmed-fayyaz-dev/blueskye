@@ -1,9 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Modal } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { iconSizeL, mgMs, onBackgroundDark } from 'src/styles';
+import { iconSizeL, onBackgroundDark } from 'src/styles';
 import { CustomIconButton } from 'src/components/buttons';
 
 const ANIMATION_TYPE = 'slide';
@@ -42,12 +41,13 @@ export const ImageFullView = ({ uri, visible, dismiss }) => {
                 imageUrls={images}
                 onClick={dismiss}
                 onCancel={dismiss}
-                renderIndicator={customIndicator}
+                backgroundColor="rgba(0,0,0,0.8)"
                 enableSwipeDown={true}
-                swipeDownThreshold={SWIPE_DOWN_THRESHOLD}
-                saveToLocalByLongPress={false}
-                style={styles.imageViewStyle}
                 renderHeader={RenderHeader}
+                saveToLocalByLongPress={false}
+                renderIndicator={customIndicator}
+                swipeDownThreshold={SWIPE_DOWN_THRESHOLD}
+                style={styles.imageViewStyle}
             />
         </Modal>
     );

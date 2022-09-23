@@ -1,20 +1,18 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { mgS, pdHs, bRss, mgMs, pdHm } from 'src/styles';
-import { CustomSubheading, CustomText } from 'src/components/customText';
+import { View, StyleSheet } from 'react-native';
 import { Surface } from 'react-native-paper';
+import { bRss, mgMs, pdHm } from 'src/styles';
+import { CustomText } from 'src/components/customText';
 
 const RenderList = ({ item }) => {
-    const price = 30522;
+    const price = 'Rs 30,522';
     const heading = 'Tution Fee';
 
     return (
         <Surface style={styles.listItem}>
             <View>
-                <CustomSubheading style={styles.title}>
-                    {heading}
-                </CustomSubheading>
-                <CustomText>{item.date}</CustomText>
+                <CustomText style={styles.title}>{heading}</CustomText>
+                <CustomText style={styles.date}>{item.date}</CustomText>
             </View>
 
             <CustomText style={styles.price}>{price}</CustomText>
@@ -35,7 +33,13 @@ const styles = StyleSheet.create({
     },
 
     title: {
+        color: '#0E2054',
         fontWeight: 'bold',
+        fontSize: 15,
+    },
+
+    date: {
+        alignSelf: 'flex-start',
     },
 
     price: {

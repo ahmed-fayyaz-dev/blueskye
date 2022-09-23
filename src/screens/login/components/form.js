@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { TouchableRipple, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 import { loginValidationSchema } from '../helpers';
 import { CustomCheckbox } from 'src/components/CustomCheckbox';
@@ -11,12 +11,9 @@ import { CustomRoundButton } from 'src/components/buttons';
 import { CustomText } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 
-export const Form = ({ onSubmit, navigation }) => {
+export const Form = ({ onSubmit, navToForgetPass }) => {
     const { colors } = useTheme();
     const style = styles(colors);
-    const navigateToForgetPass = () => {
-        navigation.navigate('forgotPassword');
-    };
 
     return (
         <Formik
@@ -79,11 +76,11 @@ export const Form = ({ onSubmit, navigation }) => {
                                 <CustomText>{`Remember Me`}</CustomText>
                             </View>
 
-                            <TouchableOpacity onPress={navigateToForgetPass}>
-                                <CustomText style={style.forgotPassText}>
-                                    {`Forget Password`}
-                                </CustomText>
-                            </TouchableOpacity>
+                            <CustomText
+                                onPress={navToForgetPass}
+                                style={style.forgotPassText}>
+                                {`Forget Password`}
+                            </CustomText>
                         </View>
 
                         <GapV large />

@@ -3,17 +3,8 @@ import { View, StyleSheet, FlatList } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import AppBar from 'src/components/appbar';
 import { GapV } from 'src/components/gap';
-import globalStyles, {
-    bRss,
-    mgM,
-    mgMs,
-    mgS,
-    mgSs,
-    pdH,
-    pdHm,
-    pdHs,
-} from 'src/styles/index';
-import ListItem from './helpers/renderIList';
+import globalStyles, { mgM, pdHs } from 'src/styles/index';
+import ListItem from './components/renderIList';
 import { arr } from './dummyData';
 
 const FeesHistory = ({ navigation }) => {
@@ -49,7 +40,7 @@ const styles = colors =>
 
         content: {
             flexGrow: 1,
-            paddingHorizontal: pdHs,
             paddingTop: mgM,
+            paddingHorizontal: pdHs,
         },
     });

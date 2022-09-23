@@ -238,7 +238,6 @@ export const CustomInputButton = ({
     multiline,
     onPress,
     helperVisible,
-    children,
     disabled,
     ...props
 }) => {

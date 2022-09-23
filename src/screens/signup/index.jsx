@@ -5,19 +5,18 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
+    Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from 'react-native-paper';
-import Animated from 'react-native-reanimated';
+import { useTheme, Surface } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { icons } from 'assets/images';
-import { setStorageItem } from 'src/helpers';
+import { setStorageItem, windowHeigth } from 'src/helpers';
 import { signupAction } from './actions';
 import { Form } from './components/form';
 import { GapV } from 'src/components/gap';
-import { entering, exiting } from 'src/helpers/animation';
 import { callApi } from 'src/helpers/apiCall';
 import { ONBOARD, ID, PASSWORD } from 'src/helpers/constants';
 import { showSnack } from 'src/helpers/utils';
@@ -27,7 +26,6 @@ import globalStyles, {
     mgM,
     mgMs,
     mgS,
-    onBackgroundDark,
     pdHm,
     pdHs,
 } from 'src/styles/index';
@@ -53,11 +51,11 @@ function Signup({ navigation, signupAction }) {
     };
 
     const handleSubmit = async data => {
-        if (data) {
-            setStorageItem(ID, data.email);
-            setStorageItem(PASSWORD, data.password);
-            setStorageItem(ONBOARD, true);
-        }
+        // if (data) {
+        //     setStorageItem(ID, data.email);
+        //     setStorageItem(PASSWORD, data.password);
+        //     setStorageItem(ONBOARD, true);
+        // }
 
         await callApi({
             data,
@@ -86,13 +84,21 @@ function Signup({ navigation, signupAction }) {
     );
 
     const SingupCard = () => (
-        <View style={[style.card]}>
+        <Surface style={[style.card]}>
             <Form onSubmit={handleSubmit} />
-        </View>
+        </Surface>
+    );
+    const Ellipses = () => (
+        <>
+            <View style={style.yellowCircle} />
+
+            <View style={style.blueCircle} />
+        </>
     );
 
     return (
         <View style={[style.container]}>
+            {Ellipses()}
             <ScrollView contentContainerStyle={[style.content]}>
                 {TopView()}
                 {SingupCard()}
@@ -124,44 +130,51 @@ const styles = colors =>
         },
 
         card: {
-            borderRadius: bRss,
+            elevation: 4,
             paddingTop: mgMs,
+            borderRadius: bRss,
+            marginHorizontal: mgM,
             paddingHorizontal: pdHm,
-            borderWidth: StyleSheet.hairlineWidth,
         },
 
         content: {
             flexGrow: 1,
-            paddingHorizontal: pdHs,
             paddingTop: mgM,
+            paddingHorizontal: pdHs,
         },
 
         backArrow: {
-            position: 'absolute',
             paddingTop: 30,
+            position: 'absolute',
         },
 
         image: {
-            alignSelf: 'center',
-            height: 140,
             width: 144,
-        },
-
-        fdr: { flexDirection: 'row' },
-
-        divider: {
+            height: 140,
             alignSelf: 'center',
-            backgroundColor: onBackgroundDark,
-            height: 1,
-            width: '80%',
-        },
-
-        subText: {
-            color: onBackgroundDark,
         },
 
         title: {
             fontWeight: 'bold',
+        },
+        yellowCircle: {
+            right: -100,
+            width: 200,
+            height: 200,
+            position: 'absolute',
+            borderRadius: 200 / 2,
+            backgroundColor: colors.secondary,
+            top: Dimensions.get('screen').height * 0.15,
+        },
+
+        blueCircle: {
+            left: -75,
+            width: 150,
+            height: 150,
+            position: 'absolute',
+            borderRadius: 150 / 2,
+            top: windowHeigth * 0.81,
+            backgroundColor: colors.primary,
         },
 
         icon: { alignSelf: 'center' },
@@ -169,11 +182,11 @@ const styles = colors =>
         avatarStyle: {},
 
         avatarContainer: {
-            borderRadius: bRl,
-            backgroundColor: 'blue',
-            alignSelf: 'center',
-            padding: mgS,
-            position: 'absolute',
             top: -30,
+            padding: mgS,
+            borderRadius: bRl,
+            alignSelf: 'center',
+            position: 'absolute',
+            backgroundColor: 'blue',
         },
     });

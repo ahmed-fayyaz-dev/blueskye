@@ -1,7 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { getStorageItem } from 'src/helpers';
-import { NOT_FIRST_TIME } from 'src/helpers/constants';
 import EditProfile from 'src/screens/editProfile';
 import MyProfile from 'src/screens/myProfile';
 // import WelcomeScreen from "src/screens/welcomeScreen";

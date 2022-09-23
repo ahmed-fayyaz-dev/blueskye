@@ -127,8 +127,8 @@ const styles = colors =>
     StyleSheet.create({
         content: {
             flexGrow: 1,
-            paddingHorizontal: pdHs,
             paddingTop: mgM,
+            paddingHorizontal: pdHs,
         },
 
         image: {
@@ -138,12 +138,12 @@ const styles = colors =>
         },
 
         title: {
-            fontWeight: 'bold',
             fontSize: 24,
+            fontWeight: 'bold',
         },
 
         subText: {
-            color: colors.muted,
             fontSize: 20,
+            color: colors.muted,
         },
     });

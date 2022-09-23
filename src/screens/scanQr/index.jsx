@@ -86,42 +86,40 @@ const styles = colors =>
         },
 
         card: {
-            borderRadius: bRss,
             paddingTop: mgMs,
+            borderRadius: bRss,
             paddingHorizontal: pdH,
         },
 
         content: {
             flexGrow: 1,
-            paddingHorizontal: pdH,
             paddingTop: mgM,
+            paddingHorizontal: pdH,
         },
 
         image: {
-            alignSelf: 'center',
-            height: 60,
             width: 60,
+            height: 60,
+            alignSelf: 'center',
         },
         camera: {
             paddingTop: pdH,
         },
 
         qr: {
-            alignSelf: 'center',
-            height: 200,
             width: 200,
+            height: 200,
+            alignSelf: 'center',
         },
 
-        fdr: { flexDirection: 'row' },
-
         subText: {
-            color: colors.light,
             fontSize: 20,
+            color: colors.light,
         },
 
         button: {
-            backgroundColor: colors.primary,
             alignSelf: 'center',
+            backgroundColor: colors.primary,
         },
 
         bottomView: { justifyContent: 'center' },

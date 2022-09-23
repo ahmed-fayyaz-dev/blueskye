@@ -4,7 +4,7 @@ import Toast from 'react-native-root-toast';
 import { ID, PASSWORD, ONBOARD } from './constants';
 import { removeStorageItem, isAndroid, isIos } from './index';
 
-const destroyAuth = async () => {
+export const destroyAuth = async () => {
     await removeStorageItem(ID);
     await removeStorageItem(PASSWORD);
     await removeStorageItem(ONBOARD);
