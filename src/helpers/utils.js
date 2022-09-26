@@ -28,3 +28,7 @@ export const getUniqueDeviceId = async () => {
 export function showSnack(msg) {
     Toast.show(msg, Toast.durations.SHORT);
 }
+
+export function showSnackLong(msg) {
+    Toast.show(msg, Toast.durations.LONG);
+}

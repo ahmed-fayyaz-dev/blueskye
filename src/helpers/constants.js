@@ -16,4 +16,4 @@ export const SUCCESS = 'success';
 
 export const ERROR = 'error';
 
-export const APPLICATION_TYPE = 'student';
+export const APPLICATION_TYPE = 'Student';

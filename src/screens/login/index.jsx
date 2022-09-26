@@ -1,9 +1,9 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, Image, Dimensions } from 'react-native';
-import { Surface, useTheme } from 'react-native-paper';
-
+import { Avatar, Surface, useTheme } from 'react-native-paper';
+// import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux';
-
+import { LinearGradient } from 'expo-linear-gradient';
 import { bindActionCreators } from 'redux';
 import { icons } from 'assets/images';
 import { IonIcons, setStorageItem, windowHeigth } from 'src/helpers';
@@ -24,6 +24,7 @@ import globalStyles, {
     pdHm,
     mgM,
 } from 'src/styles/index';
+// import LinearGradient from 'react-native-linear-gradient';
 
 function Login({ navigation, loginAction }) {
     const { colors } = useTheme();
@@ -78,20 +79,22 @@ function Login({ navigation, loginAction }) {
     );
 
     const AvatarIcon = () => (
-        <View style={style.avatarContainer}>
+        <LinearGradient
+            style={style.avatarContainer}
+            colors={['#4c669f', '#3b5998', '#192f6a']}>
             <IonIcons
                 name={'person-outline'}
                 size={iconSizeL}
                 color={onBackgroundDark}
                 style={style.avatarStyle}
             />
-        </View>
+        </LinearGradient>
     );
 
     const LoginCard = () => (
         <>
             <Surface style={[style.card]}>
-                <AvatarIcon />
+                {AvatarIcon()}
 
                 <GapV />
 
@@ -125,6 +128,9 @@ function Login({ navigation, loginAction }) {
 
     return (
         <View style={[style.container, gStyle.content]}>
+            <LinearGradient
+                colors={['#4c669f', '#3b5998', '#192f6a']}
+                style={styles.linearGradient}></LinearGradient>
             {Ellipses()}
             <ScrollView contentContainerStyle={[style.content]}>
                 {TopView()}
