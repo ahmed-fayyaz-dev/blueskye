@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import { GetFeedDataAction } from './actions/actions';
 import FeedList from './components/feedList';
 import AppBar from 'src/components/appbar';
@@ -37,8 +38,6 @@ function Feed({
             catchFunc: () => {},
         });
     }
-
-    const LoadingView = () => <></>;
 
     const refreshHandler = async () => {
         try {

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { BlurView } from 'expo-blur';
 
-import { converDate, parseDate } from 'src/helpers';
+import { convertDate, parseDate } from 'src/helpers';
 import { mgM, mgMs, onBackgroundDark, pdHs } from 'src/styles';
 import { BackgroundImage } from './itemImage';
 import { CustomText } from 'src/components/customText';
@@ -13,7 +13,7 @@ const BLURVIEW_TINT = 'dark';
 const FeedItem = ({ item }) => {
     const { imageUrlPath, vDate } = item;
     const parsedDate = parseDate(vDate);
-    const date = converDate(parsedDate);
+    const date = convertDate(parsedDate);
 
     return (
         <View style={styles.content}>
