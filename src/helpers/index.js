@@ -110,6 +110,6 @@ export const signOutFunc = ({ logout, navigation }) => {
     });
 };
 
-export const converDate = date => format(date, standardDateFormat);
+export const convertDate = date => format(date, standardDateFormat);
 
 export const parseDate = date => parseISO(date);

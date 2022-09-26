@@ -1,48 +1,67 @@
-import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
-import { useTheme } from 'react-native-paper';
-import ListItem from './components/renderIList';
-import { arr } from './dummyData';
-import AppBar from 'src/components/appbar';
-import { GapV } from 'src/components/gap';
-import { mgM, pdHs } from 'src/styles/index';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-const FeesHistory = ({ navigation }) => {
-    const { colors } = useTheme();
-    const style = styles(colors);
+import { GetFeesHistoryAction } from './actions';
+import List from './components/feesHistoryList';
+import AppBar from 'src/components/appbar';
+import { callApi } from 'src/helpers/apiCall';
+
+const FeesHistory = ({ navigation, GetFeesHistoryAction }) => {
     const title = 'Fees History';
 
-    const ItemSeparator = () => <GapV />;
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        handleGetFeesHistory();
+    }, []);
+
+    function handleGetFeesHistory() {
+        callApi({
+            data: {},
+            setLoading: setLoading,
+            submitCallApi: GetFeesHistoryAction,
+            successFunc: () => {},
+            errFunc: () => {},
+            catchFunc: () => {},
+        });
+    }
+
+    const refreshHandler = async () => {
+        try {
+            handleGetFeesHistory();
+        } catch (e) {
+            console.error(e);
+        }
+    };
 
     return (
-        <View style={[style.container]}>
+        <View style={[styles.container]}>
             <AppBar navigation={navigation} title={title} />
 
-            <FlatList
-                data={arr}
-                keyExtractor={(item, index) => {
-                    return index;
-                }}
-                ItemSeparatorComponent={ItemSeparator}
-                renderItem={ListItem}
-                contentContainerStyle={style.content}
-            />
-            <GapV />
+            <List onRefresh={refreshHandler} />
         </View>
     );
 };
 
-export default FeesHistory;
-
-const styles = colors =>
-    StyleSheet.create({
-        container: {
-            flex: 1,
+function mapStateToProps() {
+    return {};
+}
+function mapDipatchToProps(dispatch, getState) {
+    return bindActionCreators(
+        {
+            GetFeesHistoryAction,
         },
+        dispatch,
+        getState,
+    );
+}
 
-        content: {
-            flexGrow: 1,
-            paddingTop: mgM,
-            paddingHorizontal: pdHs,
-        },
-    });
+export default connect(mapStateToProps, mapDipatchToProps)(FeesHistory);
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+});

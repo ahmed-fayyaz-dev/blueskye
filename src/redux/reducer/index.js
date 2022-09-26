@@ -1,10 +1,11 @@
-import { combineReducers } from "redux";
-import commonReducers from "src/redux/common/reducers";
-import feedReducers from "src/screens/feed/reducers";
-import loginReducers from "src/screens/login/reducers";
+import { combineReducers } from 'redux';
+import commonReducers from 'src/redux/common/reducers';
+import feedReducers from 'src/screens/feed/reducers';
+import feesHistoryReducers from 'src/screens/feesHistory/reducers';
+import loginReducers from 'src/screens/login/reducers';
 
 const rootReducer = (state, action) => {
-    if (action.type === "RESET_ACTION") {
+    if (action.type === 'RESET_ACTION') {
         return appReducer(undefined, action); // Reseting Redux Store ( LogOut )
     }
 
@@ -15,6 +16,7 @@ const appReducer = combineReducers({
     ...loginReducers,
     ...commonReducers,
     ...feedReducers,
+    ...feesHistoryReducers,
 });
 
 export default rootReducer;
