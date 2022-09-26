@@ -12,32 +12,39 @@ import { CustomRoundButton } from 'src/components/buttons';
 import { CustomSubheading } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 import { callApi } from 'src/helpers/apiCall';
-import { showSnack } from 'src/helpers/utils';
+import { showSnackLong, showSnack } from 'src/helpers/utils';
 import { bRss, mgM, mgMs, pdH } from 'src/styles/index';
+import { IonIcons } from 'src/helpers';
 
 const ScanQR = ({ navigation, scanQrAction }) => {
-    const [onPress, setOnPress] = useState(false);
-    const [success, setSuccess] = useState(false);
+    const [openCamera, setOpenCamera] = useState(false);
+    const [showTick, setShowTick] = useState(false);
+    const [showQR, setShowQR] = useState(true);
+    const [buttonTitle, setButtonTitle] = useState('SCAN QR CODE');
     const { colors } = useTheme();
     const style = styles(colors);
     const title = 'Scan QR';
 
-    const openCamera = () => {
-        setOnPress(!onPress);
+    const showQRScanner = () => {
+        setOpenCamera(true);
+        setShowTick(false);
+        setShowQR(false);
     };
 
     const handleSuccess = res => {
         try {
             const { message } = res;
-            showSnack(message + `✅ `);
-            setSuccess(true);
+            setShowTick(true);
+            showSnackLong(message + `✅ `);
+            setButtonTitle('SCAN QR AGAIN');
         } catch (e) {
-            setSuccess(false);
             showSnack('Try Again');
         }
     };
 
     const handleSubmit = async data => {
+        setOpenCamera(!openCamera);
+
         try {
             await callApi({
                 data,
@@ -71,12 +78,22 @@ const ScanQR = ({ navigation, scanQrAction }) => {
         </>
     );
 
-    const QR = () => (
+    const IconComponent = () => (
+        <>
+            <GapV />
+            {showTick ? (
+                <IonIcons name="checkmark-circle" size={200} style={style.qr} />
+            ) : null}
+        </>
+    );
+
+    const QRScanner = () => (
         <>
             <GapV large />
-            {onPress ? null : (
-                <QrScanner setShowQR={setOnPress} handleScan={handleSubmit} />
-            )}
+            {showQR ? (
+                <Image source={icons.tab.qr} style={style.qrLogo} />
+            ) : null}
+            {openCamera ? <QrScanner handleScan={handleSubmit} /> : null}
         </>
     );
 
@@ -85,9 +102,9 @@ const ScanQR = ({ navigation, scanQrAction }) => {
             <GapV large />
             <CustomRoundButton
                 icon={icons.drawer.scanQr}
-                title={`Scan QR Code`}
+                title={buttonTitle}
                 style={style.button}
-                onPress={openCamera}
+                onPress={showQRScanner}
             />
         </View>
     );
@@ -97,7 +114,9 @@ const ScanQR = ({ navigation, scanQrAction }) => {
             <AppBar navigation={navigation} title={title} />
             <ScrollView contentContainerStyle={style.content}>
                 {TopView()}
-                {QR()}
+
+                {QRScanner()}
+                {IconComponent()}
                 {BottomView()}
 
                 <GapV />
@@ -150,9 +169,14 @@ const styles = colors =>
         },
 
         qr: {
+            alignSelf: 'center',
+            color: colors.primary,
+        },
+        qrLogo: {
             width: 200,
             height: 200,
             alignSelf: 'center',
+            color: colors.primary,
         },
 
         subText: {
