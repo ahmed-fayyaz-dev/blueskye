@@ -10,8 +10,7 @@ import { GapV } from 'src/components/gap';
 import { mgM, pdHs } from 'src/styles/index';
 import { callApi } from 'src/helpers/apiCall';
 
-const Messages = ({ navigation, GetMessagesAction, ...params }) => {
-    const title = params.route.name;
+const Messages = ({ GetMessagesAction }) => {
     const { colors } = useTheme();
     const style = styles(colors);
 
@@ -42,8 +41,6 @@ const Messages = ({ navigation, GetMessagesAction, ...params }) => {
     };
     return (
         <View style={[styles.container]}>
-            <AppBar navigation={navigation} title={title} />
-
             <List onRefresh={refreshHandler} />
             <GapV />
         </View>
