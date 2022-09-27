@@ -19,6 +19,8 @@ export const success = 'success';
 
 export const standardDateFormat = 'dd/MM/yyyy';
 
+export const dateToAvoid = '01/01/1900';
+
 export const apiDateFormat = 'yyyy-MM-dd';
 
 export const apiDateFormat2 = 'MM/dd/yyyy';
@@ -110,6 +112,10 @@ export const signOutFunc = ({ logout, navigation }) => {
     });
 };
 
-export const convertDate = date => format(date, standardDateFormat);
+export const convertDate = date => {
+    const f = format(date, standardDateFormat);
+    if (String(f) === dateToAvoid) return '-';
+    return f;
+};
 
 export const parseDate = date => parseISO(date);
