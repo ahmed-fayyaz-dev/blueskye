@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
-import AppBar from 'src/components/appbar';
-import { mgM, pdHs } from 'src/styles/index';
-import { GapV } from 'src/components/gap';
 import { useTheme } from 'react-native-paper';
-import renderItem from './renderItem';
 import { connect } from 'react-redux';
+
+import renderItem from './renderItem';
+import AppBar from 'src/components/appbar';
+import { GapV } from 'src/components/gap';
+import { mgM, pdHs } from 'src/styles/index';
 
 const keyExtractor = (item, index) => String(index + item);
 const ItemSeparator = () => <GapV />;
@@ -17,7 +18,6 @@ const List = ({ messageReducer, onRefresh }) => {
     const memoizedRenderItem = useMemo(() => renderItem, [messageReducer]);
     const { data } = messageReducer;
     let arrData = data?.crmStudentMessages || [];
-    console.log(arrData);
     return (
         <>
             <FlatList

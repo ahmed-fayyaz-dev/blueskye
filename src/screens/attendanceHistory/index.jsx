@@ -1,34 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { GetFeedDataAction } from './actions/actions';
-import FeedList from './components/feedList';
+import { GetAttendanceHistoryAction } from './actions';
+import List from './components/List';
 import { callApi } from 'src/helpers/apiCall';
-import gloabalStyle from 'src/styles/index';
 
-function Feed({
-    navigation,
-    GetFeedDataAction,
-    //
-}) {
-    const { colors } = useTheme();
-    const gStyle = gloabalStyle();
-    const style = styles(colors);
-
+const AttendanceHistory = ({ navigation, GetAttendanceHistoryAction }) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        handleGetFeedData();
+        handleGetFeesHistory();
     }, []);
 
-    function handleGetFeedData() {
+    function handleGetFeesHistory() {
         callApi({
             data: {},
             setLoading: setLoading,
-            submitCallApi: GetFeedDataAction,
+            submitCallApi: GetAttendanceHistoryAction,
             successFunc: () => {},
             errFunc: () => {},
             catchFunc: () => {},
@@ -37,20 +27,18 @@ function Feed({
 
     const refreshHandler = async () => {
         try {
-            handleGetFeedData();
+            handleGetFeesHistory();
         } catch (e) {
             console.error(e);
         }
     };
 
     return (
-        <View style={[gStyle.container]}>
-            {/* {loading ? <LoadingView /> : null} */}
-
-            <FeedList onRefresh={refreshHandler} />
+        <View style={[styles.container]}>
+            <List onRefresh={refreshHandler} />
         </View>
     );
-}
+};
 
 function mapStateToProps() {
     return {};
@@ -58,13 +46,17 @@ function mapStateToProps() {
 function mapDipatchToProps(dispatch, getState) {
     return bindActionCreators(
         {
-            GetFeedDataAction,
+            GetAttendanceHistoryAction,
         },
         dispatch,
         getState,
     );
 }
 
-export default connect(mapStateToProps, mapDipatchToProps)(Feed);
+export default connect(mapStateToProps, mapDipatchToProps)(AttendanceHistory);
 
-const styles = colors => StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+});

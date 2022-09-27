@@ -1,3 +1,1 @@
-//Dashboard Boxes
-
 export const GET_FEES_HISTORY_SUCCESS = 'GET_FEES_HISTORY_SUCCESS';

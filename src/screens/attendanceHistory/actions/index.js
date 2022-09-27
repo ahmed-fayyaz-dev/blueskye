@@ -1,17 +1,17 @@
 import { Alert } from 'react-native';
 import axios from 'axios';
 import * as types from '../constants';
-import { getMessagesConfig } from './config';
+import { getAttendanceHistoryConfig } from './config';
 
 //ACTIONS
 
-export function GetMessagesAction(data) {
+export function GetAttendanceHistoryAction(data) {
     return async (dispatch, getState) => {
         try {
-            return await axios(getMessagesConfig(data, getState)).then(
+            return await axios(getAttendanceHistoryConfig(data, getState)).then(
                 response => {
                     dispatch({
-                        type: types.MESSAGES_SUCCESS,
+                        type: types.ATTENDANCE_HISTORY_SUCCESS,
                         payload: response?.data,
                     });
 
@@ -21,7 +21,7 @@ export function GetMessagesAction(data) {
         } catch (error) {
             console.error('error///', error);
             Alert.alert(
-                'Error! Get Messages History action was unsucessfull. ',
+                'Error! Get Attendance History action was unsucessfull. ',
                 `${error}\n`,
             );
             throw new Error(error);

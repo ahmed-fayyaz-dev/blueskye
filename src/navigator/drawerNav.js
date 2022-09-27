@@ -5,16 +5,17 @@ import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 
 import { icons } from 'assets/images';
+import { greenColor } from 'src/styles';
 import MyProfileStack from './navSlices/myProfileStack';
 import AppBar from 'src/components/appbar';
 import DrawerContent from 'src/components/drawer';
 import { logout } from 'src/redux/common/actions/actions';
-
+import AttendanceHistory from 'src/screens/attendanceHistory';
 import Feed from 'src/screens/feed';
 import FeesHistory from 'src/screens/feesHistory';
 // import { Playground } from 'src/screens/playground';
-import ScanQR from 'src/screens/scanQr';
 import Messages from 'src/screens/messages';
+import ScanQR from 'src/screens/scanQr';
 import { drawerActiveTint } from 'src/styles/navCss';
 
 // const levels = {
@@ -27,7 +28,10 @@ const Drawer = createDrawerNavigator();
 const DrawerIcons = ({ size, focused, icon }) => (
     <Image
         source={icon}
-        style={[focused ? null : null, { height: size, width: size }]}
+        style={[
+            focused ? null : null,
+            { height: size, width: size, tintColor: greenColor },
+        ]}
     />
 );
 
@@ -62,7 +66,6 @@ const DrawerNav = props => {
                     {...dCprops}
                     logout={props.logout}
                     loginUserReducer={props.loginUserReducer.data}
-                    drawerItemStyle={style.drawerItem}
                 />
             )}>
             <Drawer.Screen
@@ -108,6 +111,21 @@ const DrawerNav = props => {
                         }),
                 }}
             />
+
+            <Drawer.Screen
+                name="attendanceHistory"
+                component={AttendanceHistory}
+                options={{
+                    title: 'Attendance History',
+                    drawerIcon: ({ focused, size }) =>
+                        DrawerIcons({
+                            focused,
+                            size,
+                            icon: icons.drawer.callendar,
+                        }),
+                }}
+            />
+
             <Drawer.Screen
                 name="myProfileStack"
                 component={MyProfileStack}
@@ -130,7 +148,7 @@ const DrawerNav = props => {
                         DrawerIcons({
                             focused,
                             size,
-                            icon: icons.drawer.fees,
+                            icon: icons.drawer.message,
                         }),
                 }}
             />
