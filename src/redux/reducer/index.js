@@ -4,6 +4,7 @@ import attendanceReducers from 'src/screens/attendanceHistory/reducers';
 import feedReducers from 'src/screens/feed/reducers';
 import feesHistoryReducers from 'src/screens/feesHistory/reducers';
 import loginReducers from 'src/screens/login/reducers';
+import messagesReducer from 'src/screens/messages/reducers';
 
 const rootReducer = (state, action) => {
     if (action.type === 'RESET_ACTION') {
@@ -19,6 +20,7 @@ const appReducer = combineReducers({
     ...feedReducers,
     ...feesHistoryReducers,
     ...attendanceReducers,
+    ...messagesReducer,
 });
 
 export default rootReducer;

@@ -14,6 +14,7 @@ import AttendanceHistory from 'src/screens/attendanceHistory';
 import Feed from 'src/screens/feed';
 import FeesHistory from 'src/screens/feesHistory';
 // import { Playground } from 'src/screens/playground';
+import Messages from 'src/screens/messages';
 import ScanQR from 'src/screens/scanQr';
 import { drawerActiveTint } from 'src/styles/navCss';
 
@@ -50,7 +51,7 @@ const DrawerNav = props => {
                 drawerActiveTintColor: drawerActiveTint,
                 headerTitleAlign: 'center',
                 headerStyle: style.headerStyle,
-                // headerShown: false,
+                headerShown: true,
                 header: AppBarHeader,
                 headerTintColor: drawerActiveTint,
                 drawerStyle: style.drawer,
@@ -68,6 +69,10 @@ const DrawerNav = props => {
             <Drawer.Screen
                 name="feed"
                 component={Feed}
+                // header={AppBarHeader}
+                // screenOptions={{
+                //     header: AppBarHeader,
+                // }}
                 options={{
                     title: 'Posts',
                     drawerIcon: ({ focused, size }) =>
@@ -129,6 +134,19 @@ const DrawerNav = props => {
                             focused,
                             size,
                             icon: icons.drawer.myProfile,
+                        }),
+                }}
+            />
+            <Drawer.Screen
+                name="messages"
+                component={Messages}
+                options={{
+                    title: 'Messages',
+                    drawerIcon: ({ focused, size }) =>
+                        DrawerIcons({
+                            focused,
+                            size,
+                            icon: icons.drawer.fees,
                         }),
                 }}
             />

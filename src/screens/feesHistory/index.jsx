@@ -9,8 +9,6 @@ import AppBar from 'src/components/appbar';
 import { callApi } from 'src/helpers/apiCall';
 
 const FeesHistory = ({ navigation, GetFeesHistoryAction }) => {
-    const title = 'Fees History';
-
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -38,8 +36,6 @@ const FeesHistory = ({ navigation, GetFeesHistoryAction }) => {
 
     return (
         <View style={[styles.container]}>
-            <AppBar navigation={navigation} title={title} />
-
             <List onRefresh={refreshHandler} />
         </View>
     );

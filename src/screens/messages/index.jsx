@@ -1,39 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import { GetFeedDataAction } from './actions/actions';
-import FeedList from './components/feedList';
+import { GetMessagesAction } from './actions';
+import List from './components/messagesHistoryList';
 import AppBar from 'src/components/appbar';
 import { GapV } from 'src/components/gap';
+import { mgM, pdHs } from 'src/styles/index';
 import { callApi } from 'src/helpers/apiCall';
-import gloabalStyle, { mgMs, mgVm } from 'src/styles/index';
 
-function Feed({
-    navigation,
-    GetFeedDataAction,
-    ...params
-    //
-}) {
-    console.log(params);
-    const title = params.route.name;
+const Messages = ({ GetMessagesAction }) => {
     const { colors } = useTheme();
-    const gStyle = gloabalStyle();
     const style = styles(colors);
 
     const [loading, setLoading] = useState(false);
+    const [refresh] = useState(false);
 
     useEffect(() => {
-        handleGetFeedData();
+        handleGetFeesHistory();
     }, []);
 
-    function handleGetFeedData() {
+    function handleGetFeesHistory() {
         callApi({
             data: {},
             setLoading: setLoading,
-            submitCallApi: GetFeedDataAction,
+            submitCallApi: GetMessagesAction,
             successFunc: () => {},
             errFunc: () => {},
             catchFunc: () => {},
@@ -42,35 +34,43 @@ function Feed({
 
     const refreshHandler = async () => {
         try {
-            handleGetFeedData();
+            handleGetFeesHistory();
         } catch (e) {
             console.error(e);
         }
     };
-
     return (
-        <View style={[gStyle.container]}>
-            {/* <AppBar /> */}
-            {/* {loading ? <LoadingView /> : null} */}
-
-            <FeedList onRefresh={refreshHandler} />
+        <View style={[styles.container]}>
+            <List onRefresh={refreshHandler} />
+            <GapV />
         </View>
     );
-}
+};
 
-function mapStateToProps() {
-    return {};
+function mapStateToProps({ messageReducer }) {
+    return { messageReducer };
 }
 function mapDipatchToProps(dispatch, getState) {
     return bindActionCreators(
         {
-            GetFeedDataAction,
+            GetMessagesAction,
         },
         dispatch,
         getState,
     );
 }
 
-export default connect(mapStateToProps, mapDipatchToProps)(Feed);
+export default connect(mapStateToProps, mapDipatchToProps)(Messages);
 
-const styles = colors => StyleSheet.create({});
+const styles = colors =>
+    StyleSheet.create({
+        container: {
+            flex: 1,
+        },
+
+        content: {
+            flexGrow: 1,
+            paddingTop: mgM,
+            paddingHorizontal: pdHs,
+        },
+    });

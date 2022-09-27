@@ -53,6 +53,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: pdHs,
     },
 
+    date: {
+        width: 100,
+        textAlign: 'left',
+        paddingHorizontal: pdHs,
+    },
+
     ammount: {
         width: 70,
         textAlign: 'right',

@@ -10,7 +10,6 @@ import { GapV } from 'src/components/gap';
 import { mgL, onBackgroundDark, iconSizeL, bRxL, mgxL } from 'src/styles/index';
 
 const MyProfile = ({ navigation }) => {
-    const title = 'My Profile';
     const { colors } = useTheme();
     const style = styles(colors);
 
@@ -53,7 +52,6 @@ const MyProfile = ({ navigation }) => {
 
     return (
         <View style={style.container}>
-            <AppBar navigation={navigation} title={title} />
             {AvatarIcon()}
             {Content()}
             {Bottom()}
