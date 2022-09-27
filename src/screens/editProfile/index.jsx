@@ -19,11 +19,11 @@ import globalStyles, {
     pdHm,
     pdHs,
 } from 'src/styles/index';
-const EditProfile = ({ navigation }) => {
+const EditProfile = ({ navigation, ...params }) => {
     const { colors } = useTheme();
     const style = styles(colors);
     const gStyle = globalStyles();
-    const title = 'Edit Profile';
+    const title = params.route.name;
     const goBack = () => {
         navigation.goBack();
     };

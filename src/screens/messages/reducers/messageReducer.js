@@ -1,4 +1,4 @@
-import * as types from 'src/screens/messages/constants/index';
+import * as types from '../constants';
 
 let initial = {
     loading: false,
@@ -7,7 +7,7 @@ let initial = {
 };
 export default function (state = initial, action) {
     switch (action.type) {
-        case types.FETCH_MESSAGE_SUCCESS:
+        case types.MESSAGES_SUCCESS:
             return {
                 ...state,
                 loading: false,

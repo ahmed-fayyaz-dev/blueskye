@@ -7,33 +7,44 @@ import {
     CustomText,
     CustomTitle,
 } from 'src/components/customText';
+import { convertDate, parseDate } from 'src/helpers';
 
 import ReadMore from '@fawazahmed/react-native-read-more';
+import { GapV } from 'src/components/gap';
 
-const RenderList = ({ item }) => {
-    const price = '26/9/22';
-    const heading = 'Message Title';
+const renderItem = ({ item }) => {
+    let { contactID, vType, vDate, userMessage } = item;
+
+    try {
+        const parsedDate = parseDate(vDate);
+        vDate = convertDate(parsedDate);
+    } catch (e) {
+        console.error(e);
+    }
 
     return (
-        <Surface style={styles.listItem}>
-            <CustomTitle style={styles.title}>{item.title}</CustomTitle>
+        <>
+            <Surface style={styles.listItem}>
+                <CustomTitle style={styles.title}>{`${vType}`}</CustomTitle>
 
-            <ReadMore
-                numberOfLines={3}
-                style={styles.body}
-                seeMoreText={'Read More'}
-                seeLessText={'Read Less'}
-                seeLessStyle={styles.readMore}
-                seeMoreStyle={styles.readMore}>
-                {item.body}
-            </ReadMore>
+                <ReadMore
+                    numberOfLines={3}
+                    style={styles.body}
+                    seeMoreText={'Read More'}
+                    seeLessText={'Read Less'}
+                    seeLessStyle={styles.readMore}
+                    seeMoreStyle={styles.readMore}>
+                    {`${userMessage}`}
+                </ReadMore>
 
-            <CustomCaption style={styles.date}>{price}</CustomCaption>
-        </Surface>
+                <CustomCaption style={styles.date}>{`${vDate}`}</CustomCaption>
+            </Surface>
+            <GapV small />
+        </>
     );
 };
 
-export default RenderList;
+export default renderItem;
 
 const styles = StyleSheet.create({
     listItem: {

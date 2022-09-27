@@ -9,8 +9,8 @@ import { CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 import { mgL, onBackgroundDark, iconSizeL, bRxL, mgxL } from 'src/styles/index';
 
-const MyProfile = ({ navigation }) => {
-    const title = 'My Profile';
+const MyProfile = ({ navigation, ...params }) => {
+    const title = params.route.name;
     const { colors } = useTheme();
     const style = styles(colors);
 

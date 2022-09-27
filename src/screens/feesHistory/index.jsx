@@ -8,8 +8,8 @@ import List from './components/feesHistoryList';
 import AppBar from 'src/components/appbar';
 import { callApi } from 'src/helpers/apiCall';
 
-const FeesHistory = ({ navigation, GetFeesHistoryAction }) => {
-    const title = 'Fees History';
+const FeesHistory = ({ navigation, GetFeesHistoryAction, ...params }) => {
+    const title = params.route.name;
 
     const [loading, setLoading] = useState(false);
 

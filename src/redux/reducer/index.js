@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import commonReducers from 'src/redux/common/reducers';
 import feedReducers from 'src/screens/feed/reducers';
 import feesHistoryReducers from 'src/screens/feesHistory/reducers';
+import messagesReducer from 'src/screens/messages/reducers';
 import loginReducers from 'src/screens/login/reducers';
 
 const rootReducer = (state, action) => {
@@ -17,6 +18,7 @@ const appReducer = combineReducers({
     ...commonReducers,
     ...feedReducers,
     ...feesHistoryReducers,
+    ...messagesReducer,
 });
 
 export default rootReducer;
