@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 
 import { convertDate, parseDate } from 'src/helpers';
 import { pdHs, pdVs } from 'src/styles';
-import { CustomCaption, CustomText } from 'src/components/customText';
+import { CustomText } from 'src/components/customText';
 
 const ListItem = ({ item }) => {
     let { vDate, vName, dateIn, dateOut } = item;
