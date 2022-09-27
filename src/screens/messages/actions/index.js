@@ -8,12 +8,8 @@ import { getMessagesConfig } from './config';
 export function GetMessagesAction(data) {
     return async (dispatch, getState) => {
         try {
-            console.log(getMessagesConfig(data, getState), '// CONFIG');
-
             return await axios(getMessagesConfig(data, getState)).then(
                 response => {
-                    console.log(response.data, 'ACTION');
-
                     dispatch({
                         type: types.MESSAGES_SUCCESS,
                         payload: response?.data,
