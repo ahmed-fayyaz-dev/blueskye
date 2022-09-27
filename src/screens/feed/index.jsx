@@ -6,19 +6,14 @@ import { bindActionCreators } from 'redux';
 
 import { GetFeedDataAction } from './actions/actions';
 import FeedList from './components/feedList';
-import AppBar from 'src/components/appbar';
-import { GapV } from 'src/components/gap';
 import { callApi } from 'src/helpers/apiCall';
-import gloabalStyle, { mgMs, mgVm } from 'src/styles/index';
+import gloabalStyle from 'src/styles/index';
 
 function Feed({
     navigation,
     GetFeedDataAction,
-    ...params
     //
 }) {
-    console.log(params);
-    const title = params.route.name;
     const { colors } = useTheme();
     const gStyle = gloabalStyle();
     const style = styles(colors);
@@ -50,7 +45,6 @@ function Feed({
 
     return (
         <View style={[gStyle.container]}>
-            {/* <AppBar /> */}
             {/* {loading ? <LoadingView /> : null} */}
 
             <FeedList onRefresh={refreshHandler} />

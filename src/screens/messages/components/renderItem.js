@@ -1,19 +1,20 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import ReadMore from '@fawazahmed/react-native-read-more';
 import { Surface } from 'react-native-paper';
+
+import { convertDate, parseDate } from 'src/helpers';
 import { bRss, greenColor, pdHm } from 'src/styles';
 import {
     CustomCaption,
     CustomText,
     CustomTitle,
 } from 'src/components/customText';
-import { convertDate, parseDate } from 'src/helpers';
 
-import ReadMore from '@fawazahmed/react-native-read-more';
 import { GapV } from 'src/components/gap';
 
 const renderItem = ({ item }) => {
-    let { contactID, vType, vDate, userMessage } = item;
+    let { vType, vDate, userMessage } = item;
 
     try {
         const parsedDate = parseDate(vDate);
