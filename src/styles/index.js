@@ -34,9 +34,9 @@ export const bRxL = 100;
 
 // Fonst Sizes
 export const title = 16;
-export const text = 11;
-export const caption = 9;
-export const buttonText = 14;
+export const text = 12;
+export const caption = 10;
+export const buttonText = 16;
 
 export const zIndexS = 4;
 export const zIndexM = 9;
