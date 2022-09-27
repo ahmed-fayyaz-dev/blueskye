@@ -9,8 +9,7 @@ import { CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 import { mgL, onBackgroundDark, iconSizeL, bRxL, mgxL } from 'src/styles/index';
 
-const MyProfile = ({ navigation, ...params }) => {
-    const title = params.route.name;
+const MyProfile = ({ navigation }) => {
     const { colors } = useTheme();
     const style = styles(colors);
 
@@ -53,7 +52,6 @@ const MyProfile = ({ navigation, ...params }) => {
 
     return (
         <View style={style.container}>
-            <AppBar navigation={navigation} title={title} />
             {AvatarIcon()}
             {Content()}
             {Bottom()}

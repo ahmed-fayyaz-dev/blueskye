@@ -50,7 +50,7 @@ const DrawerNav = props => {
                 drawerActiveTintColor: drawerActiveTint,
                 headerTitleAlign: 'center',
                 headerStyle: style.headerStyle,
-                headerShown: false,
+                headerShown: true,
                 header: AppBarHeader,
                 headerTintColor: drawerActiveTint,
                 drawerStyle: style.drawer,
@@ -68,6 +68,10 @@ const DrawerNav = props => {
             <Drawer.Screen
                 name="feed"
                 component={Feed}
+                // header={AppBarHeader}
+                // screenOptions={{
+                //     header: AppBarHeader,
+                // }}
                 options={{
                     title: 'Posts',
                     drawerIcon: ({ focused, size }) =>

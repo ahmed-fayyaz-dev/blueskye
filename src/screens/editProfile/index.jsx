@@ -44,7 +44,7 @@ const EditProfile = ({ navigation, ...params }) => {
 
     return (
         <View style={[style.container]}>
-            <AppBar navigation={navigation} title={title} back />
+            {/* <AppBar navigation={navigation} title={title} back /> */}
             {Ellipses()}
             <ScrollView contentContainerStyle={[style.content]}>
                 <GapV large />

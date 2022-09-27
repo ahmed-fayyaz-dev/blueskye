@@ -50,7 +50,7 @@ function Feed({
 
     return (
         <View style={[gStyle.container]}>
-            <AppBar navigation={navigation} title={title} />
+            {/* <AppBar /> */}
             {/* {loading ? <LoadingView /> : null} */}
 
             <FeedList onRefresh={refreshHandler} />
