@@ -17,6 +17,7 @@ function Feed({
     ...params
     //
 }) {
+    console.log(params);
     const title = params.route.name;
     const { colors } = useTheme();
     const gStyle = gloabalStyle();

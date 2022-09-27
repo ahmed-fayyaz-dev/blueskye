@@ -4,7 +4,7 @@ import AppBar from 'src/components/appbar';
 import { mgM, pdHs } from 'src/styles/index';
 import { GapV } from 'src/components/gap';
 import { useTheme } from 'react-native-paper';
-import renderItem from './renderList';
+import renderItem from './renderItem';
 import { connect } from 'react-redux';
 
 const keyExtractor = (item, index) => String(index + item);

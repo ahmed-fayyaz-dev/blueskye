@@ -10,7 +10,6 @@ import { callApi } from 'src/helpers/apiCall';
 
 const FeesHistory = ({ navigation, GetFeesHistoryAction, ...params }) => {
     const title = params.route.name;
-
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
