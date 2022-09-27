@@ -13,7 +13,7 @@ const RootNavigator = ({ loggedIn }) => {
         <Stack.Navigator
             initialRouteName={loggedIn.current ? 'drawerNav' : 'authStack'}
             screenOptions={{ headerShown: false }}>
-            {/* <Stack.Screen name="authStack" component={AuthStack} /> */}
+            <Stack.Screen name="authStack" component={AuthStack} />
             <Stack.Screen name="drawerNav" component={DrawerNav} />
             {/* <Stack.Screen name="masterFormStack" component={MasterFormStack} /> */}
         </Stack.Navigator>
