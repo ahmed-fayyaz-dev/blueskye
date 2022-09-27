@@ -15,7 +15,11 @@ const MyProfileStack = () => {
                 headerTintColor: 'red',
                 headerMode: 'float',
             }}>
-            <Stack.Screen name="myProfile" component={MyProfile} />
+            <Stack.Screen
+                name="myProfile"
+                component={MyProfile}
+                options={{ title: 'My Profile' }}
+            />
             <Stack.Screen name="editProfile" component={EditProfile} />
         </Stack.Navigator>
     );

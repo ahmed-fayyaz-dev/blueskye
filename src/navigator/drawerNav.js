@@ -14,6 +14,7 @@ import Feed from 'src/screens/feed';
 import FeesHistory from 'src/screens/feesHistory';
 // import { Playground } from 'src/screens/playground';
 import ScanQR from 'src/screens/scanQr';
+import Messages from 'src/screens/messages';
 import { drawerActiveTint } from 'src/styles/navCss';
 
 // const levels = {
@@ -113,6 +114,19 @@ const DrawerNav = props => {
                             focused,
                             size,
                             icon: icons.drawer.myProfile,
+                        }),
+                }}
+            />
+            <Drawer.Screen
+                name="messages"
+                component={Messages}
+                options={{
+                    title: 'Messages',
+                    drawerIcon: ({ focused, size }) =>
+                        DrawerIcons({
+                            focused,
+                            size,
+                            icon: icons.drawer.fees,
                         }),
                 }}
             />

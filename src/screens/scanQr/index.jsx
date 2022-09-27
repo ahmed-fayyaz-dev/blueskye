@@ -16,14 +16,14 @@ import { showSnackLong, showSnack } from 'src/helpers/utils';
 import { bRss, mgM, mgMs, pdH } from 'src/styles/index';
 import { IonIcons } from 'src/helpers';
 
-const ScanQR = ({ navigation, scanQrAction }) => {
+const ScanQR = ({ navigation, scanQrAction, ...params }) => {
     const [openCamera, setOpenCamera] = useState(false);
     const [showTick, setShowTick] = useState(false);
     const [showQR, setShowQR] = useState(true);
     const [buttonTitle, setButtonTitle] = useState('SCAN QR CODE');
     const { colors } = useTheme();
     const style = styles(colors);
-    const title = 'Scan QR';
+    const title = params.route.name;
 
     const showQRScanner = () => {
         setOpenCamera(true);

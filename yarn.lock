@@ -1860,6 +1860,13 @@
     find-up "^5.0.0"
     js-yaml "^4.1.0"
 
+"@fawazahmed/react-native-read-more@^2.3.7":
+  version "2.3.7"
+  resolved "https://registry.yarnpkg.com/@fawazahmed/react-native-read-more/-/react-native-read-more-2.3.7.tgz#8da41c734a01ecb65fa105fc828d38eea98d61e6"
+  integrity sha512-ZTJrGJG3c0WlyYbCfIqxA/3ryAP6i0+t74JK16YvIP9XRBE0OTr8KYpIPmCGCWDO4Fo0CfrXezNF3iZU2MbliA==
+  dependencies:
+    prop-types "^15.7.2"
+
 "@gar/promisify@^1.0.1":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"

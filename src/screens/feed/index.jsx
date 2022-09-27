@@ -14,10 +14,11 @@ import gloabalStyle, { mgMs, mgVm } from 'src/styles/index';
 function Feed({
     navigation,
     GetFeedDataAction,
-    ...rest
+    ...params
     //
 }) {
-    const title = 'Posts';
+    console.log(params);
+    const title = params.route.name;
     const { colors } = useTheme();
     const gStyle = gloabalStyle();
     const style = styles(colors);
