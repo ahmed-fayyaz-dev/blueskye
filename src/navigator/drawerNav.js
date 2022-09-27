@@ -127,19 +127,6 @@ const DrawerNav = props => {
             />
 
             <Drawer.Screen
-                name="myProfileStack"
-                component={MyProfileStack}
-                options={{
-                    title: 'My Profile',
-                    drawerIcon: ({ focused, size }) =>
-                        DrawerIcons({
-                            focused,
-                            size,
-                            icon: icons.drawer.myProfile,
-                        }),
-                }}
-            />
-            <Drawer.Screen
                 name="messages"
                 component={Messages}
                 options={{
@@ -149,6 +136,20 @@ const DrawerNav = props => {
                             focused,
                             size,
                             icon: icons.drawer.message,
+                        }),
+                }}
+            />
+
+            <Drawer.Screen
+                name="myProfileStack"
+                component={MyProfileStack}
+                options={{
+                    title: 'My Profile',
+                    drawerIcon: ({ focused, size }) =>
+                        DrawerIcons({
+                            focused,
+                            size,
+                            icon: icons.drawer.myProfile,
                         }),
                 }}
             />

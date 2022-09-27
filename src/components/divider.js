@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { Divider } from "react-native-paper";
-import { pdVss, primaryColor } from "src/styles";
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Divider } from 'react-native-paper';
+import { pdVss, primaryColor } from 'src/styles';
 
 export function DividerV({ m, l }) {
     return (
@@ -13,23 +13,23 @@ export function DividerV({ m, l }) {
 
 const style = StyleSheet.create({
     dividerM: {
-        alignSelf: "center",
+        alignSelf: 'center',
         // backgroundColor: onBackgroundDark,
         height: 1,
-        width: "80%",
+        width: '80%',
     },
 
     divider: {
-        alignSelf: "center",
+        alignSelf: 'center',
         // backgroundColor: onBackgroundDark,
         height: 1,
-        width: "100%",
+        width: '100%',
     },
 
     dividerL: {
-        alignSelf: "center",
+        alignSelf: 'center',
         backgroundColor: primaryColor,
         height: pdVss,
-        width: "100%",
+        width: '100%',
     },
 });
