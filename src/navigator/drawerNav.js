@@ -10,6 +10,7 @@ import AppBar from 'src/components/appbar';
 import DrawerContent from 'src/components/drawer';
 import { logout } from 'src/redux/common/actions/actions';
 
+import AttendanceHistory from 'src/screens/attendanceHistory';
 import Feed from 'src/screens/feed';
 import FeesHistory from 'src/screens/feesHistory';
 // import { Playground } from 'src/screens/playground';
@@ -49,7 +50,7 @@ const DrawerNav = props => {
                 drawerActiveTintColor: drawerActiveTint,
                 headerTitleAlign: 'center',
                 headerStyle: style.headerStyle,
-                headerShown: false,
+                // headerShown: false,
                 header: AppBarHeader,
                 headerTintColor: drawerActiveTint,
                 drawerStyle: style.drawer,
@@ -103,6 +104,21 @@ const DrawerNav = props => {
                         }),
                 }}
             />
+
+            <Drawer.Screen
+                name="attendanceHistory"
+                component={AttendanceHistory}
+                options={{
+                    title: 'Attendance History',
+                    drawerIcon: ({ focused, size }) =>
+                        DrawerIcons({
+                            focused,
+                            size,
+                            icon: icons.drawer.scanQr,
+                        }),
+                }}
+            />
+
             <Drawer.Screen
                 name="myProfileStack"
                 component={MyProfileStack}
