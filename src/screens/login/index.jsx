@@ -1,9 +1,9 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, Image, Dimensions } from 'react-native';
-import { Avatar, Surface, useTheme } from 'react-native-paper';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Surface, useTheme } from 'react-native-paper';
 // import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux';
-import { LinearGradient } from 'expo-linear-gradient';
 import { bindActionCreators } from 'redux';
 import { icons } from 'assets/images';
 import { IonIcons, setStorageItem, windowHeigth } from 'src/helpers';
