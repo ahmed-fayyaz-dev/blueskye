@@ -2,8 +2,12 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import ProfileContent from './components/profileContent';
 
-const MyProfile = ({ navigation }) => {
-    return <View style={styles.container}>{ProfileContent()}</View>;
+const MyProfile = () => {
+    return (
+        <View style={styles.container}>
+            <ProfileContent />
+        </View>
+    );
 };
 
 export default MyProfile;

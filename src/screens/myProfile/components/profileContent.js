@@ -2,6 +2,8 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import * as Linking from 'expo-linking';
 import { Chip } from 'react-native-paper';
+import { connect } from 'react-redux';
+
 import { CustomRoundButton } from 'src/components/buttons';
 import {
     CustomTitle,
@@ -17,43 +19,62 @@ import { greenColor, mgM, pdHs } from 'src/styles/index';
 const InfoText = ({ title, value }) => (
     <>
         <CustomTitle style={styles.title}>{title}</CustomTitle>
+
         <CustomSubheading style={styles.text}>{value}</CustomSubheading>
 
         <GapV small />
     </>
 );
 
-const PipeLine = () => (
+const PipeLine = ({ pipeline }) => (
     <>
         <CustomTitle style={styles.title}>{`Pipeline`}</CustomTitle>
-        <View style={{ flexDirection: 'row' }}>
+
+        <View style={styles.chipsView}>
             <Chip>{`Language`}</Chip>
             <Chip>{`Study Abroad`}</Chip>
+            {/* {pipeline?.map((item, index) => (
+                <Chip key={index}>{item}</Chip>
+            ))} */}
         </View>
     </>
 );
 
-const ProfileInfo = () => (
-    <>
-        <CustomHeadline style={styles.heading}>{`Ahmed Fayyaz`}</CustomHeadline>
-        <CustomText style={styles.text}>
-            {`Status : `}
-            <CustomText style={styles.status}>{`Open`}</CustomText>
-        </CustomText>
-        <DividerV />
+const ProfileInfo = ({ userData }) => {
+    const {
+        dob,
+        email,
+        fName,
+        lName,
+        jobTitile,
+        phone,
+        pipeline,
+        statusName,
+        vName,
+    } = userData;
 
-        <GapV small />
+    return (
+        <>
+            <CustomHeadline style={styles.heading}>{vName}</CustomHeadline>
+            <CustomText style={styles.text}>
+                {`Status : `}
+                <CustomText style={styles.status}>{statusName}</CustomText>
+            </CustomText>
+            <DividerV />
 
-        <InfoText title="Email" value="ahmedfayyaz@gmail.com" />
-        <InfoText title="Job Title" value="Dev" />
-        <InfoText title="Phone No" value="03066808743" />
-        <InfoText title="DOB" value="28/12/1996" />
+            <GapV small />
 
-        <PipeLine />
+            <InfoText title="Email" value={email} />
+            <InfoText title="Job Title" value={jobTitile} />
+            <InfoText title="Phone No" value={phone} />
+            <InfoText title="DOB" value={dob} />
 
-        {/* <GapV /> */}
-    </>
-);
+            <PipeLine pipeline={pipeline} />
+
+            {/* <GapV /> */}
+        </>
+    );
+};
 
 const Support = () => {
     const openLinkContactUs = () => {
@@ -68,17 +89,17 @@ const Support = () => {
             <CustomHeadline style={styles.heading}>{`Support`}</CustomHeadline>
             <DividerV />
 
-            <GapV />
+            <GapV small />
 
             <CustomRoundButton
-                mode="text"
+                mode="outline"
                 title={'Contact Us'}
                 onPress={openLinkContactUs}
                 icon="arrow-forward"
                 contentStyle={styles.supportButton}
             />
             <CustomRoundButton
-                mode="text"
+                mode="outline"
                 title={'About Us'}
                 onPress={openLinkAboutUs}
                 icon="arrow-forward"
@@ -88,18 +109,24 @@ const Support = () => {
     );
 };
 
-const Content = () => {
+const Content = ({ loginUserReducer }) => {
+    const userData = loginUserReducer.data?.crmStudentUser;
+
     return (
         <View style={styles.content}>
-            <ProfileInfo />
+            {ProfileInfo({ userData })}
             <GapV />
 
-            <Support />
+            {Support()}
         </View>
     );
 };
 
-export default Content;
+function mapStateToProps({ loginUserReducer }) {
+    return { loginUserReducer };
+}
+
+export default connect(mapStateToProps, {})(Content);
 
 const styles = StyleSheet.create({
     content: {
@@ -125,6 +152,8 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         color: greenColor,
     },
+
+    chipsView: { flexDirection: 'row' },
 
     supportButton: {
         justifyContent: 'space-between',
