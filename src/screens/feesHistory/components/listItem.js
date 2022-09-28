@@ -26,12 +26,16 @@ const renderItem = ({ item, index }) => {
                 <CustomText style={[styles.date]}>{`${date}`}</CustomText>
 
                 <CustomText style={[styles.ammount]}>{`${dr}`}</CustomText>
+
                 <CustomText style={[styles.ammount]}>{`${cr}`}</CustomText>
-                <CustomText
-                    style={[styles.otherTitles]}>{`${vType}`}</CustomText>
-                <CustomText style={[styles.otherTitles]}>{`${vNo}`}</CustomText>
+
+                <CustomText style={[styles.others]}>{`${vType}`}</CustomText>
+
+                <CustomText style={[styles.others]}>{`${vNo}`}</CustomText>
+
                 <CustomText
                     style={[styles.narration]}>{`${narration}`}</CustomText>
+
                 <CustomText style={[styles.balance]}>{`${balance}`}</CustomText>
             </View>
         </>
@@ -40,6 +44,7 @@ const renderItem = ({ item, index }) => {
 
 const styles = StyleSheet.create({
     row: {
+        width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: pdHs,
@@ -47,34 +52,34 @@ const styles = StyleSheet.create({
         borderBottomWidth: StyleSheet.hairlineWidth,
     },
 
-    otherTitles: {
-        width: 100,
-        textAlign: 'left',
-        paddingHorizontal: pdHs,
-    },
-
     date: {
         width: 100,
         textAlign: 'left',
-        paddingHorizontal: pdHs,
+        marginHorizontal: pdHs,
+    },
+
+    others: {
+        width: 80,
+        textAlign: 'left',
+        marginHorizontal: pdHs,
     },
 
     ammount: {
         width: 70,
-        textAlign: 'right',
-        paddingHorizontal: pdHs,
+        textAlign: 'left',
+        marginHorizontal: pdHs,
     },
 
     narration: {
         width: 220,
         textAlign: 'left',
-        paddingHorizontal: pdHs,
+        marginHorizontal: pdHs,
     },
 
     balance: {
         width: 100,
         textAlign: 'right',
-        paddingHorizontal: pdHs,
+        marginHorizontal: pdHs,
     },
 });
 

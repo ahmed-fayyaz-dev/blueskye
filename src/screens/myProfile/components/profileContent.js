@@ -1,19 +1,18 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { useTheme, Chip } from 'react-native-paper';
-import { GapV } from 'src/components/gap';
 import * as Linking from 'expo-linking';
-
+import { Chip } from 'react-native-paper';
+import { CustomRoundButton } from 'src/components/buttons';
 import {
     CustomTitle,
     CustomText,
     CustomHeadline,
     CustomSubheading,
-    CustomCaption,
 } from 'src/components/customText';
-import { greenColor, mgM, pdHs } from 'src/styles/index';
 import { DividerV } from 'src/components/divider';
-import { CustomRoundButton } from 'src/components/buttons';
+import { GapV } from 'src/components/gap';
+
+import { greenColor, mgM, pdHs } from 'src/styles/index';
 
 const InfoText = ({ title, value }) => (
     <>
@@ -46,9 +45,9 @@ const ProfileInfo = () => (
         <GapV small />
 
         <InfoText title="Email" value="ahmedfayyaz@gmail.com" />
+        <InfoText title="Job Title" value="Dev" />
         <InfoText title="Phone No" value="03066808743" />
         <InfoText title="DOB" value="28/12/1996" />
-        <InfoText title="Job Title" value="Dev" />
 
         <PipeLine />
 
@@ -68,6 +67,8 @@ const Support = () => {
         <>
             <CustomHeadline style={styles.heading}>{`Support`}</CustomHeadline>
             <DividerV />
+
+            <GapV />
 
             <CustomRoundButton
                 mode="text"

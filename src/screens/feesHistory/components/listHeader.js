@@ -16,16 +16,16 @@ const Header = () => {
             <CustomSubheading style={[style.date]}>{`Date`}</CustomSubheading>
 
             <CustomSubheading
-                style={[style.headingTitle]}>{`Dr`}</CustomSubheading>
+                style={[style.amountTitles]}>{`Dr`}</CustomSubheading>
 
             <CustomSubheading
-                style={[style.headingTitle]}>{`Cr`}</CustomSubheading>
+                style={[style.amountTitles]}>{`Cr`}</CustomSubheading>
 
             <CustomSubheading
-                style={[style.headingTitle]}>{`VType`}</CustomSubheading>
+                style={[style.otherTitles]}>{`V-Type`}</CustomSubheading>
 
             <CustomSubheading
-                style={[style.headingTitle]}>{`vNo`}</CustomSubheading>
+                style={[style.otherTitles]}>{`V-No`}</CustomSubheading>
 
             <CustomSubheading
                 style={[style.narration]}>{`Narration`}</CustomSubheading>
@@ -52,23 +52,31 @@ const styles = colors =>
             color: onBackgroundDark,
             fontWeight: 'bold',
             textAlign: 'left',
-            paddingHorizontal: pdHs,
+            marginHorizontal: pdHs,
         },
 
-        headingTitle: {
+        amountTitles: {
             width: 70,
             color: onBackgroundDark,
             fontWeight: 'bold',
-            textAlign: 'right',
-            paddingHorizontal: pdHs,
+            textAlign: 'left',
+            marginHorizontal: pdHs,
+        },
+
+        otherTitles: {
+            width: 80,
+            color: onBackgroundDark,
+            fontWeight: 'bold',
+            textAlign: 'left',
+            marginHorizontal: pdHs,
         },
 
         balance: {
             width: 100,
             color: onBackgroundDark,
             fontWeight: 'bold',
-            textAlign: 'right',
-            paddingHorizontal: pdHs,
+            textAlign: 'left',
+            marginHorizontal: pdHs,
         },
 
         narration: {
@@ -77,7 +85,7 @@ const styles = colors =>
             fontWeight: 'bold',
             color: onBackgroundDark,
             backgroundColor: colors.primary,
-            paddingHorizontal: pdHs,
+            marginHorizontal: pdHs,
         },
     });
 
