@@ -1,3 +1,6 @@
+# Expo
+.expo
+
 # OSX
 #
 .DS_Store
@@ -32,8 +35,6 @@ local.properties
 
 # node.js
 node_modules/
-.expo
-.expo/
 dist/
 npm-debug.*
 web-build/
