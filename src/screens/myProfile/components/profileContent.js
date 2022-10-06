@@ -20,7 +20,7 @@ const InfoText = ({ title, value }) => (
     <>
         <CustomTitle style={styles.title}>{title}</CustomTitle>
 
-        <CustomSubheading style={styles.text}>{value}</CustomSubheading>
+        <CustomSubheading style={styles.text}>{`${value}`}</CustomSubheading>
 
         <GapV small />
     </>
@@ -31,11 +31,9 @@ const PipeLine = ({ pipeline }) => (
         <CustomTitle style={styles.title}>{`Pipeline`}</CustomTitle>
 
         <View style={styles.chipsView}>
-            <Chip>{`Language`}</Chip>
-            <Chip>{`Study Abroad`}</Chip>
-            {/* {pipeline?.map((item, index) => (
+            {pipeline?.map((item, index) => (
                 <Chip key={index}>{item}</Chip>
-            ))} */}
+            ))}
         </View>
     </>
 );

@@ -140,7 +140,7 @@ function DrawerContent(props) {
             {...props}>
             <GapV />
 
-            <DividerV l />
+            <DividerV />
 
             <CustomTitle style={[style.menuText]}>MENU</CustomTitle>
 
