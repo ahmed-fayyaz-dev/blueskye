@@ -11,6 +11,7 @@ import { IonIcons, signOutFunc } from 'src/helpers';
 import {
     bRss,
     greenColor,
+    mgL,
     mgS,
     onBackgroundDark,
     pdHm,
@@ -25,11 +26,11 @@ import {
     CustomText,
     CustomTitle,
 } from './customText';
+import { DividerV } from './divider';
 import { GapH, GapV } from './gap';
 import { icons } from 'assets/images/index';
 import { CustomIconButton } from 'src/components/buttons';
 import { iconSize } from 'src/styles/navCss';
-
 // const MenuLabels = [];
 
 const navigateTo = ({ navigation, name }) => {
@@ -137,6 +138,10 @@ function DrawerContent(props) {
         <DrawerContentScrollView
             contentContainerStyle={style.drawerContentScroll}
             {...props}>
+            <GapV />
+
+            <DividerV l />
+
             <CustomTitle style={[style.menuText]}>MENU</CustomTitle>
 
             {/* Drawer with Sub Levels */}
@@ -198,12 +203,17 @@ const styles = colors =>
 
         menuText: {
             // margin: mgS,
+            marginTop: mgS,
             padding: mgS,
             textAlign: 'left',
             fontWeight: 'bold',
         },
 
-        textLeft: { textAlign: 'left' },
+        divider: {
+            height: 1,
+        },
+
+        textLeft: { textAlign: 'left', fontWeight: 'bold' },
 
         textRight: { textAlign: 'right' },
 

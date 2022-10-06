@@ -39,7 +39,7 @@ export const Form = ({ onSubmit, navToForgetPass }) => {
                         <CustomInput
                             fieldName="email"
                             onChange={handleChange('email')}
-                            label="UserId / Email"
+                            label="Email"
                             state={values.email}
                             onBlur={handleBlur('email')}
                             helper={touched.email ? errors.email : null}
