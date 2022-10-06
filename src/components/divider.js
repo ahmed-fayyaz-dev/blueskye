@@ -3,18 +3,10 @@ import { StyleSheet } from 'react-native';
 import { Divider } from 'react-native-paper';
 import { pdVss, primaryColor } from 'src/styles';
 
-export function DividerV({ m, l, xl, ...props }) {
+export function DividerV({ m, l, ...props }) {
     return (
         <Divider
-            style={[
-                m
-                    ? style.dividerM
-                    : l
-                    ? style.dividerL
-                    : xl
-                    ? style.dividerXl
-                    : style.divider,
-            ]}
+            style={[m ? style.dividerM : l ? style.dividerL : style.divider]}
             {...props}
         />
     );
@@ -36,13 +28,6 @@ const style = StyleSheet.create({
     },
 
     dividerL: {
-        alignSelf: 'center',
-        // backgroundColor: primaryColor,
-        height: pdVss,
-        width: '100%',
-    },
-
-    dividerXl: {
         alignSelf: 'center',
         // backgroundColor: primaryColor,
         height: pdVss,

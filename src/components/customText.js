@@ -109,6 +109,6 @@ const styles = StyleSheet.create({
 
     subHeading: {
         fontSize: buttonText,
-        lineHeight: 18.5,
+        // lineHeight: 18.5,
     },
 });
