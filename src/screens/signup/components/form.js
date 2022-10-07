@@ -108,17 +108,12 @@ export const Form = ({ onSubmit }) => {
 
                         <GapV />
 
-                        <CustomText>
-                            {`By Signing up you accept our `}
-
-                            <TouchableOpacity>
-                                <CustomText style={[style.content]}>
-                                    {`Terms of Services`}{' '}
-                                </CustomText>
-                            </TouchableOpacity>
-
+                        {/* <CustomText>
+                            {`By Signing up you accept our `}\{' '}
+                            <CustomText style={[style.content]}>
+                                {`Terms of Services`}{' '}
+                            </CustomText>
                             {` and `}
-
                             <TouchableOpacity>
                                 <CustomText
                                     style={
@@ -127,7 +122,7 @@ export const Form = ({ onSubmit }) => {
                             </TouchableOpacity>
                         </CustomText>
 
-                        <GapV />
+                        <GapV /> */}
                     </>
                 );
             }}
