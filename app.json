@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Bluesky",
-    "slug": "bluesky-app",
+    "name": "Bluesky Student",
+    "slug": "bluesky-student",
     "version": "1.0.0",
     "orientation": "default",
     "userInterfaceStyle": "light",
@@ -37,7 +37,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "4fc2b0f8-9d51-460f-8b48-aa58e5bfeb56"
+        "projectId": "6d7b9344-5c7f-494e-bfbe-eb0c7678f86e"
       }
     }
   }

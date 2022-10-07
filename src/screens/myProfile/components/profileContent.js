@@ -28,7 +28,7 @@ const InfoText = ({ title, value }) => (
 
 const PipeLine = ({ pipeline }) => (
     <>
-        <CustomTitle style={styles.title}>{`Pipeline`}</CustomTitle>
+        <CustomTitle style={styles.title}>{`Work flow`}</CustomTitle>
 
         <View style={styles.chipsView}>
             {pipeline?.map((item, index) => (
