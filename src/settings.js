@@ -23,11 +23,12 @@ export const settings =
         "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
         'Non-serializable values were found in the navigation state',
     ]),
-    enableFreeze(true),
-    () => {
-        try {
-            useKeepAwake();
-        } catch (e) {
-            console.error(e);
-        }
-    });
+    enableFreeze(true));
+    // ,
+    // () => {
+    //     try {
+    //         useKeepAwake();
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // }

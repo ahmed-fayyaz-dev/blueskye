@@ -19,7 +19,11 @@ export const success = 'success';
 
 export const standardDateFormat = 'dd/MM/yyyy';
 
+export const standardTimeFormat = 'hh:mm a';
+
 export const dateToAvoid = '01/01/1900';
+
+export const dateToAvoidRaw = '1899-12-31T19:00:00.000Z';
 
 export const apiDateFormat = 'yyyy-MM-dd';
 
@@ -115,6 +119,13 @@ export const signOutFunc = ({ logout, navigation }) => {
 export const convertDate = date => {
     const f = format(date, standardDateFormat);
     if (String(f) === dateToAvoid) return '-';
+    return f;
+};
+
+export const convertToTime = date => {
+    if (format(date, standardDateFormat) === dateToAvoid) return '-';
+
+    const f = format(date, standardTimeFormat);
     return f;
 };
 

@@ -29,7 +29,6 @@ const InfoText = ({ title, value }) => (
 const PipeLine = ({ pipeline }) => (
     <>
         <CustomTitle style={styles.title}>{`Work flow`}</CustomTitle>
-
         <View style={styles.chipsView}>
             {pipeline?.map((item, index) => (
                 <Chip key={index}>{item}</Chip>
@@ -56,16 +55,18 @@ const ProfileInfo = ({ userData }) => {
             <CustomHeadline style={styles.heading}>{vName}</CustomHeadline>
             <CustomText style={styles.text}>
                 {`Status : `}
-                <CustomText style={styles.status}>{statusName}</CustomText>
+                <CustomText style={styles.status}>
+                    {statusName || '-'}
+                </CustomText>
             </CustomText>
             <DividerV />
 
             <GapV small />
 
-            <InfoText title="Email" value={email} />
-            <InfoText title="Job Title" value={jobTitile} />
-            <InfoText title="Phone No" value={phone} />
-            <InfoText title="DOB" value={dob} />
+            <InfoText title="Email" value={email || '-'} />
+            <InfoText title="Job Title" value={jobTitile || '-'} />
+            <InfoText title="Phone No" value={phone || '-'} />
+            <InfoText title="DOB" value={dob || '-'} />
 
             <PipeLine pipeline={pipeline} />
 
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
         color: greenColor,
     },
 
-    chipsView: { flexDirection: 'row' },
+    chipsView: { flexDirection: 'row', flexWrap: 'wrap' },
 
     supportButton: {
         justifyContent: 'space-between',
