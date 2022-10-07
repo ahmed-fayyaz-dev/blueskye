@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { convertDate, parseDate } from 'src/helpers';
+import { convertDate, parseDate, convertToTime } from 'src/helpers';
 import { pdHs, pdVs } from 'src/styles';
 import { CustomText } from 'src/components/customText';
 
@@ -13,10 +13,10 @@ const ListItem = ({ item }) => {
         vDate = convertDate(vDate);
 
         dateIn = parseDate(dateIn);
-        dateIn = convertDate(dateIn);
+        dateIn = convertToTime(dateIn);
 
         dateOut = parseDate(dateOut);
-        dateOut = convertDate(dateOut);
+        dateOut = convertToTime(dateOut);
     } catch (e) {
         console.error(e);
     }
