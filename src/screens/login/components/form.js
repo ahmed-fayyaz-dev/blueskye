@@ -66,7 +66,7 @@ export const Form = ({ onSubmit, navToForgetPass }) => {
                         <GapV />
 
                         <View style={style.bottomRow}>
-                            <View style={style.fdr}>
+                            <View style={style.checkboxView}>
                                 <CustomCheckbox
                                     status={values.remember}
                                     onPress={handleChangeRemember}
@@ -93,7 +93,10 @@ export const Form = ({ onSubmit, navToForgetPass }) => {
 // eslint-disable-next-line no-unused-vars
 const styles = colors =>
     StyleSheet.create({
-        fdr: { flexDirection: 'row' },
+        checkboxView: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
 
         bottomRow: { flexDirection: 'row', justifyContent: 'space-between' },
 
