@@ -1,44 +1,41 @@
 {
-  "expo": {
-    "name": "Bluesky Student",
-    "slug": "bluesky-student",
-    "version": "1.0.0",
-    "orientation": "default",
-    "userInterfaceStyle": "light",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#100D25"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "bundleIdentifier": "com.zetasolutionsonline.bluesky",
-      "supportsTablet": true,
-      "infoPlist": {
-        "CFBundleAllowMixedLocalizations": true
-      }
-    },
-    "android": {
-      "softwareKeyboardLayoutMode": "resize",
-      "package": "com.zetasolutionsonline.bluesky",
-      "jsEngine": "hermes"
-    },
-    "web": {
-      "favicon": "./assets/icon.png"
-    },
-    "plugins": [
-      "sentry-expo"
-    ],
-    "extra": {
-      "eas": {
-        "projectId": "6d7b9344-5c7f-494e-bfbe-eb0c7678f86e"
-      }
+    "expo": {
+        "name": "Bluesky Student",
+        "slug": "bluesky-student",
+        "version": "1.0.0",
+        "orientation": "default",
+        "userInterfaceStyle": "light",
+        "icon": "./assets/icon.png",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "cover",
+            "backgroundColor": "#100D25"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "bundleIdentifier": "com.zetasolutionsonline.bluesky",
+            "supportsTablet": true,
+            "infoPlist": {
+                "CFBundleAllowMixedLocalizations": true,
+                "NSCameraUsageDescription": "This app uses the camera to scan barcodes for attendance."
+            }
+        },
+        "android": {
+            "softwareKeyboardLayoutMode": "resize",
+            "package": "com.zetasolutionsonline.bluesky",
+            "jsEngine": "hermes"
+        },
+        "web": {
+            "favicon": "./assets/icon.png"
+        },
+        "plugins": ["sentry-expo"],
+        "extra": {
+            "eas": {
+                "projectId": "6d7b9344-5c7f-494e-bfbe-eb0c7678f86e"
+            }
+        }
     }
-  }
 }
