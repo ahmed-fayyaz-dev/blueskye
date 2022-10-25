@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useTheme } from 'react-native-paper';
-import { CustomText } from 'src/components/customText';
+import { CustomSubheading, CustomText } from 'src/components/customText';
 
 export default function QrScanner({ handleScan }) {
     const { colors } = useTheme();
@@ -12,13 +12,13 @@ export default function QrScanner({ handleScan }) {
     const [scanned, setScanned] = useState(false);
 
     useEffect(() => {
-        const getBarCodeScannerPermissions = async () => {
-            const { status } = await BarCodeScanner.requestPermissionsAsync();
-            setHasPermission(status === 'granted');
-        };
-
         getBarCodeScannerPermissions();
     }, []);
+
+    const getBarCodeScannerPermissions = async () => {
+        const { status } = await BarCodeScanner.requestPermissionsAsync();
+        setHasPermission(status === 'granted');
+    };
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
@@ -29,7 +29,14 @@ export default function QrScanner({ handleScan }) {
         return <CustomText>Requesting for camera permission</CustomText>;
     }
     if (hasPermission === false) {
-        return <CustomText>No access to camera</CustomText>;
+        return (
+            <>
+                <CustomText>No access to camera</CustomText>
+                <CustomSubheading onPress={getBarCodeScannerPermissions}>
+                    Request Permission again
+                </CustomSubheading>
+            </>
+        );
     }
     return (
         <View style={style.container}>
