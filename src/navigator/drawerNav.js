@@ -151,6 +151,7 @@ const DrawerNav = props => {
                             size,
                             icon: icons.drawer.myProfile,
                         }),
+                    headerShown: false,
                 }}
             />
 

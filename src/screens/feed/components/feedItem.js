@@ -12,8 +12,8 @@ const BLURVIEW_TINT = 'dark';
 
 const FeedItem = ({ item }) => {
     const { imageUrlPath, vDate } = item;
-    const parsedDate = parseDate(vDate);
-    const date = convertDate(parsedDate);
+    // const parsedDate = parseDate(vDate);
+    // const date = convertDate(parsedDate);
 
     return (
         <View style={styles.content}>
@@ -22,7 +22,7 @@ const FeedItem = ({ item }) => {
                     intensity={BLURVIEW_INTENSITY}
                     style={styles.blurContainer}
                     tint={BLURVIEW_TINT}>
-                    <CustomText style={styles.text}>{`${date}`}</CustomText>
+                    <CustomText style={styles.text}>{`${vDate}`}</CustomText>
                 </BlurView>
             </BackgroundImage>
         </View>

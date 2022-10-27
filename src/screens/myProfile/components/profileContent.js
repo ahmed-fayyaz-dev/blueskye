@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import * as Linking from 'expo-linking';
+import { ScrollView } from 'react-native-gesture-handler';
 import { Chip } from 'react-native-paper';
 import { connect } from 'react-redux';
 
@@ -13,7 +15,6 @@ import {
 } from 'src/components/customText';
 import { DividerV } from 'src/components/divider';
 import { GapV } from 'src/components/gap';
-
 import { greenColor, mgM, pdHs } from 'src/styles/index';
 
 const InfoText = ({ title, value }) => (
@@ -108,16 +109,39 @@ const Support = () => {
     );
 };
 
+const DeactivateAccount = () => {
+    const nav = useNavigation();
+
+    const navDelAcc = () => {
+        nav.navigate('deleteAccount');
+    };
+
+    return (
+        <>
+            <CustomRoundButton
+                mode="outline"
+                title={'Delete Account'}
+                onPress={navDelAcc}
+                color="red"
+                icon="trash-outline"
+                contentStyle={styles.supportButton}
+            />
+        </>
+    );
+};
+
 const Content = ({ loginUserReducer }) => {
     const userData = loginUserReducer.data?.crmStudentUser;
 
     return (
-        <View style={styles.content}>
+        <ScrollView contentContainerStyle={styles.content}>
             {ProfileInfo({ userData })}
             <GapV />
 
             {Support()}
-        </View>
+
+            {DeactivateAccount()}
+        </ScrollView>
     );
 };
 
@@ -155,6 +179,11 @@ const styles = StyleSheet.create({
     chipsView: { flexDirection: 'row', flexWrap: 'wrap' },
 
     supportButton: {
+        justifyContent: 'space-between',
+        flexDirection: 'row-reverse',
+    },
+
+    deactivateButton: {
         justifyContent: 'space-between',
         flexDirection: 'row-reverse',
     },
