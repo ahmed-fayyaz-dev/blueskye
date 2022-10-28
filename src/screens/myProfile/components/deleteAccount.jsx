@@ -3,47 +3,16 @@ import { View, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-import { Surface } from 'react-native-paper';
-import { windowHeigth, windowWidth } from 'src/helpers';
+import { Portal } from 'react-native-paper';
+import { windowWidth } from 'src/helpers';
 import { pdHs, mgM, bRm } from 'src/styles';
 import { secondaryColor } from 'src/styles';
+import DelModalCard from './deleteModalCard';
 import Appbar from 'src/components/appbar';
-import { CustomRoundButton, CustomSquareButton } from 'src/components/buttons';
+import { CustomRoundButton } from 'src/components/buttons';
 import { CustomTitle } from 'src/components/customText';
-import { GapH, GapV } from 'src/components/gap';
+import { GapV } from 'src/components/gap';
 import { ModalView } from 'src/components/modalView';
-
-const ModalCard = ({ onPressYes, onPressNo }) => {
-    return (
-        <Surface style={styles.modalCard}>
-            <CustomTitle>Are you sure you want to delete ?</CustomTitle>
-
-            <View style={styles.buttonsView}>
-                <CustomSquareButton mode="text" compact>
-                    YES
-                </CustomSquareButton>
-
-                <GapH />
-
-                <CustomSquareButton
-                    onPress={onPressNo}
-                    mode="text"
-                    compact
-                    color={secondaryColor}>
-                    NO
-                </CustomSquareButton>
-            </View>
-        </Surface>
-    );
-};
-
-const Modal = ({ visible, onDismiss }) => {
-    return (
-        <ModalView visible={visible} onDismiss={onDismiss}>
-            <ModalCard onPressNo={onDismiss} />
-        </ModalView>
-    );
-};
 
 const Content = ({ onPressDel }) => {
     return (
@@ -66,6 +35,16 @@ const Content = ({ onPressDel }) => {
 
             <CustomRoundButton title={'Delete Account'} onPress={onPressDel} />
         </View>
+    );
+};
+
+const Modal = ({ visible, onDismiss }) => {
+    return (
+        <Portal>
+            <ModalView visible={visible} onDismiss={onDismiss}>
+                <DelModalCard onPressNo={onDismiss} />
+            </ModalView>
+        </Portal>
     );
 };
 
@@ -116,17 +95,5 @@ const styles = StyleSheet.create({
 
     deleteText: {
         fontWeight: 'bold',
-    },
-
-    modalCard: {
-        padding: pdHs,
-        width: windowWidth * 0.85,
-        borderRadius: bRm,
-        justifyContent: 'space-around',
-    },
-
-    buttonsView: {
-        flexDirection: 'row',
-        justifyContent: 'center',
     },
 });

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
