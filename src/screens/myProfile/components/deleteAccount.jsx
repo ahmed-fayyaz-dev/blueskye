@@ -4,8 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 import { Portal } from 'react-native-paper';
-import { windowWidth } from 'src/helpers';
-import { pdHs, mgM, bRm } from 'src/styles';
+import { pdHs, mgM } from 'src/styles';
 import { secondaryColor } from 'src/styles';
 import DelModalCard from './deleteModalCard';
 import Appbar from 'src/components/appbar';
