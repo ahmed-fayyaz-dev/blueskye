@@ -32,7 +32,7 @@ function Login({ navigation, loginAction }) {
     const gStyle = globalStyles();
 
     // Navigate
-    function navigate() {
+    function navigateToLogin() {
         navigation.reset({
             index: 0,
             routes: [{ name: 'drawerNav' }],
@@ -49,17 +49,22 @@ function Login({ navigation, loginAction }) {
 
     // OnLoginPress
     async function handleSubmitLogin(data) {
-        if (data.remember) {
-            setStorageItem(ID, data.email);
-            setStorageItem(PASSWORD, data.password);
-            setStorageItem(ONBOARD, true);
-        }
+        const succFunc = () => {
+            if (data.remember) {
+                setStorageItem(ID, data.email);
+                setStorageItem(PASSWORD, data.password);
+                setStorageItem(ONBOARD, true);
+            }
+            setTimeout(() => {
+                navigateToLogin();
+            }, 0);
+        };
 
         await callApi({
             data,
             setLoading: () => {},
             submitCallApi: loginAction,
-            successFunc: navigate,
+            successFunc: succFunc,
             errFunc: () => {},
             catchFunc: () => {},
         });
