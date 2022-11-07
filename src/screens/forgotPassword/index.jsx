@@ -1,8 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
 import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -83,14 +83,14 @@ const ForgotPassword = ({ navigation, forgetPasswordAction }) => {
     );
 
     return (
-        <View style={[style.container]}>
+        <SafeAreaView style={[style.container]}>
             <ScrollView contentContainerStyle={[style.content]}>
                 {TopView()}
                 {Content()}
                 {BottomView()}
                 <GapV />
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -145,7 +145,6 @@ const styles = colors =>
         icon: { alignSelf: 'center' },
 
         backArrow: {
-            paddingTop: 30,
             position: 'absolute',
         },
     });

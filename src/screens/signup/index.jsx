@@ -51,17 +51,22 @@ function Signup({ navigation, signupAction }) {
     };
 
     const handleSubmit = async data => {
-        // if (data) {
-        //     setStorageItem(ID, data.email);
-        //     setStorageItem(PASSWORD, data.password);
-        //     setStorageItem(ONBOARD, true);
-        // }
+        const succFunc = () => {
+            if (data.remember) {
+                setStorageItem(ID, data.email);
+                setStorageItem(PASSWORD, data.password);
+                setStorageItem(ONBOARD, true);
+            }
+            setTimeout(() => {
+                navigate();
+            }, 0);
+        };
 
         await callApi({
             data,
             setLoading: () => {},
             submitCallApi: signupAction,
-            successFunc: navigate,
+            successFunc: succFunc,
             errFunc: () => {},
             catchFunc: () => {},
         });

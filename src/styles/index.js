@@ -48,6 +48,7 @@ export const dark = 'dark';
 export const onBackgroundDark = colorDictionary.colorSet.dark.onBackground;
 export const onBackgroundLight = colorDictionary.colorSet.light.onBackground;
 export const primaryColor = colorDictionary.colorSet.light.primary;
+export const secondaryColor = colorDictionary.colorSet.light.secondary;
 export const greenColor = '#2DCC9F';
 
 export const hitSlopS = {

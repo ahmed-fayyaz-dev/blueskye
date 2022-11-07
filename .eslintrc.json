@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "react-native/react-native": true
     },
     "extends": [
         "eslint:recommended",
@@ -28,8 +29,14 @@
         },
         "import/extensions": [".js", ".jsx", ".json, .ts, .tsx"]
     },
-    "plugins": ["react", "module-resolver", "import"],
+    "plugins": [
+        "react",
+        "eslint-plugin-react-native",
+        "module-resolver",
+        "import"
+    ],
     "rules": {
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "no-unused-vars": "warn",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": 0,
