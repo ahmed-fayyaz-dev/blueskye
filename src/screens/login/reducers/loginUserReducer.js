@@ -9,8 +9,8 @@ export default function (state = initial, action) {
     switch (action.type) {
         case types.LOGIN_ACCOUNT_ATTEMPT:
             return { ...state, loading: true };
-        case types.LOGIN_ACCOUNT_SUCCESS:
-            return {
+            case types.LOGIN_ACCOUNT_SUCCESS:
+                return {
                 ...state,
                 loading: false,
                 data: action.payload,

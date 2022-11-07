@@ -6,6 +6,7 @@ import { destroyAuth } from 'src/helpers/utils';
 import * as types from 'src/screens/login/constants';
 
 export function loginAction(data) {
+    // console.log("Data in login action",data)
     return async dispatch => {
         dispatch({ type: types.LOGIN_ACCOUNT_ATTEMPT });
 
@@ -33,6 +34,7 @@ export function loginAction(data) {
                 return response.data;
             })
             .catch(error => {
+                data.remember=false
                 console.error('error///', error); // Console Log
                 Alert.alert(
                     'Error! Logging in was unsucessfull! removing user ...',

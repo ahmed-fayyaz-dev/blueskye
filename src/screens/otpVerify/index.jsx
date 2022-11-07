@@ -24,6 +24,7 @@ const OtpVerify = ({ route, navigation, verifyOtpAction, resendOtpAction }) => {
 
     const onSuccess = r => {
         showSnack(r?.message);
+        // console.log("Here")
 
         setTimeout(() => {
             navigation.reset({
@@ -37,15 +38,16 @@ const OtpVerify = ({ route, navigation, verifyOtpAction, resendOtpAction }) => {
         const data = {
             otp: value,
         };
-
-        await callApi({
-            data,
-            setLoading: () => {},
-            submitCallApi: verifyOtpAction,
-            successFunc: onSuccess,
-            errFunc: () => {},
-            catchFunc: () => {},
-        });
+        if(data.otp) {  
+            await callApi({
+                data,
+                setLoading: () => {},
+                submitCallApi: verifyOtpAction,
+                successFunc: onSuccess,
+                errFunc: () => {},
+                catchFunc: () => {},
+            });
+    }
     };
 
     const onResendSuccess = r => {

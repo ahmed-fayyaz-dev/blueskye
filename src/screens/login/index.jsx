@@ -33,6 +33,7 @@ function Login({ navigation, loginAction }) {
 
     // Navigate
     function navigate() {
+        
         navigation.reset({
             index: 0,
             routes: [{ name: 'drawerNav' }],
@@ -49,6 +50,7 @@ function Login({ navigation, loginAction }) {
 
     // OnLoginPress
     async function handleSubmitLogin(data) {
+        // console.log("Form Data : ",data.remember)
         if (data.remember) {
             setStorageItem(ID, data.email);
             setStorageItem(PASSWORD, data.password);
