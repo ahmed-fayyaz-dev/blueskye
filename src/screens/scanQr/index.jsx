@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { icons } from 'assets/images';
+import { IonIcons } from 'src/helpers';
 import { scanQrAction } from './actions';
 import QrScanner from './components/BarcodeScanner';
 import AppBar from 'src/components/appbar';
@@ -14,7 +15,6 @@ import { GapV } from 'src/components/gap';
 import { callApi } from 'src/helpers/apiCall';
 import { showSnackLong, showSnack } from 'src/helpers/utils';
 import { bRss, mgM, mgMs, pdH } from 'src/styles/index';
-import { IonIcons } from 'src/helpers';
 
 const ScanQR = ({ scanQrAction }) => {
     const [openCamera, setOpenCamera] = useState(false);

@@ -33,6 +33,8 @@ export default function App() {
     );
 }
 
+// process.on("unhandledRejection",)
+
 // export default Sentry.Native.wrap(App)     ;
 const styles = StyleSheet.create({
     container: { flex: 1 },

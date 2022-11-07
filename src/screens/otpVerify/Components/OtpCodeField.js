@@ -45,8 +45,8 @@ const OtpCodeField = ({ verifyHandle, resendHandle }) => {
     }, [resendButtonDisabledTime]);
 
     function handleSubmit() {
-        if (value !== value) {
-            showSnack('Enter OTP value');
+        if (value.length <= 3) {
+            showSnack('Enter copmlete OTP value');
         } else {
             setTimeout(() => {
                 verifyHandle(value);

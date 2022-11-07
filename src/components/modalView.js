@@ -7,6 +7,7 @@ import {
     TouchableWithoutFeedback,
     StyleSheet,
 } from 'react-native';
+import { windowWidth, windowHeigth } from 'src/helpers';
 import { bRs } from 'src/styles';
 
 export const ModalView = ({ visible, onDismiss, ...props }) => {
@@ -46,8 +47,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)',
     },
     modalContainer: {
-        // height: Dimensions.get("window").height * 0.7,
-        // width: Dimensions.get("window").width * 0.85,
+        // height: windowHeigth * 0.7,
+        // width: windowWidth * 0.85,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
