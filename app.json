@@ -2,7 +2,7 @@
     "expo": {
         "name": "Bluesky Student",
         "slug": "bluesky-student",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "orientation": "default",
         "userInterfaceStyle": "light",
         "icon": "./assets/icon.png",
@@ -16,7 +16,7 @@
         },
         "assetBundlePatterns": ["**/*"],
         "ios": {
-            "buildNumber": "4",
+            "buildNumber": "5",
             "bundleIdentifier": "com.zetasolutionsonline.bluesky",
             "supportsTablet": true,
             "infoPlist": {
@@ -24,15 +24,24 @@
             }
         },
         "android": {
-            "versionCode": 2,
+            "versionCode": 3,
             "softwareKeyboardLayoutMode": "resize",
             "package": "com.zetasolutionsonline.bluesky",
-            "jsEngine": "hermes"
+            "jsEngine": "hermes",
+            "googleServicesFile": "./google-services.json"
         },
         "web": {
             "favicon": "./assets/icon.png"
         },
-        "plugins": ["sentry-expo"],
+        "plugins": [
+            "sentry-expo",
+            [
+                "expo-notifications",
+                {
+                    "icon": "./assets//icon.png"
+                }
+            ]
+        ],
         "extra": {
             "eas": {
                 "projectId": "6d7b9344-5c7f-494e-bfbe-eb0c7678f86e"

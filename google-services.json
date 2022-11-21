@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "372501490876",
+    "project_id": "bluesky-student-417ef",
+    "storage_bucket": "bluesky-student-417ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372501490876:android:446ed9f79cf8d1297f34b9",
+        "android_client_info": {
+          "package_name": "com.zetasolutionsonline.bluesky"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372501490876-9o1c8p5v79q1hds5st2b870ala9h7hv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBndQbjpYQXIoeFsi7SMvY_BxEizC7YxoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372501490876-9o1c8p5v79q1hds5st2b870ala9h7hv9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
