@@ -17,6 +17,7 @@ import {
     LANGUAGE,
     RTL_LANGS,
 } from 'src/helpers/constants';
+import { destroyAuth } from 'src/helpers/utils';
 import { setLanguage } from 'src/redux/common/actions/actions';
 import { loginAction } from 'src/screens/login/actions';
 import {
@@ -114,6 +115,7 @@ function AppNavigator(props) {
                     setReady(true);
                 },
                 errFunc: () => {
+                    destroyAuth();
                     setReady(true);
                 },
                 catchFunc: () => {

@@ -15,6 +15,8 @@ export const isAndroid = Platform.OS === 'android';
 
 export const isIos = Platform.OS === 'ios';
 
+export const isDevice = Device.isDevice;
+
 export const success = 'success';
 
 export const standardDateFormat = 'dd/MM/yyyy';

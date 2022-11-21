@@ -51,14 +51,14 @@ function Signup({ navigation, signupAction }) {
     };
 
     const handleSubmit = async data => {
-        const succFunc = () => {
+        const succFunc = res => {
             if (data.remember) {
                 setStorageItem(ID, data.email);
                 setStorageItem(PASSWORD, data.password);
                 setStorageItem(ONBOARD, true);
             }
             setTimeout(() => {
-                navigate();
+                navigate(res);
             }, 0);
         };
 

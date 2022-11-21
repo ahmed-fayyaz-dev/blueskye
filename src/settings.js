@@ -1,5 +1,4 @@
 import { LogBox, StatusBar } from 'react-native';
-import { useKeepAwake } from 'expo-keep-awake';
 import i18n from 'i18n-js';
 // import { connectToDevTools } from "react-devtools-core";
 import { enableFreeze } from 'react-native-screens';
@@ -24,11 +23,3 @@ export const settings =
         'Non-serializable values were found in the navigation state',
     ]),
     enableFreeze(true));
-    // ,
-    // () => {
-    //     try {
-    //         useKeepAwake();
-    //     } catch (e) {
-    //         console.error(e);
-    //     }
-    // }
